@@ -1,0 +1,12 @@
+*.log*
+*.db*
+/blueprints
+/.cloud
+/.storage
+/tts
+/www
+/esphome
+/deps
+/image
+/custom_components
+secrets.yaml

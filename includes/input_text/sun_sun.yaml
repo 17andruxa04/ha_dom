@@ -1,0 +1,8 @@
+
+  sunset_time:
+    name: Время заката
+    icon: mdi:weather-sunset-down
+
+  sinrise_time:
+    name: Время восхода
+    icon: mdi:weather-sunset-up

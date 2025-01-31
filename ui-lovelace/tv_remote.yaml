@@ -1,0 +1,85 @@
+type: grid
+cards:
+  - type: button
+    name: Power
+    icon: mdi:power
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_POWER
+  - type: button
+    name: Navigate Up
+    icon: mdi:arrow-up
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_UP
+  - type: button
+    name: MENU
+    icon: mdi:menu
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_MENU
+  - type: button
+    name: Navigate Left
+    icon: mdi:arrow-left
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_LEFT
+  - type: button
+    name: Press Enter
+    icon: mdi:check
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_ENTER
+  - type: button
+    name: Navigate Right
+    icon: mdi:arrow-right
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_RIGHT
+  - type: button
+    name: Home
+    icon: mdi:home
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_HOME
+  - type: button
+    name: Navigate Down
+    icon: mdi:arrow-down
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_DOWN
+  - type: button
+    name: Info
+    icon: mdi:information
+    tap_action:
+      action: call-service
+      service: remote.send_command
+      service_data:
+        entity_id: remote.samsung_7_series_75
+        command: KEY_INFO
+columns: 3  # Количество кнопок в одной строке
+square: true  # Если true, карточки будут квадратными

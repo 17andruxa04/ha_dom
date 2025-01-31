@@ -1,0 +1,56 @@
+views:
+
+  - title: Dashboard
+    icon: mdi:view-dashboard
+    cards:
+
+        !include ui-lovelace/dashboard.yaml
+
+  - title: Отопление
+    icon: mdi:thermometer
+    cards:             
+
+        !include ui-lovelace/heating.yaml
+
+#   - title: Cameras
+#     icon: mdi:cctv
+#     cards:
+
+# # Камера на гараже
+#     - camera_view: live
+#       type: picture-glance
+#       title: garage
+#       camera_image: camera.garage
+#       entities:
+#       - entity: camera.garage
+
+# # Камера на навесе
+#     - camera_view: live
+#       type: picture-glance
+#       title: garden
+#       camera_image: camera.garden
+#       entities:
+#       - entity: camera.garden
+
+# # Камера на столбе
+#     - camera_view: live
+#       type: picture-glance
+#       title: street
+#       camera_image: camera.street
+#       entities:
+#       - entity: camera.street
+
+  # - title: TV
+  #   icon: mdi:television-classic
+  #   cards:
+      
+  #       !include ui-lovelace/tv_remote.yaml
+      
+  - title: test
+    icon: mdi:view-dashboard
+    cards:
+
+    - type: area
+      area: bedroom
+      theme: green
+

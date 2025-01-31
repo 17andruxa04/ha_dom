@@ -1,0 +1,320 @@
+
+- type: vertical-stack
+  cards:   
+
+  - type: weather-forecast
+    entity: weather.forecast_home_assistant
+
+  - type: horizontal-stack
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.sun_next_dawn
+          - entity: sensor.sun_next_setting
+
+
+  - type: entities
+    entities:
+      - entity: sensor.temperature_and_humidity_alarm_humidity
+        name: Влажность
+      - entity: sensor.temperature_and_humidity_alarm_illuminance
+        name: Освещенность
+      - entity: sensor.temperature_and_humidity_alarm_temperature
+        name: Температура
+    title: Текущая погода
+
+  - type: history-graph
+    title: 'График температуры улица'
+    hours_to_show: 72
+    entities:
+      - entity: sensor.temperature_and_humidity_alarm_temperature
+        name: Температура
+
+                            
+- type: vertical-stack
+  cards:   
+
+  - type: horizontal-stack
+    cards:
+      - type: gauge
+        name: CPU
+        unit: '%'
+        entity: sensor.processor_use
+        severity:
+            green: 0
+            yellow: 45
+            red: 85
+      - type: gauge
+        name: Disk
+        unit: '%'
+        entity: sensor.disk_use_percent
+        severity:
+            green: 0
+            yellow: 45
+            red: 85
+      - type: gauge
+        name: CPU
+        unit: '°C'
+        entity: sensor.processor_temperature
+        severity:
+            green: 0
+            yellow: 30
+            red: 60
+      - type: gauge
+        name: RAM
+        unit: '%'
+        entity: sensor.memory_use_percent
+        severity:
+            green: 0
+            yellow: 30
+            red: 60
+
+- type: vertical-stack
+  cards:    
+  
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - entity: sensor.time
+        name: Текущее время 
+        icon: mdi:clock
+      - entity: sensor.date
+        name: Дата
+        icon: mdi:calendar
+      - entity: sensor.maria_db
+        name: Объем БД
+        icon: mdi:database
+      - entity: sensor.last_boot
+        name: Крайняя перезагрузка
+        icon: mdi:av-timer
+
+  # - type: horizontal-stack
+  #   cards:
+
+  #       - type: light
+  #         entity: light.rgb_bedroom
+
+  - type: horizontal-stack
+    cards:
+
+        - type: button
+          entity: switch.phase_a_din_switch
+          name: Фаза 'А' кухня
+
+# Кнопка для ворот въездных
+  - type: horizontal-stack
+    cards:
+      - type: 'custom:button-card'
+        entity: cover.vorota_door
+        name: Ворота
+        color: auto
+        styles:
+          card:
+            - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
+          name:
+            - color: 'var(--primary-text-color)'  # Цвет текста
+          state:
+            - color: 'var(--primary-text-color)'  # Цвет состояния
+        show_state: true
+        tap_action:
+          action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
+          
+# Кнопка для ворот гаража
+      - type: 'custom:button-card'
+        entity: cover.garage_door_module
+        name: Гараж
+        color: auto
+        styles:
+          card:
+            - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
+          name:
+            - color: 'var(--primary-text-color)'  # Цвет текста
+          state:
+            - color: 'var(--primary-text-color)'  # Цвет состояния
+        show_state: true
+        tap_action:
+          action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
+#    square: true # Установите значение true, чтобы сделать карточки квадратными
+
+- type: vertical-stack
+  cards:
+
+  - type: entities
+    entities:
+
+# Счетчик газа дом
+    - entity: sensor.gas_meter
+      type: custom:multiple-entity-row
+      name: Газ
+      state_header: Всего
+      entities:
+      - entity: sensor.gas_count_difference_month
+        name: Тек.Мес.
+      - entity: sensor.gas_count_difference_price_month
+        name: Цена
+
+# Счетчик электроэнергии дом
+    - entity: sensor.energy_counter_day
+      type: custom:multiple-entity-row
+      name: День
+      state_header: Всего
+      entities:
+      - entity: sensor.energy_count_difference_day
+        name: Тек.Мес.
+      - entity: sensor.energy_count_difference_price_day
+        name: Сумма
+
+    - entity: sensor.energy_counter_night
+      type: custom:multiple-entity-row
+      name: Ночь
+      state_header: Всего
+      entities:
+      - entity: sensor.energy_count_difference_night
+        name: Тек.Мес.
+      - entity: sensor.energy_count_difference_price_night
+        name: Сумма
+
+    # - entity: select.energy_counter
+    #   type: custom:multiple-entity-row
+    #   name: Тариф
+    # - type: divider
+
+  - type: entities
+    entities:
+
+# Вывод потребления энергии
+    - entity: sensor.breaker_phase_a_power
+      type: custom:multiple-entity-row
+      name: Фаза "A"
+      state_header: Мощность
+      entities:
+      - entity: sensor.breaker_phase_a_voltage
+        name: Напряжение
+      - entity: sensor.breaker_phase_a_current
+        name: Ток
+
+    - entity: sensor.breaker_phase_b_power
+      type: custom:multiple-entity-row
+      name: Фаза "B"
+      state_header: Мощность
+      entities:
+      - entity: sensor.breaker_phase_b_voltage
+        name: Напряжение
+      - entity: sensor.breaker_phase_b_current
+        name: Ток
+
+    - entity: sensor.breaker_phase_c_power
+      type: custom:multiple-entity-row
+      name: Фаза "C"
+      state_header: Мощность
+      entities:
+      - entity: sensor.breaker_phase_c_voltage
+        name: Напряжение
+      - entity: sensor.breaker_phase_c_current
+        name: Ток
+
+# Свет улица
+  - type: entities
+    entities:
+
+    - entity: switch.light_str_north_switch_1
+      type: custom:multiple-entity-row
+      name: street_n
+      icon: mdi:outdoor-lamp
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: switch.light_str_west_switch_1
+      type: custom:multiple-entity-row
+      name: street_w
+      icon: mdi:outdoor-lamp
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+# Свет дом
+  - type: entities
+    entities:
+
+    - entity: switch.light_wc_switch_1
+      type: custom:multiple-entity-row
+      name: wc_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: switch.light_wc_switch_2
+      type: custom:multiple-entity-row
+      name: wc_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: switch.light_wc_switch_3
+      type: custom:multiple-entity-row
+      name: wc_l_3
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: switch.light_wc2_switch_1
+      type: custom:multiple-entity-row
+      name: wc2_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: switch.light_wc2_switch_2
+      type: custom:multiple-entity-row
+      name: wc2_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+# Движение
+  - type: entities
+    entities:
+
+    - entity: binary_sensor.hum_det_wc_occupancy
+      type: custom:multiple-entity-row
+      name: wc
+      icon: mdi:motion-sensor
+#     toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: binary_sensor.hum_det_wc2_occupancy
+      type: custom:multiple-entity-row
+      name: wc2
+      icon: mdi:motion-sensor
+#     toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc2
+
+  - type: history-graph
+    title: 'График потребления'
+    hours_to_show: 72
+    entities:
+      - entity:  sensor.breaker_phase_c_power
+        name: Фаза 'C'
+      - entity:  sensor.breaker_phase_b_power
+        name: Фаза 'B'
+      - entity:  sensor.breaker_phase_a_power
+        name: Фаза 'A'
+
+

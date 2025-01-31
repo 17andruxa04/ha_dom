@@ -1,0 +1,72 @@
+homeassistant:
+  packages: !include_dir_merge_named includes/packages
+  time_zone: "Europe/Kiev"
+  
+  unit_system: metric
+# Loads default set of integrations. Do not remove.
+default_config:
+# Включаем конфигурацию термостата
+climate: !include includes/mi_custom_devices/climate.yaml
+sensor: !include includes/mi_custom_devices/sensors.yaml
+# Включаем python script
+python_script:
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+input_text: !include_dir_merge_named includes/input_text
+
+#Вынос в папку
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+#Вынос в файлы
+recorder: !include includes/recorder.yaml
+
+# Камеры
+# stream:
+# camera:
+#   - platform: ffmpeg
+#     name: garden
+#     input: rtsp://admin:DronTaxi10@192.168.0.226:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
+#   - platform: ffmpeg
+#     name: garage
+#     input: rtsp://admin:DronTaxi10@192.168.0.227:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
+#   - platform: ffmpeg
+#     name: street
+#     input: rtsp://admin:DronTaxi10@192.168.0.225:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
+
+#Вынос system в боковую панель
+panel_custom:
+  - name: server_state
+    sidebar_title: 'System'
+    sidebar_icon: mdi:server
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'hassio/system'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator     
+
+# Включаем службу SUN         
+sun:
+# Включаем индивидуальный интерфейс
+lovelace:
+    mode: yaml
+    resources:
+    - url: /hacsfiles/button-card/button-card.js
+      type: module
+    - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: module
+    
+# Включаем http
+http:
+    use_x_forwarded_for: true
+    trusted_proxies:
+      - 0.0.0.0/0
+
+# Время заката и рассвета выводим в сенсоры
+
+
+

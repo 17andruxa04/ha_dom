@@ -1,0 +1,232 @@
+
+- type: vertical-stack
+  cards:
+    - type: horizontal-stack
+      cards:    
+      - type: grid
+        columns: 3
+        title: 1-й этаж
+        cards:
+        - type: thermostat
+          entity: climate.guest
+          name: "Гостевая"
+        - type: thermostat
+          entity: climate.gostinaia
+          name: "Гостинная"
+        - type: thermostat
+          entity: climate.kitchen
+          name: "Кухня"
+        - type: thermostat
+          entity: climate.wc
+          name: "Сан.Узел 1"
+
+    - type: horizontal-stack
+      cards:
+      - type: grid
+        columns: 3
+        title: 2-й этаж
+        cards:
+
+        - type: thermostat
+          entity: climate.bedroom
+          name: "Спальня"
+        - type: thermostat
+          entity: climate.bedroom2
+          name: "Гардероб"
+        - type: thermostat
+          entity: climate.cabinet
+          name: "Кабинет"
+        - type: thermostat
+          entity: climate.hall
+          name: "Холл"
+        - type: thermostat
+          entity: climate.childrenroom
+          name: "Детская"
+        - type: thermostat
+          entity: climate.playroom
+          name: "Игровая"
+        - type: thermostat
+          entity: climate.wc2
+          name: "Сан.Узел 2"
+
+- type: vertical-stack
+  cards:
+    - type: horizontal-stack
+      title: 1-й этаж
+      cards:
+      - type: entities
+        entities:
+
+        - entity: switch.first_floor_heating_1_switch_1
+          type: custom:multiple-entity-row
+          name: Гостевая
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_guest_temp_temperature
+              name: temp
+            - entity: sensor.z_guest_temp_humidity
+              name: hum
+            - entity: sensor.z_guest_temp_battery
+              name: bat
+            # - entity: input_number.climate_guest
+            #   name: sel
+
+        - entity: switch.first_floor_heating_1_switch_2
+          type: custom:multiple-entity-row
+          name: Гостиная
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_gostinaia_temp_temperature
+              name: temp
+            - entity: sensor.z_gostinaia_temp_humidity
+              name: hum
+            - entity: sensor.z_gostinaia_temp_battery_state
+              name: bat  
+
+        - entity: switch.first_floor_heating_1_switch_3
+          type: custom:multiple-entity-row
+          name: Кухня
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_kitchen_temp_temperature
+              name: temp
+            - entity: sensor.z_kitchen_temp_humidity
+              name: hum 
+            - entity: sensor.z_kitchen_temp_battery_state
+              name: bat  
+
+        - entity: switch.first_floor_heating_1_switch_4
+          type: custom:multiple-entity-row
+          name: Сан. Узел
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_wc_temp_temperature
+              name: temp
+            - entity: sensor.z_wc_temp_humidity
+              name: hum
+            - entity: sensor.z_wc_temp_battery_state
+              name: bat  
+
+    - type: horizontal-stack
+      title: 2-й этаж
+      cards:                      
+      - type: entities
+        entities:
+
+        - entity: switch.second_floor_heating_1_switch_4
+          type: custom:multiple-entity-row
+          name: Спальня
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_bedroom_temp_temperature
+              name: temp
+            - entity: sensor.z_bedroom_temp_humidity
+              name: hum      
+            - entity: sensor.z_bedroom_temp_battery_state
+              name: bat  
+
+        - entity: switch.second_floor_heating_2_switch_1
+          type: custom:multiple-entity-row
+          name: Гардероб
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_bedroom2_temp_temperature
+              name: temp
+            - entity: sensor.z_bedroom2_temp_humidity
+              name: hum      
+            - entity: sensor.z_bedroom2_temp_battery_state
+              name: bat  
+
+        - entity: switch.second_floor_heating_2_switch_3
+          type: custom:multiple-entity-row
+          name: Кабинет
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_cabinet_temp_temperature
+              name: temp
+            - entity: sensor.z_cabinet_temp_humidity
+              name: hum      
+            - entity: sensor.z_cabinet_temp_battery_state
+              unit: "%"
+              name: bat  
+
+        - entity: switch.second_floor_heating_1_switch_3
+          type: custom:multiple-entity-row
+          name: Холл
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_hall_temp_temperature
+              name: temp
+            - entity: sensor.z_hall_temp_humidity
+              name: hum 
+            - entity: sensor.z_hall_temp_battery
+              name: bat 
+
+        - entity: switch.second_floor_heating_1_switch_2
+          type: custom:multiple-entity-row
+          name: Детская
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_childrenroom_temp_temperature
+              name: temp
+            - entity: sensor.z_childrenroom_temp_humidity
+              name: hum      
+            - entity: sensor.z_childrenroom_temp_battery_state
+              name: bat  
+
+        - entity: switch.second_floor_heating_1_switch_1
+          type: custom:multiple-entity-row
+          name: Игровая
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_playroom_temp_temperature
+              name: temp
+            - entity: sensor.z_playroom_temp_humidity
+              name: hum 
+            - entity: sensor.z_playroom_temp_battery_state
+              name: bat 
+
+        - entity: switch.second_floor_heating_2_switch_2
+          type: custom:multiple-entity-row
+          name: Сан. Узел 2
+          icon: mdi:thermometer
+          toggle: true
+          state_color: true
+#                  state_header: heat
+          entities:
+            - entity: sensor.z_wc2_temp_temperature
+              name: temp
+            - entity: sensor.z_wc2_temp_humidity
+              name: hum
+            - entity: sensor.z_wc2_temp_battery
+              name: bat 

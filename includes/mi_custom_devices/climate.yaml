@@ -1,0 +1,241 @@
+  
+  # 1-й этаж
+  
+  - platform: generic_thermostat
+    name: guest
+    unique_id: climate.guest
+    heater: switch.first_floor_heating_1_switch_1
+    target_sensor: sensor.z_guest_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: gostinaia
+    unique_id: climate.gostinaia
+    heater: switch.first_floor_heating_1_switch_2
+    target_sensor: sensor.z_gostinaia_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: kitchen
+    unique_id: climate.kithen
+    heater: switch.first_floor_heating_1_switch_3
+    target_sensor: sensor.z_kitchen_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: wc
+    unique_id: climate.wc
+    heater: switch.first_floor_heating_1_switch_4
+    target_sensor: sensor.z_wc_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 22
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+# 2-й этаэ
+
+  - platform: generic_thermostat
+    name: bedroom
+    unique_id: climate.bedroom
+    heater: switch.second_floor_heating_1_switch_4
+    target_sensor: sensor.z_bedroom_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: bedroom2
+    unique_id: climate.bedroom2
+    heater: switch.second_floor_heating_2_switch_1
+    target_sensor: sensor.z_bedroom2_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+
+  - platform: generic_thermostat
+    name: cabinet
+    unique_id: climate.cabinet
+    heater: switch.second_floor_heating_2_switch_3
+    target_sensor: sensor.z_cabinet_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: hall
+    unique_id: climate.hall
+    heater: switch.second_floor_heating_1_switch_3
+    target_sensor: sensor.z_hall_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: playroom
+    unique_id: climate.playroom
+    heater: switch.second_floor_heating_1_switch_1
+    target_sensor: sensor.z_playroom_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+
+  - platform: generic_thermostat
+    name: childrenroom
+    unique_id: climate.childrenroom
+    heater: switch.second_floor_heating_1_switch_2
+    target_sensor: sensor.z_childrenroom_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 21
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+  - platform: generic_thermostat
+    name: wc2
+    unique_id: climate.wc2
+    heater: switch.second_floor_heating_2_switch_2
+    target_sensor: sensor.z_wc2_temp_temperature
+    min_temp: 16
+    max_temp: 25
+    ac_mode: false
+    target_temp: 22
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      seconds: 5
+    keep_alive:
+      minutes: 3
+    initial_hvac_mode: "heat"
+    away_temp: 16
+    precision: 0.1
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
