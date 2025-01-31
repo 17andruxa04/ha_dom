@@ -24,19 +24,6 @@ scene: !include scenes.yaml
 #Вынос в файлы
 recorder: !include includes/recorder.yaml
 
-# Камеры
-# stream:
-# camera:
-#   - platform: ffmpeg
-#     name: garden
-#     input: rtsp://admin:DronTaxi10@192.168.0.226:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
-#   - platform: ffmpeg
-#     name: garage
-#     input: rtsp://admin:DronTaxi10@192.168.0.227:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
-#   - platform: ffmpeg
-#     name: street
-#     input: rtsp://admin:DronTaxi10@192.168.0.225:554/user=admin_password=DronTaxi10_channel=1_stream=0.sdp?real_stream
-
 #Вынос system в боковую панель
 panel_custom:
   - name: server_state
