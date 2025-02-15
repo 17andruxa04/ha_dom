@@ -30,6 +30,19 @@
       - entity: sensor.temperature_and_humidity_alarm_temperature
         name: Температура
 
+# Счетчик газа дом
+  - type: entities
+    entities:
+
+      - entity: input_number.gas_counter
+        type: custom:multiple-entity-row
+        name: Газ
+        state_header: Всего
+        entities:
+        - entity: sensor.gas_meter
+          name: Счетчик
+        - entity: input_boolean.gas_toggle_flag
+          name: Пропуск
                             
 - type: vertical-stack
   cards:   

@@ -1,0 +1,5 @@
+
+
+  gas_toggle_flag:
+    name: "Флаг для учёта газа через раз"
+    initial: off
