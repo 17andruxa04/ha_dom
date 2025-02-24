@@ -3,3 +3,8 @@
   gas_toggle_flag:
     name: "Флаг для учёта газа через раз"
     initial: off
+
+  gas_toggle_flag_office:
+    name: "Флаг для учёта газа через раз офис"
+    initial: off
+  

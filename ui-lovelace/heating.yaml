@@ -1,4 +1,6 @@
 
+
+
 - type: vertical-stack
   cards:
     - type: horizontal-stack
@@ -71,8 +73,6 @@
               name: hum
             - entity: sensor.z_guest_temp_battery
               name: bat
-            # - entity: input_number.climate_guest
-            #   name: sel
 
         - entity: switch.first_floor_heating_1_switch_2
           type: custom:multiple-entity-row

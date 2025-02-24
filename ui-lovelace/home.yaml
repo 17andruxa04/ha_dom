@@ -1,4 +1,5 @@
 
+
 - type: vertical-stack
   cards:   
 
@@ -30,19 +31,19 @@
       - entity: sensor.temperature_and_humidity_alarm_temperature
         name: Температура
 
-# Счетчик газа дом
-  - type: entities
-    entities:
+# # Счетчик газа дом
+#   - type: entities
+#     entities:
 
-      - entity: input_number.gas_counter
-        type: custom:multiple-entity-row
-        name: Газ
-        state_header: Всего
-        entities:
-        - entity: sensor.gas_meter
-          name: Счетчик
-        - entity: input_boolean.gas_toggle_flag
-          name: Пропуск
+#       - entity: input_number.gas_counter
+#         type: custom:multiple-entity-row
+#         name: Газ
+#         state_header: Всего
+#         entities:
+#         - entity: sensor.gas_meter
+#           name: Счетчик
+#         - entity: input_boolean.gas_toggle_flag
+#           name: Пропуск
                             
 - type: vertical-stack
   cards:   
@@ -187,10 +188,37 @@
       - entity: sensor.energy_count_difference_price_night
         name: Сумма
 
-    # - entity: select.energy_counter
-    #   type: custom:multiple-entity-row
-    #   name: Тариф
-    # - type: divider
+# Счетчик газа офис
+    - entity: sensor.gas_meter_office
+      type: custom:multiple-entity-row
+      name: Газ офис
+      state_header: Всего
+      entities:
+      - entity: sensor.gas_count_difference_office_month
+        name: Тек.Мес.
+      - entity: sensor.gas_count_difference_office_price_month
+        name: Цена
+
+# Счетчик электроэнергии  офис
+    - entity: sensor.energy_counter_office_day
+      type: custom:multiple-entity-row
+      name: День офис
+      state_header: Всего
+      entities:
+      - entity: sensor.energy_count_difference_office_day
+        name: Тек.Мес.
+      - entity: sensor.energy_count_difference_price_office_day
+        name: Сумма
+
+    - entity: sensor.energy_counter_office_night
+      type: custom:multiple-entity-row
+      name: Ночь офис
+      state_header: Всего
+      entities:
+      - entity: sensor.energy_count_difference_office_night
+        name: Тек.Мес.
+      - entity: sensor.energy_count_difference_price_office_night
+        name: Сумма  
 
   - type: entities
     entities:
@@ -199,32 +227,54 @@
     - entity: sensor.breaker_phase_a_power
       type: custom:multiple-entity-row
       name: Фаза "A"
-      state_header: Мощность
+      value_template: "{{ states('sensor.breaker_phase_a_power') | round(3) }}"
+#      state_header: Мощность
       entities:
       - entity: sensor.breaker_phase_a_voltage
-        name: Напряжение
+        name: false #Напряжение
+        value_template: "{{ states('sensor.breaker_phase_a_voltage') | round(1) }}"
       - entity: sensor.breaker_phase_a_current
-        name: Ток
+        name: false #Ток
+        value_template: "{{ states('sensor.breaker_phase_a_current') | round(0) }}"
 
     - entity: sensor.breaker_phase_b_power
       type: custom:multiple-entity-row
       name: Фаза "B"
+      value_template: "{{ states('sensor.breaker_phase_b_power') | round(3) }}"
       state_header: Мощность
       entities:
       - entity: sensor.breaker_phase_b_voltage
         name: Напряжение
+        value_template: "{{ states('sensor.breaker_phase_b_voltage') | round(1) }}"
       - entity: sensor.breaker_phase_b_current
         name: Ток
+        value_template: "{{ states('sensor.breaker_phase_b_current') | round(0) }}"
 
     - entity: sensor.breaker_phase_c_power
       type: custom:multiple-entity-row
       name: Фаза "C"
+      value_template: "{{ states('sensor.breaker_phase_c_power') | round(3) }}"
       state_header: Мощность
       entities:
       - entity: sensor.breaker_phase_c_voltage
         name: Напряжение
+        value_template: "{{ states('sensor.breaker_phase_c_voltage') | round(1) }}"
       - entity: sensor.breaker_phase_c_current
         name: Ток
+        value_template: "{{ states('sensor.breaker_phase_c_current') | round(0) }}"
+
+    - entity: sensor.in_220_office_power
+      type: custom:multiple-entity-row
+      name: Офис "A"
+      value_template: "{{ states('sensor.in_220_office_power') | round(3) }}"
+      state_header: Мощность
+      entities:
+      - entity: sensor.in_220_office_voltage
+        name: Напряжение
+        value_template: "{{ states('sensor.in_220_office_voltage') | round(1) }}"
+      - entity: sensor.in_220_office_current
+        name: Ток
+        value_template: "{{ states('sensor.in_220_office_current') | round(0) }}"
 
 # Свет улица
   - type: entities
@@ -329,5 +379,4 @@
         name: Фаза 'B'
       - entity:  sensor.breaker_phase_a_power
         name: Фаза 'A'
-
 

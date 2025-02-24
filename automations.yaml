@@ -233,7 +233,9 @@
               data:
                 option: day
               target:
-                entity_id: select.energy_counter
+                entity_id: 
+                  - select.energy_counter
+                  - select.energy_counter_office
         - conditions:
             - condition: template
               value_template: "{{ now().hour == 23 }}"
@@ -242,7 +244,9 @@
               data:
                 option: night
               target:
-                entity_id: select.energy_counter
+                entity_id: 
+                  - select.energy_counter
+                  - select.energy_counter_office
   mode: single
 
 # Сохранение счетчиков электрики за прошлый месяц
@@ -266,19 +270,28 @@
       data:
         value: "{{ states('sensor.energy_counter_night') | float }}"
 
-# # Считаем израсходованный газ
-# - alias: "Update Gas Meter on Switch Toggle"
-#   description: "Добавляет 0.01 в счетчик газа при каждом изменении состояния switch.gas_teak_counter"
-#   triggers:
-#     - trigger: state
-#       entity_id: switch.gas_teak_counter
-#   actions:
-#     - action: input_number.set_value
-#       target:
-#         entity_id: input_number.gas_counter
-#       data:
-#         value: "{{ states('input_number.gas_counter') | float + (0.005 * 0.8624) }}"
+# Сохранение счетчиков электрики за прошлый месяц офис
+- alias: Сохранение счетчиков электрики за прошлый месяц офис
+  triggers:
+    - trigger: time
+      at: "00:00:05"
+      #это первое число месяца
+  condition:
+        condition: template
+        value_template: "{{ now().day == 1 }}"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_day_office_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_office_day') | float }}"
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_night_office_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_office_night') | float }}"
 
+# Считаем израсходованный газ
 - alias: "Update Gas Meter on Every Other Switch Toggle"
   description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter"
   triggers:
@@ -298,6 +311,26 @@
       target:
         entity_id: input_boolean.gas_toggle_flag
 
+# Считаем израсходованный газ в офисе
+- alias: "Update Gas Meter on Every Other Switch Toggle Office"
+  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter_office"
+  triggers:
+    - trigger: state
+      entity_id: switch.gas_teak_counter_office
+  action:
+    - if:
+        - condition: template
+          value_template: "{{ states('input_boolean.gas_toggle_flag_office') == 'off' }}"
+      then:
+        - action: input_number.set_value
+          target:
+            entity_id: input_number.gas_counter_office
+          data:
+            value: "{{ states('input_number.gas_counter_office') | float + 0.01 }}"
+    - action: input_boolean.toggle
+      target:
+        entity_id: input_boolean.gas_toggle_flag_office        
+
 # Сохранение счетчиков газа за прошлый месяц
 - alias: Сохранение счетчиков электрики за прошлый месяц
   triggers:
@@ -314,6 +347,22 @@
       data:
         value: "{{ states('sensor.gas_count_difference') | float }}"
 
+# Сохранение счетчиков газа за прошлый месяц офис
+- alias: Сохранение счетчиков электрики за прошлый месяц офис
+  triggers:
+    - trigger: time
+      at: "00:00:05"
+      #это первое число месяца
+  condition:
+        condition: template
+        value_template: "{{ now().day == 1 }}"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.gas_count_office_last_month
+      data:
+        value: "{{ states('sensor.gas_count_difference_office') | float }}"
+
 # Отправка счетчиков электроэнергии в google sheets
 - alias: "Send Energy Data to Google Sheets Every Hour"
   description: "Отправка показаний счетчика в Google Sheets каждый час"
@@ -325,14 +374,34 @@
       data:
         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
         data:
-          created: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"  # Формат даты и времени
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
           day other: "{{ states('sensor.energy_counter_day') }}"
           night other: "{{ states('sensor.energy_counter_night') }}"
           day this month: "{{ states('sensor.energy_count_difference_day') }}"
           night this month: "{{ states('sensor.energy_count_difference_night') }}"
           day price: "{{ states('sensor.energy_count_difference_price_day') }}"
           night price: "{{ states('sensor.energy_count_difference_price_night') }}"
-        worksheet: energy
+        worksheet: Energy_home
+
+  # Отправка счетчиков электроэнергии в google sheets офис
+- alias: "Send Energy Data to Google Sheets Every Hour Office"
+  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          day other: "{{ states('sensor.energy_counter_office_day') }}"
+          night other: "{{ states('sensor.energy_counter_office_night') }}"
+          day this month: "{{ states('sensor.energy_count_difference_office_day') }}"
+          night this month: "{{ states('sensor.energy_count_difference_office_night') }}"
+          day price: "{{ states('sensor.energy_count_difference_price_office_day') }}"
+          night price: "{{ states('sensor.energy_count_difference_price_office_night') }}"
+        worksheet: Energy_office
 
 # Отправка счетчика газа в google sheets
 - alias: "Send Energy Data to Google Sheets Every Hour"
@@ -345,10 +414,25 @@
       data:
         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
         data:
-          created: "{{ now().strftime('%Y-%m-%d %H:%M:%S') }}"  # Формат даты и времени
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
           gas_other: "{{ states('sensor.gas_meter') }}"
           gas_this month: "{{ states('sensor.gas_count_difference_month') }}"
           gas_price: "{{ states('sensor.gas_count_difference_price_month') }}"
-        worksheet: gas
+        worksheet: Gas_home
 
-
+# Отправка счетчика газа в google sheets офис
+- alias: "Send Energy Data to Google Sheets Every Hour Office"
+  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          gas_other: "{{ states('sensor.gas_meter_office') }}"
+          gas_this month: "{{ states('sensor.gas_count_difference_office_month') }}"
+          gas_price: "{{ states('sensor.gas_count_difference_office_price_month') }}"
+        worksheet: Gas_office

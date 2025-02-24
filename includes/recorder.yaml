@@ -1,10 +1,12 @@
   
   
     db_url: !secret db_link
-    purge_keep_days: 2
+    purge_keep_days: 3
     include:
         domains:
         - switch
         - light
         - binary_sensor
         - sensor
+        entities:
+        - input_number.gas_counter

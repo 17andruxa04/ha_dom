@@ -1,20 +1,14 @@
 views:
 
-  - title: Dashboard
+  - title: Home
     icon: mdi:view-dashboard
     cards:
+      !include /config/ui-lovelace/home.yaml
 
-        !include ui-lovelace/dashboard.yaml
-
-  - title: Отопление
-    icon: mdi:thermometer
-    cards:             
-
-        !include ui-lovelace/heating.yaml
-
-#   - title: Cameras
-#     icon: mdi:cctv
-#     cards:
+  - title: Heating
+    icon: mdi:view-dashboard
+    cards:
+      !include /config/ui-lovelace/heating.yaml
 
 # # Камера на гараже
 #     - camera_view: live
@@ -48,9 +42,9 @@ views:
       
   - title: test
     icon: mdi:view-dashboard
-    cards:
 
-    - type: area
-      area: bedroom
-      theme: green
+
+  #   - type: area
+  #     area: bedroom
+  #     theme: green
 
