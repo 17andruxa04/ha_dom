@@ -1,0 +1,84 @@
+
+### Термостат устанавливаем значение переменной равной значению на термостате (атрибут "temperature")
+- alias: Update Temperature
+  triggers:
+    - trigger: state
+      entity_id:
+        - climate.bedroom
+        - climate.bedroom2
+        - climate.cabinet
+        - climate.childrenroom
+        - climate.gostinaia
+        - climate.guest
+        - climate.hall
+        - climate.kitchen
+        - climate.playroom
+        - climate.wc
+        - climate.wc2
+  actions:
+    - action: input_number.set_value
+      data_template:
+        entity_id: "input_number.climate_{{ trigger.entity_id.split('.')[1] }}"
+        value: "{{ state_attr(trigger.entity_id, 'temperature') | float }}"
+
+### Термостат возврат установленного значения после перезагрузки
+- alias: Set Room Temperatures on Startup
+  triggers:
+    - trigger: homeassistant
+      event: start
+  actions:
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.bedroom
+      data_template:
+        temperature: "{{ states('input_number.climate_bedroom') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.bedroom2
+      data_template:
+        temperature: "{{ states('input_number.climate_bedroom2') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.cabinet
+      data_template:
+        temperature: "{{ states('input_number.climate_cabinet') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.childrenroom
+      data_template:
+        temperature: "{{ states('input_number.climate_childrenroom') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.gostinaia
+      data_template:
+        temperature: "{{ states('input_number.climate_gostinaia') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.guest
+      data_template:
+        temperature: "{{ states('input_number.climate_guest') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.hall
+      data_template:
+        temperature: "{{ states('input_number.climate_hall') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.kitchen
+      data_template:
+        temperature: "{{ states('input_number.climate_kitchen') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.playroom
+      data_template:
+        temperature: "{{ states('input_number.climate_playroom') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.wc
+      data_template:
+        temperature: "{{ states('input_number.climate_wc') | float }}"
+    - action: climate.set_temperature
+      target:
+        entity_id: climate.wc2
+      data_template:
+        temperature: "{{ states('input_number.climate_wc2') | float }}"

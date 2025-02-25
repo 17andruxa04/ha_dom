@@ -1,0 +1,89 @@
+
+
+  climate_bedroom:
+    name: "climate.bedroom"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_bedroom2:
+    name: "climate.bedroom2"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_cabinet:
+    name: "climate.cabinet"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_childrenroom:
+    name: "climate.childrenroom"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_gostinaia:
+    name: "climate.gostinaia"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_guest:
+    name: "climate.guest"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_hall:
+    name: "climate.hall"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_kitchen:
+    name: "climate.kitchen"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_playroom:
+    name: "climate.playroom"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_wc:
+    name: "climate.wc"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer
+
+  climate_wc2:
+    name: "climate.wc2"
+    min: 16
+    max: 28
+    step: 0.5
+    mode: box
+    icon: mdi:thermometer

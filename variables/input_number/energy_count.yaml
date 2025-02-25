@@ -1,0 +1,37 @@
+
+
+  energy_count_day_last_month:
+      name: "energy_count_day_last_month"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "kWh"
+      icon: mdi:flash
+
+  energy_count_day_office_last_month:
+      name: "energy_count_day_office_last_month"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "kWh"
+      icon: mdi:flash
+
+  energy_count_night_last_month:
+      name: "energy_count_night_last_month"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "kWh"
+      icon: mdi:flash
+
+  energy_count_night_office_last_month:
+      name: "energy_count_night_office_last_month"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "kWh"
+      icon: mdi:flash

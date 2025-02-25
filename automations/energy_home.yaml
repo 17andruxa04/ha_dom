@@ -1,0 +1,21 @@
+
+# Сохранение счетчиков электрики за прошлый месяц
+- alias: Сохранение счетчиков электрики за прошлый месяц
+  triggers:
+    - trigger: time
+      at: "00:00:05"
+      #это первое число месяца
+  condition:
+        condition: template
+        value_template: "{{ now().day == 1 }}"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_day_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_day') | float }}"
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_night_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_night') | float }}"

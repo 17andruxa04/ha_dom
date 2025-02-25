@@ -241,39 +241,39 @@
       type: custom:multiple-entity-row
       name: Фаза "B"
       value_template: "{{ states('sensor.breaker_phase_b_power') | round(3) }}"
-      state_header: Мощность
+#      state_header: Мощность
       entities:
       - entity: sensor.breaker_phase_b_voltage
-        name: Напряжение
+        name: false #Напряжение
         value_template: "{{ states('sensor.breaker_phase_b_voltage') | round(1) }}"
       - entity: sensor.breaker_phase_b_current
-        name: Ток
+        name: false #Ток
         value_template: "{{ states('sensor.breaker_phase_b_current') | round(0) }}"
 
     - entity: sensor.breaker_phase_c_power
       type: custom:multiple-entity-row
       name: Фаза "C"
       value_template: "{{ states('sensor.breaker_phase_c_power') | round(3) }}"
-      state_header: Мощность
+#      state_header: Мощность
       entities:
       - entity: sensor.breaker_phase_c_voltage
-        name: Напряжение
+        name: false #Напряжение
         value_template: "{{ states('sensor.breaker_phase_c_voltage') | round(1) }}"
       - entity: sensor.breaker_phase_c_current
-        name: Ток
+        name: false #Ток
         value_template: "{{ states('sensor.breaker_phase_c_current') | round(0) }}"
 
     - entity: sensor.in_220_office_power
       type: custom:multiple-entity-row
       name: Офис "A"
       value_template: "{{ states('sensor.in_220_office_power') | round(3) }}"
-      state_header: Мощность
+#      state_header: Мощность
       entities:
       - entity: sensor.in_220_office_voltage
-        name: Напряжение
+        name: false #Напряжение
         value_template: "{{ states('sensor.in_220_office_voltage') | round(1) }}"
       - entity: sensor.in_220_office_current
-        name: Ток
+        name: false #Ток
         value_template: "{{ states('sensor.in_220_office_current') | round(0) }}"
 
 # Свет улица

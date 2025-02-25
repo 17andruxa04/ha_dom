@@ -1,0 +1,74 @@
+
+# Отправка счетчиков электроэнергии в google sheets
+- alias: "Send Energy Data to Google Sheets Every Hour"
+  description: "Отправка показаний счетчика в Google Sheets каждый час"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          day other: "{{ states('sensor.energy_counter_day') }}"
+          night other: "{{ states('sensor.energy_counter_night') }}"
+          day this month: "{{ states('sensor.energy_count_difference_day') }}"
+          night this month: "{{ states('sensor.energy_count_difference_night') }}"
+          day price: "{{ states('sensor.energy_count_difference_price_day') }}"
+          night price: "{{ states('sensor.energy_count_difference_price_night') }}"
+        worksheet: Energy_home
+
+# Отправка счетчиков электроэнергии в google sheets офис
+- alias: "Send Energy Data to Google Sheets Every Hour Office"
+  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          day other: "{{ states('sensor.energy_counter_office_day') }}"
+          night other: "{{ states('sensor.energy_counter_office_night') }}"
+          day this month: "{{ states('sensor.energy_count_difference_office_day') }}"
+          night this month: "{{ states('sensor.energy_count_difference_office_night') }}"
+          day price: "{{ states('sensor.energy_count_difference_price_office_day') }}"
+          night price: "{{ states('sensor.energy_count_difference_price_office_night') }}"
+        worksheet: Energy_office
+
+# Отправка счетчика газа в google sheets
+- alias: "Send Energy Data to Google Sheets Every Hour"
+  description: "Отправка показаний счетчика в Google Sheets каждый час"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          gas_other: "{{ states('sensor.gas_meter') }}"
+          gas_this month: "{{ states('sensor.gas_count_difference_month') }}"
+          gas_price: "{{ states('sensor.gas_count_difference_price_month') }}"
+        worksheet: Gas_home
+
+# Отправка счетчика газа в google sheets офис
+- alias: "Send Energy Data to Google Sheets Every Hour Office"
+  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+  triggers:
+    - trigger: time
+      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          gas_other: "{{ states('sensor.gas_meter_office') }}"
+          gas_this month: "{{ states('sensor.gas_count_difference_office_month') }}"
+          gas_price: "{{ states('sensor.gas_count_difference_office_price_month') }}"
+        worksheet: Gas_office

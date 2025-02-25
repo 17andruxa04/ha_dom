@@ -1,0 +1,36 @@
+
+# Считаем израсходованный газ
+- alias: "Update Gas Meter on Every Other Switch Toggle"
+  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter"
+  triggers:
+    - trigger: state
+      entity_id: switch.gas_teak_counter
+  action:
+    - if:
+        - condition: template
+          value_template: "{{ states('input_boolean.gas_toggle_flag') == 'off' }}"
+      then:
+        - action: input_number.set_value
+          target:
+            entity_id: input_number.gas_counter
+          data:
+            value: "{{ states('input_number.gas_counter') | float + 0.01 }}"
+    - action: input_boolean.toggle
+      target:
+        entity_id: input_boolean.gas_toggle_flag
+
+# Сохранение счетчиков газа за прошлый месяц
+- alias: Сохранение счетчиков электрики за прошлый месяц
+  triggers:
+    - trigger: time
+      at: "00:00:05"
+      #это первое число месяца
+  condition:
+        condition: template
+        value_template: "{{ now().day == 1 }}"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.gas_count_last_month
+      data:
+        value: "{{ states('sensor.gas_count_difference') | float }}"

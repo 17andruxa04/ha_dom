@@ -1,0 +1,31 @@
+
+
+  price_energy_day:
+      name: "price_energy_day"
+      min: 0
+      max: 1000
+      step: 1
+      mode: box
+      unit_of_measurement: "₴"
+      icon: mdi:currency-uah
+      initial: 2.64
+
+  price_energy_night:
+      name: "price_energy_night"
+      min: 0
+      max: 1000
+      step: 1
+      mode: box
+      unit_of_measurement: "₴"
+      icon: mdi:currency-uah
+      initial: 1.32
+
+  price_gas:
+      name: "price_gas"
+      min: 0
+      max: 1000
+      step: 1
+      mode: box
+      unit_of_measurement: "₴"
+      icon: mdi:currency-uah
+      initial: 7.96

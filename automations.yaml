@@ -1,438 +1,438 @@
-### Термостат устанавливаем значение переменной равной значению на термостате (атрибут "temperature")
-- alias: Update Temperature
-  triggers:
-    - trigger: state
-      entity_id:
-        - climate.bedroom
-        - climate.bedroom2
-        - climate.cabinet
-        - climate.childrenroom
-        - climate.gostinaia
-        - climate.guest
-        - climate.hall
-        - climate.kitchen
-        - climate.playroom
-        - climate.wc
-        - climate.wc2
-  actions:
-    - action: input_number.set_value
-      data_template:
-        entity_id: "input_number.climate_{{ trigger.entity_id.split('.')[1] }}"
-        value: "{{ state_attr(trigger.entity_id, 'temperature') | float }}"
+# ### Термостат устанавливаем значение переменной равной значению на термостате (атрибут "temperature")
+# - alias: Update Temperature
+#   triggers:
+#     - trigger: state
+#       entity_id:
+#         - climate.bedroom
+#         - climate.bedroom2
+#         - climate.cabinet
+#         - climate.childrenroom
+#         - climate.gostinaia
+#         - climate.guest
+#         - climate.hall
+#         - climate.kitchen
+#         - climate.playroom
+#         - climate.wc
+#         - climate.wc2
+#   actions:
+#     - action: input_number.set_value
+#       data_template:
+#         entity_id: "input_number.climate_{{ trigger.entity_id.split('.')[1] }}"
+#         value: "{{ state_attr(trigger.entity_id, 'temperature') | float }}"
 
-### Термостат возврат установленного значения после перезагрузки
-- alias: Set Room Temperatures on Startup
-  triggers:
-    - trigger: homeassistant
-      event: start
-  actions:
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.bedroom
-      data_template:
-        temperature: "{{ states('input_number.climate_bedroom') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.bedroom2
-      data_template:
-        temperature: "{{ states('input_number.climate_bedroom2') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.cabinet
-      data_template:
-        temperature: "{{ states('input_number.climate_cabinet') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.childrenroom
-      data_template:
-        temperature: "{{ states('input_number.climate_childrenroom') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.gostinaia
-      data_template:
-        temperature: "{{ states('input_number.climate_gostinaia') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.guest
-      data_template:
-        temperature: "{{ states('input_number.climate_guest') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.hall
-      data_template:
-        temperature: "{{ states('input_number.climate_hall') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.kitchen
-      data_template:
-        temperature: "{{ states('input_number.climate_kitchen') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.playroom
-      data_template:
-        temperature: "{{ states('input_number.climate_playroom') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.wc
-      data_template:
-        temperature: "{{ states('input_number.climate_wc') | float }}"
-    - action: climate.set_temperature
-      target:
-        entity_id: climate.wc2
-      data_template:
-        temperature: "{{ states('input_number.climate_wc2') | float }}"
+# ### Термостат возврат установленного значения после перезагрузки
+# - alias: Set Room Temperatures on Startup
+#   triggers:
+#     - trigger: homeassistant
+#       event: start
+#   actions:
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.bedroom
+#       data_template:
+#         temperature: "{{ states('input_number.climate_bedroom') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.bedroom2
+#       data_template:
+#         temperature: "{{ states('input_number.climate_bedroom2') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.cabinet
+#       data_template:
+#         temperature: "{{ states('input_number.climate_cabinet') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.childrenroom
+#       data_template:
+#         temperature: "{{ states('input_number.climate_childrenroom') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.gostinaia
+#       data_template:
+#         temperature: "{{ states('input_number.climate_gostinaia') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.guest
+#       data_template:
+#         temperature: "{{ states('input_number.climate_guest') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.hall
+#       data_template:
+#         temperature: "{{ states('input_number.climate_hall') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.kitchen
+#       data_template:
+#         temperature: "{{ states('input_number.climate_kitchen') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.playroom
+#       data_template:
+#         temperature: "{{ states('input_number.climate_playroom') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.wc
+#       data_template:
+#         temperature: "{{ states('input_number.climate_wc') | float }}"
+#     - action: climate.set_temperature
+#       target:
+#         entity_id: climate.wc2
+#       data_template:
+#         temperature: "{{ states('input_number.climate_wc2') | float }}"
 
-# Полив газона
-# - alias: "Запуск полива за полтора часа до заката"
-#   trigger:
-#     platform: sun
-#     event: sunset
-#     offset: "00:01:00"  # Смещение на 1 час до заката
+# # Полив газона
+# # - alias: "Запуск полива за полтора часа до заката"
+# #   trigger:
+# #     platform: sun
+# #     event: sunset
+# #     offset: "00:01:00"  # Смещение на 1 час до заката
+# #   action:
+# #     - service: light.turn_on
+# #       entity_id: light.podval_poliv_gazon_1_496
+# #     - delay: '00:30:00'  # Задержка на 30 минут
+# #     - service: light.turn_off
+# #       entity_id: light.podval_poliv_gazon_1_496
+
+# ###########################################################
+
+# # Освещение СУ 2-этаж
+# - alias: Управление светом wc2
+#   triggers:
+#     # Триггер для включения света
+#     - trigger: state
+#       entity_id: binary_sensor.hum_det_wc2_occupancy
+#       to: "on"
+#     # Триггер для выключения света через 2 минуты после отсутствия движения
+#     - trigger: state
+#       entity_id: binary_sensor.hum_det_wc2_occupancy
+#       to: "off"
+#       for: "00:00:02"
+#   actions:
+#     - choose:
+#         # Действие для включения света
+#         - conditions:
+#             - condition: state
+#               entity_id: binary_sensor.hum_det_wc2_occupancy
+#               state: "on"
+#           sequence:
+#             - action: switch.turn_on
+#               target:
+#                 entity_id:
+#                   - switch.light_wc2_switch_1
+#                   - switch.light_wc2_switch_2
+#         # Действие для выключения света
+#         - conditions:
+#             - condition: state
+#               entity_id: binary_sensor.hum_det_wc2_occupancy
+#               state: "off"
+#           sequence:
+#             - action: switch.turn_off
+#               target:
+#                 entity_id:
+#                   - switch.light_wc2_switch_1
+#                   - switch.light_wc2_switch_2
+
+# # Освещение СУ 1-этаж
+# - alias: Управление светом wc
+#   triggers:
+#     # Триггер для включения света
+#     - trigger: state
+#       entity_id: binary_sensor.hum_det_wc_occupancy
+#       to: "on"
+#     # Триггер для выключения света через 2 минуты после отсутствия движения
+#     - trigger: state
+#       entity_id: binary_sensor.hum_det_wc_occupancy
+#       to: "off"
+#       for: "00:00:02"
+#   actions:
+#     - choose:
+#         # Действие для включения света
+#         - conditions:
+#             - condition: state
+#               entity_id: binary_sensor.hum_det_wc_occupancy
+#               state: "on"
+#           sequence:
+#             - action: switch.turn_on
+#               target:
+#                 entity_id:
+#                   - switch.light_wc_switch_1
+#                   - switch.light_wc_switch_2
+#         # Действие для выключения света
+#         - conditions:
+#             - condition: state
+#               entity_id: binary_sensor.hum_det_wc_occupancy
+#               state: "off"
+#           sequence:
+#             - action: switch.turn_off
+#               target:
+#                 entity_id:
+#                   - switch.light_wc_switch_1
+#                   - switch.light_wc_switch_2
+#                   - switch.light_wc_switch_3
+
+# # Освещение улица
+# - alias: "Включение ламп каждые 10 минут ночью"
+#   triggers:
+#     - trigger: time_pattern
+#       minutes: "/10" # Каждые 10 минут
+#   condition:
+#     condition: or
+#     conditions:
+#       - condition: sun
+#         after: sunset
+#         after_offset: "00:30:00" # 1 час после заката
+#       - condition: sun
+#         before: sunrise
+#         before_offset: "-01:00:00" # За 1 час до восхода
+#   actions:
+#     - action: switch.turn_on
+#       target:
+#         entity_id: 
+#           - switch.light_str_west_switch_1
+#           - switch.light_str_north_switch_1
+
+# - alias: "Выключение ламп каждые 10 минут днем"
+#   triggers:
+#     - trigger: time_pattern
+#       minutes: "/10" # Каждые 10 минут
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: sun
+#         after: sunrise
+#         after_offset: "-01:00:00" # За 1 час до восхода
+#       - condition: sun
+#         before: sunset
+#         before_offset: "00:30:00" # 1 час после заката
+#   actions:
+#     - action: switch.turn_off
+#       target:
+#         entity_id:
+#           - switch.light_str_west_switch_1
+#           - switch.light_str_north_switch_1
+
+# # Переключение тарифов день/ночь для электрики 
+# - id: 'switch_tariff'
+#   alias: Переключение тарифов день/ночь для электричества
+#   description: Переключение тарифов
+#   triggers:
+#     - trigger: time
+#       at: '05:00:00'
+#     - trigger: time
+#       at: '23:00:00'
+#   condition: []
 #   action:
-#     - service: light.turn_on
-#       entity_id: light.podval_poliv_gazon_1_496
-#     - delay: '00:30:00'  # Задержка на 30 минут
-#     - service: light.turn_off
-#       entity_id: light.podval_poliv_gazon_1_496
+#     - choose:
+#         - conditions:
+#             - condition: template
+#               value_template: "{{ now().hour == 5 }}"
+#           sequence:
+#             - action: select.select_option
+#               data:
+#                 option: day
+#               target:
+#                 entity_id: 
+#                   - select.energy_counter
+#                   - select.energy_counter_office
+#         - conditions:
+#             - condition: template
+#               value_template: "{{ now().hour == 23 }}"
+#           sequence:
+#             - action: select.select_option
+#               data:
+#                 option: night
+#               target:
+#                 entity_id: 
+#                   - select.energy_counter
+#                   - select.energy_counter_office
+#   mode: single
 
-###########################################################
+# # Сохранение счетчиков электрики за прошлый месяц
+# - alias: Сохранение счетчиков электрики за прошлый месяц
+#   triggers:
+#     - trigger: time
+#       at: "00:00:05"
+#       #это первое число месяца
+#   condition:
+#         condition: template
+#         value_template: "{{ now().day == 1 }}"
+#   actions:
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.energy_count_day_last_month
+#       data:
+#         value: "{{ states('sensor.energy_counter_day') | float }}"
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.energy_count_night_last_month
+#       data:
+#         value: "{{ states('sensor.energy_counter_night') | float }}"
 
-# Освещение СУ 2-этаж
-- alias: Управление светом wc2
-  triggers:
-    # Триггер для включения света
-    - trigger: state
-      entity_id: binary_sensor.hum_det_wc2_occupancy
-      to: "on"
-    # Триггер для выключения света через 2 минуты после отсутствия движения
-    - trigger: state
-      entity_id: binary_sensor.hum_det_wc2_occupancy
-      to: "off"
-      for: "00:00:02"
-  actions:
-    - choose:
-        # Действие для включения света
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.hum_det_wc2_occupancy
-              state: "on"
-          sequence:
-            - action: switch.turn_on
-              target:
-                entity_id:
-                  - switch.light_wc2_switch_1
-                  - switch.light_wc2_switch_2
-        # Действие для выключения света
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.hum_det_wc2_occupancy
-              state: "off"
-          sequence:
-            - action: switch.turn_off
-              target:
-                entity_id:
-                  - switch.light_wc2_switch_1
-                  - switch.light_wc2_switch_2
+# # Сохранение счетчиков электрики за прошлый месяц офис
+# - alias: Сохранение счетчиков электрики за прошлый месяц офис
+#   triggers:
+#     - trigger: time
+#       at: "00:00:05"
+#       #это первое число месяца
+#   condition:
+#         condition: template
+#         value_template: "{{ now().day == 1 }}"
+#   actions:
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.energy_count_day_office_last_month
+#       data:
+#         value: "{{ states('sensor.energy_counter_office_day') | float }}"
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.energy_count_night_office_last_month
+#       data:
+#         value: "{{ states('sensor.energy_counter_office_night') | float }}"
 
-# Освещение СУ 1-этаж
-- alias: Управление светом wc
-  triggers:
-    # Триггер для включения света
-    - trigger: state
-      entity_id: binary_sensor.hum_det_wc_occupancy
-      to: "on"
-    # Триггер для выключения света через 2 минуты после отсутствия движения
-    - trigger: state
-      entity_id: binary_sensor.hum_det_wc_occupancy
-      to: "off"
-      for: "00:00:02"
-  actions:
-    - choose:
-        # Действие для включения света
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.hum_det_wc_occupancy
-              state: "on"
-          sequence:
-            - action: switch.turn_on
-              target:
-                entity_id:
-                  - switch.light_wc_switch_1
-                  - switch.light_wc_switch_2
-        # Действие для выключения света
-        - conditions:
-            - condition: state
-              entity_id: binary_sensor.hum_det_wc_occupancy
-              state: "off"
-          sequence:
-            - action: switch.turn_off
-              target:
-                entity_id:
-                  - switch.light_wc_switch_1
-                  - switch.light_wc_switch_2
-                  - switch.light_wc_switch_3
+# # Считаем израсходованный газ
+# - alias: "Update Gas Meter on Every Other Switch Toggle"
+#   description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter"
+#   triggers:
+#     - trigger: state
+#       entity_id: switch.gas_teak_counter
+#   action:
+#     - if:
+#         - condition: template
+#           value_template: "{{ states('input_boolean.gas_toggle_flag') == 'off' }}"
+#       then:
+#         - action: input_number.set_value
+#           target:
+#             entity_id: input_number.gas_counter
+#           data:
+#             value: "{{ states('input_number.gas_counter') | float + 0.01 }}"
+#     - action: input_boolean.toggle
+#       target:
+#         entity_id: input_boolean.gas_toggle_flag
 
-# Освещение улица
-- alias: "Включение ламп каждые 10 минут ночью"
-  triggers:
-    - trigger: time_pattern
-      minutes: "/10" # Каждые 10 минут
-  condition:
-    condition: or
-    conditions:
-      - condition: sun
-        after: sunset
-        after_offset: "00:30:00" # 1 час после заката
-      - condition: sun
-        before: sunrise
-        before_offset: "-01:00:00" # За 1 час до восхода
-  actions:
-    - action: switch.turn_on
-      target:
-        entity_id: 
-          - switch.light_str_west_switch_1
-          - switch.light_str_north_switch_1
+# # Считаем израсходованный газ в офисе
+# - alias: "Update Gas Meter on Every Other Switch Toggle Office"
+#   description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter_office"
+#   triggers:
+#     - trigger: state
+#       entity_id: switch.gas_teak_counter_office
+#   action:
+#     - if:
+#         - condition: template
+#           value_template: "{{ states('input_boolean.gas_toggle_flag_office') == 'off' }}"
+#       then:
+#         - action: input_number.set_value
+#           target:
+#             entity_id: input_number.gas_counter_office
+#           data:
+#             value: "{{ states('input_number.gas_counter_office') | float + 0.01 }}"
+#     - action: input_boolean.toggle
+#       target:
+#         entity_id: input_boolean.gas_toggle_flag_office        
 
-- alias: "Выключение ламп каждые 10 минут днем"
-  triggers:
-    - trigger: time_pattern
-      minutes: "/10" # Каждые 10 минут
-  condition:
-    condition: and
-    conditions:
-      - condition: sun
-        after: sunrise
-        after_offset: "-01:00:00" # За 1 час до восхода
-      - condition: sun
-        before: sunset
-        before_offset: "00:30:00" # 1 час после заката
-  actions:
-    - action: switch.turn_off
-      target:
-        entity_id:
-          - switch.light_str_west_switch_1
-          - switch.light_str_north_switch_1
+# # Сохранение счетчиков газа за прошлый месяц
+# - alias: Сохранение счетчиков электрики за прошлый месяц
+#   triggers:
+#     - trigger: time
+#       at: "00:00:05"
+#       #это первое число месяца
+#   condition:
+#         condition: template
+#         value_template: "{{ now().day == 1 }}"
+#   actions:
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.gas_count_last_month
+#       data:
+#         value: "{{ states('sensor.gas_count_difference') | float }}"
 
-# Переключение тарифов день/ночь для электрики 
-- id: 'switch_tariff'
-  alias: Переключение тарифов день/ночь для электричества
-  description: Переключение тарифов
-  triggers:
-    - trigger: time
-      at: '05:00:00'
-    - trigger: time
-      at: '23:00:00'
-  condition: []
-  action:
-    - choose:
-        - conditions:
-            - condition: template
-              value_template: "{{ now().hour == 5 }}"
-          sequence:
-            - action: select.select_option
-              data:
-                option: day
-              target:
-                entity_id: 
-                  - select.energy_counter
-                  - select.energy_counter_office
-        - conditions:
-            - condition: template
-              value_template: "{{ now().hour == 23 }}"
-          sequence:
-            - action: select.select_option
-              data:
-                option: night
-              target:
-                entity_id: 
-                  - select.energy_counter
-                  - select.energy_counter_office
-  mode: single
+# # Сохранение счетчиков газа за прошлый месяц офис
+# - alias: Сохранение счетчиков электрики за прошлый месяц офис
+#   triggers:
+#     - trigger: time
+#       at: "00:00:05"
+#       #это первое число месяца
+#   condition:
+#         condition: template
+#         value_template: "{{ now().day == 1 }}"
+#   actions:
+#     - action: input_number.set_value
+#       target:
+#         entity_id: input_number.gas_count_office_last_month
+#       data:
+#         value: "{{ states('sensor.gas_count_difference_office') | float }}"
 
-# Сохранение счетчиков электрики за прошлый месяц
-- alias: Сохранение счетчиков электрики за прошлый месяц
-  triggers:
-    - trigger: time
-      at: "00:00:05"
-      #это первое число месяца
-  condition:
-        condition: template
-        value_template: "{{ now().day == 1 }}"
-  actions:
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.energy_count_day_last_month
-      data:
-        value: "{{ states('sensor.energy_counter_day') | float }}"
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.energy_count_night_last_month
-      data:
-        value: "{{ states('sensor.energy_counter_night') | float }}"
+# # Отправка счетчиков электроэнергии в google sheets
+# - alias: "Send Energy Data to Google Sheets Every Hour"
+#   description: "Отправка показаний счетчика в Google Sheets каждый час"
+#   triggers:
+#     - trigger: time
+#       at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+#   actions:
+#     - action: google_sheets.append_sheet
+#       data:
+#         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+#         data:
+#           created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+#           day other: "{{ states('sensor.energy_counter_day') }}"
+#           night other: "{{ states('sensor.energy_counter_night') }}"
+#           day this month: "{{ states('sensor.energy_count_difference_day') }}"
+#           night this month: "{{ states('sensor.energy_count_difference_night') }}"
+#           day price: "{{ states('sensor.energy_count_difference_price_day') }}"
+#           night price: "{{ states('sensor.energy_count_difference_price_night') }}"
+#         worksheet: Energy_home
 
-# Сохранение счетчиков электрики за прошлый месяц офис
-- alias: Сохранение счетчиков электрики за прошлый месяц офис
-  triggers:
-    - trigger: time
-      at: "00:00:05"
-      #это первое число месяца
-  condition:
-        condition: template
-        value_template: "{{ now().day == 1 }}"
-  actions:
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.energy_count_day_office_last_month
-      data:
-        value: "{{ states('sensor.energy_counter_office_day') | float }}"
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.energy_count_night_office_last_month
-      data:
-        value: "{{ states('sensor.energy_counter_office_night') | float }}"
+#   # Отправка счетчиков электроэнергии в google sheets офис
+# - alias: "Send Energy Data to Google Sheets Every Hour Office"
+#   description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+#   triggers:
+#     - trigger: time
+#       at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+#   actions:
+#     - action: google_sheets.append_sheet
+#       data:
+#         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+#         data:
+#           created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+#           day other: "{{ states('sensor.energy_counter_office_day') }}"
+#           night other: "{{ states('sensor.energy_counter_office_night') }}"
+#           day this month: "{{ states('sensor.energy_count_difference_office_day') }}"
+#           night this month: "{{ states('sensor.energy_count_difference_office_night') }}"
+#           day price: "{{ states('sensor.energy_count_difference_price_office_day') }}"
+#           night price: "{{ states('sensor.energy_count_difference_price_office_night') }}"
+#         worksheet: Energy_office
 
-# Считаем израсходованный газ
-- alias: "Update Gas Meter on Every Other Switch Toggle"
-  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter"
-  triggers:
-    - trigger: state
-      entity_id: switch.gas_teak_counter
-  action:
-    - if:
-        - condition: template
-          value_template: "{{ states('input_boolean.gas_toggle_flag') == 'off' }}"
-      then:
-        - action: input_number.set_value
-          target:
-            entity_id: input_number.gas_counter
-          data:
-            value: "{{ states('input_number.gas_counter') | float + 0.01 }}"
-    - action: input_boolean.toggle
-      target:
-        entity_id: input_boolean.gas_toggle_flag
+# # Отправка счетчика газа в google sheets
+# - alias: "Send Energy Data to Google Sheets Every Hour"
+#   description: "Отправка показаний счетчика в Google Sheets каждый час"
+#   triggers:
+#     - trigger: time
+#       at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+#   actions:
+#     - action: google_sheets.append_sheet
+#       data:
+#         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+#         data:
+#           created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+#           gas_other: "{{ states('sensor.gas_meter') }}"
+#           gas_this month: "{{ states('sensor.gas_count_difference_month') }}"
+#           gas_price: "{{ states('sensor.gas_count_difference_price_month') }}"
+#         worksheet: Gas_home
 
-# Считаем израсходованный газ в офисе
-- alias: "Update Gas Meter on Every Other Switch Toggle Office"
-  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter_office"
-  triggers:
-    - trigger: state
-      entity_id: switch.gas_teak_counter_office
-  action:
-    - if:
-        - condition: template
-          value_template: "{{ states('input_boolean.gas_toggle_flag_office') == 'off' }}"
-      then:
-        - action: input_number.set_value
-          target:
-            entity_id: input_number.gas_counter_office
-          data:
-            value: "{{ states('input_number.gas_counter_office') | float + 0.01 }}"
-    - action: input_boolean.toggle
-      target:
-        entity_id: input_boolean.gas_toggle_flag_office        
-
-# Сохранение счетчиков газа за прошлый месяц
-- alias: Сохранение счетчиков электрики за прошлый месяц
-  triggers:
-    - trigger: time
-      at: "00:00:05"
-      #это первое число месяца
-  condition:
-        condition: template
-        value_template: "{{ now().day == 1 }}"
-  actions:
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.gas_count_last_month
-      data:
-        value: "{{ states('sensor.gas_count_difference') | float }}"
-
-# Сохранение счетчиков газа за прошлый месяц офис
-- alias: Сохранение счетчиков электрики за прошлый месяц офис
-  triggers:
-    - trigger: time
-      at: "00:00:05"
-      #это первое число месяца
-  condition:
-        condition: template
-        value_template: "{{ now().day == 1 }}"
-  actions:
-    - action: input_number.set_value
-      target:
-        entity_id: input_number.gas_count_office_last_month
-      data:
-        value: "{{ states('sensor.gas_count_difference_office') | float }}"
-
-# Отправка счетчиков электроэнергии в google sheets
-- alias: "Send Energy Data to Google Sheets Every Hour"
-  description: "Отправка показаний счетчика в Google Sheets каждый час"
-  triggers:
-    - trigger: time
-      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
-  actions:
-    - action: google_sheets.append_sheet
-      data:
-        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
-        data:
-          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
-          day other: "{{ states('sensor.energy_counter_day') }}"
-          night other: "{{ states('sensor.energy_counter_night') }}"
-          day this month: "{{ states('sensor.energy_count_difference_day') }}"
-          night this month: "{{ states('sensor.energy_count_difference_night') }}"
-          day price: "{{ states('sensor.energy_count_difference_price_day') }}"
-          night price: "{{ states('sensor.energy_count_difference_price_night') }}"
-        worksheet: Energy_home
-
-  # Отправка счетчиков электроэнергии в google sheets офис
-- alias: "Send Energy Data to Google Sheets Every Hour Office"
-  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
-  triggers:
-    - trigger: time
-      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
-  actions:
-    - action: google_sheets.append_sheet
-      data:
-        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
-        data:
-          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
-          day other: "{{ states('sensor.energy_counter_office_day') }}"
-          night other: "{{ states('sensor.energy_counter_office_night') }}"
-          day this month: "{{ states('sensor.energy_count_difference_office_day') }}"
-          night this month: "{{ states('sensor.energy_count_difference_office_night') }}"
-          day price: "{{ states('sensor.energy_count_difference_price_office_day') }}"
-          night price: "{{ states('sensor.energy_count_difference_price_office_night') }}"
-        worksheet: Energy_office
-
-# Отправка счетчика газа в google sheets
-- alias: "Send Energy Data to Google Sheets Every Hour"
-  description: "Отправка показаний счетчика в Google Sheets каждый час"
-  triggers:
-    - trigger: time
-      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
-  actions:
-    - action: google_sheets.append_sheet
-      data:
-        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
-        data:
-          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
-          gas_other: "{{ states('sensor.gas_meter') }}"
-          gas_this month: "{{ states('sensor.gas_count_difference_month') }}"
-          gas_price: "{{ states('sensor.gas_count_difference_price_month') }}"
-        worksheet: Gas_home
-
-# Отправка счетчика газа в google sheets офис
-- alias: "Send Energy Data to Google Sheets Every Hour Office"
-  description: "Отправка показаний счетчика в Google Sheets каждый час офис"
-  triggers:
-    - trigger: time
-      at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
-  actions:
-    - action: google_sheets.append_sheet
-      data:
-        config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
-        data:
-          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
-          gas_other: "{{ states('sensor.gas_meter_office') }}"
-          gas_this month: "{{ states('sensor.gas_count_difference_office_month') }}"
-          gas_price: "{{ states('sensor.gas_count_difference_office_price_month') }}"
-        worksheet: Gas_office
+# # Отправка счетчика газа в google sheets офис
+# - alias: "Send Energy Data to Google Sheets Every Hour Office"
+#   description: "Отправка показаний счетчика в Google Sheets каждый час офис"
+#   triggers:
+#     - trigger: time
+#       at: "00:00:10"  # Триггер срабатывает каждый день в 00:00:10
+#   actions:
+#     - action: google_sheets.append_sheet
+#       data:
+#         config_entry: 01JHX7MT0WRR4WQF917NW98MZS  # Укажите свой config_entry
+#         data:
+#           created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+#           gas_other: "{{ states('sensor.gas_meter_office') }}"
+#           gas_this month: "{{ states('sensor.gas_count_difference_office_month') }}"
+#           gas_price: "{{ states('sensor.gas_count_difference_office_price_month') }}"
+#         worksheet: Gas_office
