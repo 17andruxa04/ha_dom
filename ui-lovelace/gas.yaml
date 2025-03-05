@@ -1,0 +1,89 @@
+
+
+- type: vertical-stack
+  cards:
+    - type: custom:button-card
+      name: "Газ дом"
+      styles:
+        card:
+          - height: 100%
+          - display: flex
+          - align-items: center
+          - justify-content: center
+        name:
+          - font-size: 16px
+          - font-weight: bold
+          - text-align: center
+
+    - type: horizontal-stack
+      cards:
+        - type: entities
+          entities:
+            - entity: sensor.gas_meter
+              type: custom:multiple-entity-row
+              name: Газ
+              entities:
+                - entity: sensor.daily_cost_gas
+                  name: false # m3/day        
+                - entity: sensor.monthly_cost_gas
+                  name: false # m3/month
+                - entity: sensor.daily_cost_gas_money
+                  name: false # $/day
+                - entity: sensor.monthly_cost_gas_money
+                  name: false # $/month
+
+    - type: horizontal-stack
+      cards:
+
+        - type: history-graph
+          title: "Gas Consumption"
+          hours_to_show: 48
+          entities:
+            - entity: sensor.gas_meter
+              name: "A"
+
+- type: vertical-stack
+  cards:
+    - type: custom:button-card
+      name: "Газ офис"
+      styles:
+        card:
+          - height: 100%
+          - display: flex
+          - align-items: center
+          - justify-content: center
+        name:
+          - font-size: 16px
+          - font-weight: bold
+          - text-align: center
+
+    - type: horizontal-stack
+      cards:
+        - type: entities
+          entities:
+            - entity: sensor.gas_meter_office
+              type: custom:multiple-entity-row
+              name: Газ
+              entities:
+                - entity: sensor.daily_cost_gas_office
+                  name: false # m3/day        
+                - entity: sensor.monthly_cost_gas_office
+                  name: false # m3/month
+                - entity: sensor.daily_cost_gas_money_office
+                  name: false # $/day
+                - entity: sensor.monthly_cost_gas_money_office
+                  name: false # $/month
+
+    - type: horizontal-stack
+      cards:
+
+        - type: history-graph
+          title: "Gas Consumption"
+          hours_to_show: 48
+          entities:
+            - entity: sensor.gas_meter_office
+              name: "A"
+
+
+
+

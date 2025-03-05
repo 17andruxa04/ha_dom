@@ -1,0 +1,559 @@
+
+
+
+- type: vertical-stack
+  cards:
+
+    - type: custom:button-card
+      name: "Электричество дом"
+      styles:
+        card:
+          - height: 100%
+          - display: flex
+          - align-items: center
+          - justify-content: center
+        name:
+          - font-size: 16px
+          - font-weight: bold
+          - text-align: center
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Фаза А"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          entity: sensor.in_360_total_energy_a_voltage_no_unit
+          name: ''
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_a_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 40
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 25
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_a_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 7
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4.5
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Фаза B"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_b_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_b_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 40
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 25
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_b_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 7
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4.5
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Фаза C"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_c_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_c_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 40
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 25
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_360_total_energy_c_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 7
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4.5
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+      - type: entities
+        entities:
+    # Счетчик электроэнергии дом
+        - entity: sensor.energy_counter_day
+          type: custom:multiple-entity-row
+          name: День
+          icon: mdi:flash
+    #      state_header: Всего
+          entities:
+          - entity: sensor.daily_cost_energy_tarif_day
+            name: false #Тек.Д.        
+          - entity: sensor.monthly_cost_energy_tarif_day
+            name: false #Тек.Мес.
+          - entity: sensor.daily_cost_energy_money_tarif_day
+            name: false #Тек.Д.
+          - entity: sensor.monthly_cost_energy_money_tarif_day
+            name: false #Цена
+
+        - entity: sensor.energy_counter_night
+          type: custom:multiple-entity-row
+          name: Ночь
+          icon: mdi:flash
+    #      state_header: Всего
+          entities:
+          - entity: sensor.daily_cost_energy_tarif_night
+            name: false #Тек.Д.        
+          - entity: sensor.monthly_cost_energy_tarif_night
+            name: false #Тек.Мес.
+          - entity: sensor.daily_cost_energy_money_tarif_night
+            name: false #Тек.Д.
+          - entity: sensor.monthly_cost_energy_money_tarif_night
+            name: false #Цена
+
+    - type: horizontal-stack
+      cards:
+
+        - type: history-graph
+          title: "Energy Consumption"
+          hours_to_show: 48
+          entities:
+            - entity: sensor.breaker_phase_a_power
+              name: "A"
+            - entity: sensor.breaker_phase_b_power
+              name: "B"
+            - entity: sensor.breaker_phase_c_power
+              name: "C"
+
+- type: vertical-stack
+  cards:
+
+    - type: custom:button-card
+      name: "Электричество офис"
+      styles:
+        card:
+          - height: 100%
+          - display: flex
+          - align-items: center
+          - justify-content: center
+        name:
+          - font-size: 16px
+          - font-weight: bold
+          - text-align: center
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Фаза А"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 25
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 20
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 6
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+      - type: entities
+        entities:
+# Счетчик электроэнергии  офис
+        - entity: sensor.energy_counter_office_day
+          type: custom:multiple-entity-row
+          name: День
+          icon: mdi:flash
+    #      state_header: Всего
+          entities:
+          - entity: sensor.daily_cost_energy_tarif_day_office
+            name: false #Тек.Д.        
+          - entity: sensor.monthly_cost_energy_tarif_day_office
+            name: false #Тек.Мес.
+          - entity: sensor.daily_cost_energy_money_tarif_day_office
+            name: false #Тек.Д.
+          - entity: sensor.monthly_cost_energy_money_tarif_day_office
+            name: false #Цена
+
+        - entity: sensor.energy_counter_office_night
+          type: custom:multiple-entity-row
+          name: Ночь
+          icon: mdi:flash
+    #      state_header: Всего
+          entities:
+          - entity: sensor.daily_cost_energy_tarif_night_office
+            name: false #Тек.Д.        
+          - entity: sensor.monthly_cost_energy_tarif_night_office
+            name: false #Тек.Мес.
+          - entity: sensor.daily_cost_energy_money_tarif_night_office
+            name: false #Тек.Д.
+          - entity: sensor.monthly_cost_energy_money_tarif_night_office
+            name: false #Цена
+
+    - type: horizontal-stack
+      cards:
+
+        - type: history-graph
+          title: "Energy Consumption"
+          hours_to_show: 48
+          entities:
+            - entity: sensor.in_220_office_power
+              name: "A"
+
+- type: vertical-stack
+  cards:
+
+    - type: custom:button-card
+      name: "Электричество ферма"
+      styles:
+        card:
+          - height: 100%
+          - display: flex
+          - align-items: center
+          - justify-content: center
+        name:
+          - font-size: 16px
+          - font-weight: bold
+          - text-align: center
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Стружук"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 25
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 20
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 6
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Безкоров"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 25
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 20
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 6
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+        - type: custom:button-card
+          name: "Пасько"
+          styles:
+            card:
+              - height: 100%
+              - display: flex
+              - align-items: center
+              - justify-content: center
+            name:
+              - font-size: 16px
+              - font-weight: bold
+              - text-align: center
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_voltage_no_unit
+          needle: true
+          unit: 'V'
+          min: 140
+          max: 300
+          segments:
+            - from: 140
+              color: '#db4437'
+            - from: 210
+              color: '#43a047'
+            - from: 240
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_current_no_unit
+          needle: true
+          unit: 'A'
+          min: 0
+          max: 25
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 20
+              color: '#db4437'
+
+        - type: gauge
+          name: ''
+          entity: sensor.in_220_total_energy_a_power_no_unit
+          needle: true
+          unit: 'kW'
+          min: 0
+          max: 6
+          segments:
+            - from: 0
+              color: '#43a047'
+            - from: 4
+              color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+        - type: history-graph
+          title: "Energy Consumption"
+          hours_to_show: 48
+          entities:
+            - entity: sensor.breaker_phase_a_power
+              name: "A"
+            - entity: sensor.breaker_phase_b_power
+              name: "B"
+            - entity: sensor.breaker_phase_c_power
+              name: "C"

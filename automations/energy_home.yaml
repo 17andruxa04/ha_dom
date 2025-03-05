@@ -1,9 +1,45 @@
 
+# Переключение тарифов день/ночь для электрики 
+- id: 'switch_tariff'
+  alias: Переключение тарифов день/ночь для электричества
+  description: Переключение тарифов
+  triggers:
+    - trigger: time
+      at: '05:00:00'
+    - trigger: time
+      at: '23:00:00'
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: "{{ now().hour == 5 }}"
+          sequence:
+            - action: select.select_option
+              data:
+                option: day
+              target:
+                entity_id: 
+                  - select.energy_counter
+                  - select.energy_counter_office
+        - conditions:
+            - condition: template
+              value_template: "{{ now().hour == 23 }}"
+          sequence:
+            - action: select.select_option
+              data:
+                option: night
+              target:
+                entity_id: 
+                  - select.energy_counter
+                  - select.energy_counter_office
+  mode: single
+
 # Сохранение счетчиков электрики за прошлый месяц
 - alias: Сохранение счетчиков электрики за прошлый месяц
   triggers:
     - trigger: time
-      at: "00:00:05"
+      at: "00:00:01"
       #это первое число месяца
   condition:
         condition: template
@@ -17,5 +53,22 @@
     - action: input_number.set_value
       target:
         entity_id: input_number.energy_count_night_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_night') | float }}"
+
+# Сохранение счетчиков электрики за прошлый день
+- alias: Сохранение счетчиков электрики за прошлый день
+  triggers:
+    - trigger: time
+      at: "00:00:01"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_day_last_day
+      data:
+        value: "{{ states('sensor.energy_counter_day') | float }}"
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_night_last_day
       data:
         value: "{{ states('sensor.energy_counter_night') | float }}"

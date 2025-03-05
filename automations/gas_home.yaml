@@ -20,10 +20,10 @@
         entity_id: input_boolean.gas_toggle_flag
 
 # Сохранение счетчиков газа за прошлый месяц
-- alias: Сохранение счетчиков электрики за прошлый месяц
+- alias: Сохранение счетчиков газа за прошлый месяц
   triggers:
     - trigger: time
-      at: "00:00:05"
+      at: "00:00:01"
       #это первое число месяца
   condition:
         condition: template
@@ -33,4 +33,16 @@
       target:
         entity_id: input_number.gas_count_last_month
       data:
-        value: "{{ states('sensor.gas_count_difference') | float }}"
+        value: "{{ states('sensor.gas_meter') | float }}"
+
+# Сохранение счетчиков газа за прошлый день
+- alias: Сохранение счетчиков газа за прошлый день
+  triggers:
+    - trigger: time
+      at: "00:00:01"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.gas_count_last_day
+      data:
+        value: "{{ states('sensor.gas_meter') | float }}"

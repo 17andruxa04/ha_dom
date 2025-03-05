@@ -1,7 +1,36 @@
 
 
+  gas_counter:
+      name: "gas_counter"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "m3"
+      icon: mdi:gas-burner
+
   gas_count_last_month:
       name: "gas_count_last_month"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "m3"
+      icon: mdi:gas-burner
+
+  gas_count_last_day:
+      name: "gas_count_last_day"
+      min: 0
+      max: 1000000
+      step: 1
+      mode: box
+      unit_of_measurement: "m3"
+      icon: mdi:gas-burner
+
+
+
+  gas_counter_office:
+      name: "gas_counter_office"
       min: 0
       max: 1000000
       step: 1
@@ -18,17 +47,8 @@
       unit_of_measurement: "m3"
       icon: mdi:gas-burner
 
-  gas_counter:
-      name: "gas_counter"
-      min: 0
-      max: 1000000
-      step: 1
-      mode: box
-      unit_of_measurement: "m3"
-      icon: mdi:gas-burner
-
-  gas_counter_office:
-      name: "gas_counter_office"
+  gas_count_office_last_day:
+      name: "gas_count_office_last_day"
       min: 0
       max: 1000000
       step: 1

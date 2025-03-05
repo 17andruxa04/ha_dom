@@ -1,128 +1,336 @@
 
+
+############################################        ЭЛЕКТРИЧЕСТВО        #################################################################################
+
+############################################             ДОМ             #################################################################################
+
+- platform: template
+  sensors:
+    in_360_total_energy_no_unit:
+      friendly_name: "In 360V Energy No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_total_energy') }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_a_current_no_unit:
+      friendly_name: "In 360V Energy A current No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_a_current') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_a_power_no_unit:
+      friendly_name: "In 360V Energy A power No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_a_power') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_a_voltage_no_unit:
+      friendly_name: "In 360V Energy A voltage No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_a_voltage') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_b_current_no_unit:
+      friendly_name: "In 360V Energy b current No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_b_current') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_b_power_no_unit:
+      friendly_name: "In 360V Energy b power No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_b_power') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_b_voltage_no_unit:
+      friendly_name: "In 360V Energy b voltage No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_b_voltage') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_c_current_no_unit:
+      friendly_name: "In 360V Energy c current No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_c_current') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_c_power_no_unit:
+      friendly_name: "In 360V Energy c power No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_c_power') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_360_total_energy_c_voltage_no_unit:
+      friendly_name: "In 360V Energy c voltage No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.breaker_phase_c_voltage') | float | round(1) }}"
+
+############################################            ################            #################################################################################
+
+# Сенсор месячных затрат электрики тариф день
+- platform: template
+  sensors:
+    monthly_cost_energy_tarif_day:
+      friendly_name: "Месячные затраты электрики тариф день"
+      value_template: "{{ ((states('sensor.energy_counter_day') | float) - (states('input_number.energy_count_day_last_month') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор суточных затрат электрики тариф день
+- platform: template
+  sensors:
+    daily_cost_energy_tarif_day:
+      friendly_name: "Суточные затраты электрики тариф день"
+      value_template: "{{ ((states('sensor.energy_counter_day') | float) - (states('input_number.energy_count_day_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор месячных затрат электрики тариф ночь
+- platform: template
+  sensors:
+    monthly_cost_energy_tarif_night:
+      friendly_name:  "Месячные затраты электрики тариф ночь"
+      value_template: "{{ ((states('sensor.energy_counter_night') | float) - (states('input_number.energy_count_night_last_month') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор суточных затрат электрики тариф ночь
+- platform: template
+  sensors:
+    daily_cost_energy_tarif_night:
+      friendly_name:  "Суточные затраты электрики тариф ночь"
+      value_template: "{{ ((states('sensor.energy_counter_night') | float) - (states('input_number.energy_count_night_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор месячных затрат электрики в деньгах тариф день
+- platform: template
+  sensors:
+    monthly_cost_energy_money_tarif_day:
+      friendly_name: "Месячные затраты электрики в деньгах тариф день"
+      value_template: "{{ ((states('sensor.monthly_cost_energy_tarif_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат электрики в деньгах тариф день
+- platform: template
+  sensors:
+    daily_cost_energy_money_tarif_day:
+      friendly_name: "Суточные затраты электрики в деньгах тариф день"
+      value_template: "{{ ((states('sensor.daily_cost_energy_tarif_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+# Сенсор месячных затрат электрики в деньгах тариф ночь
+- platform: template
+  sensors:
+    monthly_cost_energy_money_tarif_night:
+      friendly_name: "Месячные затраты электрики в деньгах тариф ночь"
+      value_template: "{{ ((states('sensor.monthly_cost_energy_tarif_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат электрики в деньгах тариф ночь
+- platform: template
+  sensors:
+    daily_cost_energy_money_tarif_night:
+      friendly_name: "Суточные затраты электрики в деньгах тариф ночь"
+      value_template: "{{ ((states('sensor.daily_cost_energy_tarif_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+############################################        ОФИС        #################################################################################
+
+# Интегральный сенсор преобразования потребленных "W" в "kWh"
 - platform: integration
   source: sensor.in_220_office_power
-  name: in_220_office_energy
+  name: in_220_office_energy_integral
   round: 2
   method: left
 
-# Сенсор текущих месячных затрат электрики день
 - platform: template
   sensors:
-    energy_count_difference_day:
-      friendly_name: "Energy Count Difference Day"
-      value_template: "{{ ((states('sensor.energy_counter_day') | float) - (states('input_number.energy_count_day_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "kWh"
+    in_220_office_energy_no_unit:
+      friendly_name: "In 220V Energy No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.in_220_office_energy_integral') }}"
 
-# Сенсор текущих месячных затрат электрики день офис
 - platform: template
   sensors:
-    energy_count_difference_office_day:
-      friendly_name: "Energy Count Difference Day Office"
+    in_220_total_energy_a_current_no_unit:
+      friendly_name: "In 220V Energy A current No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.in_220_office_current') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_220_total_energy_a_power_no_unit:
+      friendly_name: "In 220V Energy A power No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.in_220_office_power') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    in_220_total_energy_a_voltage_no_unit:
+      friendly_name: "In 220V Energy A voltage No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.in_220_office_voltage') | float | round(1) }}"
+
+# Сенсор месячных затрат электрики тариф день офис
+- platform: template
+  sensors:
+    monthly_cost_energy_tarif_day_office:
+      friendly_name: "Месячные затраты электрики тариф день офис"
       value_template: "{{ ((states('sensor.energy_counter_office_day') | float) - (states('input_number.energy_count_day_office_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "kWh"
+#      unit_of_measurement: "kWh"
 
-# Сенсор текущих месячных затрат электрики ночь
+# Сенсор суточных затрат электрики тариф день офис
 - platform: template
   sensors:
-    energy_count_difference_night:
-      friendly_name: "Energy Count Difference Night"
-      value_template: "{{ ((states('sensor.energy_counter_night') | float) - (states('input_number.energy_count_night_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "kWh"
+    daily_cost_energy_tarif_day_office:
+      friendly_name: "Суточные затраты электрики тариф день офис"
+      value_template: "{{ ((states('sensor.energy_counter_office_day') | float) - (states('input_number.energy_count_day_office_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
 
-# Сенсор текущих месячных затрат электрики ночь офис
+# Сенсор месячных затрат электрики тариф ночь офис
 - platform: template
   sensors:
-    energy_count_difference_office_night:
-      friendly_name: "Energy Count Difference Night Office"
+    monthly_cost_energy_tarif_night_office:
+      friendly_name:  "Месячные затраты электрики тариф ночь офис"
       value_template: "{{ ((states('sensor.energy_counter_office_night') | float) - (states('input_number.energy_count_night_office_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "kWh"
+#      unit_of_measurement: "kWh"
 
-# Сенсор текущих месячных затрат электрики в деньгах день
+# Сенсор суточных затрат электрики тариф ночь офис
 - platform: template
   sensors:
-    energy_count_difference_price_day:
-      friendly_name: "Energy Count Difference Price Day"
-      value_template: "{{ ((states('sensor.energy_count_difference_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
-      icon_template: "mdi:currency-uah"
+    daily_cost_energy_tarif_night_office:
+      friendly_name:  "Суточные затраты электрики тариф ночь офис"
+      value_template: "{{ ((states('sensor.energy_counter_office_night') | float) - (states('input_number.energy_count_night_office_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
 
-# Сенсор текущих месячных затрат электрики в деньгах день офис
+# Сенсор месячных затрат электрики в деньгах тариф день офис
 - platform: template
   sensors:
-    energy_count_difference_price_office_day:
-      friendly_name: "Energy Count Difference Price Day Office"
-      value_template: "{{ ((states('sensor.energy_count_difference_office_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
+    monthly_cost_energy_money_tarif_day_office:
+      friendly_name: "Месячные затраты электрики в деньгах тариф день офис"
+      value_template: "{{ ((states('sensor.monthly_cost_energy_tarif_day_office') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"
 
-# Сенсор текущих месячных затрат электрики в деньгах ночь
+# Сенсор суточных затрат электрики в деньгах тариф день офис
 - platform: template
   sensors:
-    energy_count_difference_price_night:
-      friendly_name: "Energy Count Difference Price Night"
-      value_template: "{{ ((states('sensor.energy_count_difference_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
+    daily_cost_energy_money_tarif_day_office:
+      friendly_name: "Суточные затраты электрики в деньгах тариф день офис"
+      value_template: "{{ ((states('sensor.daily_cost_energy_tarif_day_office') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"
 
-# Сенсор текущих месячных затрат электрики в деньгах ночь офис
+# Сенсор месячных затрат электрики в деньгах тариф ночь офис
 - platform: template
   sensors:
-    energy_count_difference_price_office_night:
-      friendly_name: "Energy Count Difference Price Night Office"
-      value_template: "{{ ((states('sensor.energy_count_difference_office_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
+    monthly_cost_energy_money_tarif_night_office:
+      friendly_name: "Месячные затраты электрики в деньгах тариф ночь офис"
+      value_template: "{{ ((states('sensor.monthly_cost_energy_tarif_night_office') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат электрики в деньгах тариф ночь офис
+- platform: template
+  sensors:
+    daily_cost_energy_money_tarif_night_office:
+      friendly_name: "Суточные затраты электрики в деньгах тариф ночь офис"
+      value_template: "{{ ((states('sensor.daily_cost_energy_tarif_night_office') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"      
+
+
+############################################        ГАЗ       #################################################################################
+
+############################################        ДОМ        #################################################################################
 
 # Сенсор газа
 - platform: template
   sensors:
-    gas_count_difference:
-      friendly_name: "Gas Count Difference"
+    gas_count:
+      friendly_name: "Сенсор газа"
       value_template: "{{ (states('input_number.gas_counter') | float) | round(2) }}"
-      unit_of_measurement: "m3"
+#      unit_of_measurement: "m3"
       icon_template: "mdi:gas-burner"
 
-# Сенсор текущих месячных затрат газ
+# Сенсор месячных затрат газа
 - platform: template
   sensors:
-    gas_count_difference_month:
-      friendly_name: "Gas Count Difference Month"
+    monthly_cost_gas:
+      friendly_name: "Месячные затраты газа"
       value_template: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "m3"
+#      unit_of_measurement: "m3"
       icon_template: "mdi:gas-burner"
 
-# Сенсор текущих месячных затрат газ в деньгах
+# Сенсор суточных затрат газа
 - platform: template
   sensors:
-    gas_count_difference_price_month:
-      friendly_name: "Gas Count Difference Price Month"
-      value_template: "{{ ((states('sensor.gas_count_difference_month') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
+    daily_cost_gas:
+      friendly_name:  "Суточные затраты газа"
+      value_template: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "m3"
+      icon_template: "mdi:gas-burner"
+
+# Сенсор месячных затрат газа в деньгах
+- platform: template
+  sensors:
+    monthly_cost_gas_money:
+      friendly_name: "Месячные затраты газа в деньгах"
+      value_template: "{{ ((states('sensor.monthly_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат газа в деньгах
+- platform: template
+  sensors:
+    daily_cost_gas_money:
+      friendly_name: "Суточные затраты газа в деньгах"
+      value_template: "{{ ((states('sensor.daily_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+############################################        ОФИС       #################################################################################
 
 # Сенсор газа офис
 - platform: template
   sensors:
-    gas_count_difference_office:
-      friendly_name: "Gas Count Difference Office"
+    gas_count_office:
+      friendly_name: "Сенсор газа офис"
       value_template: "{{ (states('input_number.gas_counter_office') | float) | round(2) }}"
-      unit_of_measurement: "m3"
+#      unit_of_measurement: "m3"
       icon_template: "mdi:gas-burner"
 
-# Сенсор текущих месячных затрат газ офис
+# Сенсор месячных затрат газа офис
 - platform: template
   sensors:
-    gas_count_difference_office_month:
-      friendly_name: "Gas Count Difference Office Month"
+    monthly_cost_gas_office:
+      friendly_name: "Месячные затраты газа офис"
       value_template: "{{ ((states('sensor.gas_meter_office') | float) - (states('input_number.gas_count_office_last_month') | float)) | round(1) }}"
-      unit_of_measurement: "m3"
+#      unit_of_measurement: "m3"
       icon_template: "mdi:gas-burner"
 
-# Сенсор текущих месячных затрат газ в деньгах офис
+# Сенсор суточных затрат газа офис
 - platform: template
   sensors:
-    gas_count_difference_office_price_month:
-      friendly_name: "Gas Count Difference Office Price Month"
-      value_template: "{{ ((states('sensor.gas_count_difference_office_month') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
-      unit_of_measurement: "₴"
+    daily_cost_gas_office:
+      friendly_name:  "Суточные затраты газа офис"
+      value_template: "{{ ((states('sensor.gas_meter_office') | float) - (states('input_number.gas_count_office_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "m3"
+      icon_template: "mdi:gas-burner"
+
+# Сенсор месячных затрат газа в деньгах офис
+- platform: template
+  sensors:
+    monthly_cost_gas_money_office:
+      friendly_name: "Месячные затраты газа в деньгах офис"
+      value_template: "{{ ((states('sensor.monthly_cost_gas_office') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат газа в деньгах офис
+- platform: template
+  sensors:
+    daily_cost_gas_money_office:
+      friendly_name: "Суточные затраты газа в деньгах офис"
+      value_template: "{{ ((states('sensor.daily_cost_gas_office') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+
+##########################################################################################################################

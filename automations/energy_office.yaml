@@ -3,7 +3,7 @@
 - alias: Сохранение счетчиков электрики за прошлый месяц офис
   triggers:
     - trigger: time
-      at: "00:00:05"
+      at: "00:00:01"
       #это первое число месяца
   condition:
         condition: template
@@ -17,5 +17,22 @@
     - action: input_number.set_value
       target:
         entity_id: input_number.energy_count_night_office_last_month
+      data:
+        value: "{{ states('sensor.energy_counter_office_night') | float }}"
+
+# Сохранение счетчиков электрики за прошлый день офис
+- alias: Сохранение счетчиков электрики за прошлый день офис
+  triggers:
+    - trigger: time
+      at: "00:00:01"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_day_office_last_day
+      data:
+        value: "{{ states('sensor.energy_counter_office_day') | float }}"
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.energy_count_night_office_last_day
       data:
         value: "{{ states('sensor.energy_counter_office_night') | float }}"

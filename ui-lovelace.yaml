@@ -6,9 +6,30 @@ views:
       !include ui-lovelace/home.yaml
 
   - title: Heating
-    icon: mdi:view-dashboard
+    icon: mdi:home-thermometer
     cards:
       !include ui-lovelace/heating.yaml
+
+  - title: Energy
+    icon: mdi:flash
+    cards:
+      !include ui-lovelace/energy.yaml
+
+  - title: Gas
+    icon: mdi:gas-burner
+    cards:
+      !include ui-lovelace/gas.yaml
+
+  - title: Rooms
+    icon: mdi:coat-rack
+    cards:
+#      !include ui-lovelace/gas.yaml
+
+      - type: picture-glance
+        title: Gostinaia
+        entities:
+          - entity: climate.gostinaia
+        image: /local/living_room.png
 
 
 

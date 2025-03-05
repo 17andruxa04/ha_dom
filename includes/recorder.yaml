@@ -1,12 +1,22 @@
   
   
     db_url: !secret db_link
-    purge_keep_days: 3
+    purge_keep_days: 7
     include:
         domains:
         - switch
         - light
         - binary_sensor
-        - sensor
+#        - sensor
         entities:
         - input_number.gas_counter
+        - input_number.gas_counter_office
+        - sensor.temperature_and_humidity_alarm_temperature
+
+        - sensor.in_220_office_power
+        - sensor.breaker_phase_a_power
+        - sensor.breaker_phase_b_power
+        - sensor.breaker_phase_c_power
+
+        - sensor.gas_meter
+        - sensor.gas_meter_office
