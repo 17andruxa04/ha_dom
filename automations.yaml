@@ -91,7 +91,7 @@
 # #   action:
 # #     - service: light.turn_on
 # #       entity_id: light.podval_poliv_gazon_1_496
-# #     - delay: '00:30:00'  # Задержка на 30 минут
+# #     - delay: '00:25:00'  # Задержка на 25 минут
 # #     - service: light.turn_off
 # #       entity_id: light.podval_poliv_gazon_1_496
 

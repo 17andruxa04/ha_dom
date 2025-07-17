@@ -84,10 +84,10 @@
     conditions:
       - condition: sun
         after: sunset
-        after_offset: "00:30:00" # 1 час после заката
+        after_offset: "00:00:10" # 1 час после заката
       - condition: sun
         before: sunrise
-        before_offset: "-01:00:00" # За 1 час до восхода
+        before_offset: "-00:00:10" # За 1 час до восхода
   actions:
     - action: switch.turn_on
       target:
@@ -104,10 +104,10 @@
     conditions:
       - condition: sun
         after: sunrise
-        after_offset: "-01:00:00" # За 1 час до восхода
+        after_offset: "-00:00:10" # За 1 час до восхода
       - condition: sun
         before: sunset
-        before_offset: "00:30:00" # 1 час после заката
+        before_offset: "00:00:10" # 1 час после заката
   actions:
     - action: switch.turn_off
       target:

@@ -1,0 +1,18 @@
+
+# Полив газона
+- alias: "Ручной запуск полива газона"
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.lawn_irrigation_manual
+      to: "on"
+  actions:
+    - action: switch.turn_on
+      target:
+        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+    - delay: "00:25:00"  # Задержка на 25 минут (изменено с 2 минут, если это было ошибкой)
+    - action: switch.turn_off
+      target:
+        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+    - action: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.lawn_irrigation_manual
