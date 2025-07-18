@@ -107,13 +107,29 @@
 
   #       - type: light
   #         entity: light.rgb_bedroom
-
+# Кнопка для перезагрузки плиты
   - type: horizontal-stack
     cards:
 
-        - type: button
-          entity: switch.phase_a_din_switch
-          name: Фаза 'А' кухня
+      - type: button
+        entity: switch.phase_a_din_switch
+        name: Фаза 'А' кухня
+
+# Кнопка Полив
+      - type: 'custom:button-card'
+        entity: input_boolean.lawn_irrigation_manual
+        name: Полив газона
+        color: auto
+        styles:
+          card:
+            - background-color: rgba(0, 128, 0, 0.8)  # Зеленый фон с прозрачностью
+          name:
+            - color: 'var(--primary-text-color)'  # Цвет текста названия
+          state:
+            - color: 'var(--primary-text-color)'  # Цвет состояния
+        show_state: true
+        tap_action:
+          action: toggle
 
 # Кнопка для ворот въездных
   - type: horizontal-stack

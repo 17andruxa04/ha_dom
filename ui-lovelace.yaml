@@ -21,7 +21,7 @@ views:
       !include ui-lovelace/gas.yaml
 
   - title: Rooms
-    icon: mdi:coat-rack
+    icon: mdi:exit-run
     cards:
 #      !include ui-lovelace/gas.yaml
 
@@ -29,7 +29,9 @@ views:
         title: Gostinaia
         entities:
           - entity: climate.gostinaia
+          - entity: sensor.z_gostinaia_temp_temperature
         image: /local/living_room.png
+        show_state: true
 
 
 
