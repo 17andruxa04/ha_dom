@@ -94,12 +94,14 @@
 
   #       - type: light
   #         entity: light.rgb_bedroom
+
+
 # Кнопка для перезагрузки плиты
   - type: horizontal-stack
     cards:
 
       - type: button
-        entity: switch.phase_a_din_switch
+        entity: switch.wf_tl_phase_a_din
         name: Фаза 'А' кухня
 
 ####################################################################
@@ -145,6 +147,7 @@
       #     - input_boolean.lawn_irrigation_manual
       #     - input_number.lawn_irrigation_timer_value
 
+# Полив газона
       - type: 'custom:button-card'
         entity: input_boolean.lawn_irrigation_manual
         name: Полив газона
@@ -201,7 +204,7 @@
   - type: horizontal-stack
     cards:
       - type: 'custom:button-card'
-        entity: cover.vorota_door
+        entity: cover.wf_tl_gate_door
         name: Ворота
         color: auto
         styles:
@@ -217,7 +220,7 @@
           
 # Кнопка для ворот гаража
       - type: 'custom:button-card'
-        entity: cover.garage_door_module
+        entity: cover.wf_tl_garage_door
         name: Гараж
         color: auto
         styles:
