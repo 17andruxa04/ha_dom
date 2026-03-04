@@ -31,20 +31,7 @@
       - entity: sensor.temperature_and_humidity_alarm_temperature
         name: Температура
 
-# # Счетчик газа дом
-#   - type: entities
-#     entities:
 
-#       - entity: input_number.gas_counter
-#         type: custom:multiple-entity-row
-#         name: Газ
-#         state_header: Всего
-#         entities:
-#         - entity: sensor.gas_meter
-#           name: Счетчик
-#         - entity: input_boolean.gas_toggle_flag
-#           name: Пропуск
-                            
 - type: vertical-stack
   cards:   
 
@@ -115,21 +102,100 @@
         entity: switch.phase_a_din_switch
         name: Фаза 'А' кухня
 
-# Кнопка Полив
+####################################################################
+#####################################################################
+
+      # - type: 'custom:button-card'
+      #   entity: input_boolean.lawn_irrigation_manual
+      #   name: Полив газона
+      #   icon: mdi:water-pump
+      #   color: auto
+      #   styles:
+      #     card:
+      #       - background-color: >
+      #           [[[
+      #             return entity.state === 'on' 
+      #               ? 'rgba(0, 128, 0, 0.8)' 
+      #               : 'rgba(0, 128, 0, 0.4)';
+      #           ]]]
+      #     name:
+      #       - color: 'var(--primary-text-color)'
+      #     state:
+      #       - color: 'var(--primary-text-color)'
+      #     custom_fields:
+      #       timer:
+      #         - font-size: 12px
+      #         - color: 'var(--primary-text-color)'
+      #         - margin-top: 4px
+      #   show_state: true
+      #   tap_action:
+      #     action: toggle
+
+      #   custom_fields:
+      #     timer: >
+      #       [[[
+      #         const state = states['input_number.lawn_irrigation_timer_value'].state;
+      #         const seconds = parseInt(state);
+      #         const minutes = Math.floor(seconds / 60);
+      #         const secs = seconds % 60;
+      #         return `${minutes}:${secs.toString().padStart(2, '0')}`;
+      #       ]]]
+
+      #   triggers_update:
+      #     - input_boolean.lawn_irrigation_manual
+      #     - input_number.lawn_irrigation_timer_value
+
       - type: 'custom:button-card'
         entity: input_boolean.lawn_irrigation_manual
         name: Полив газона
+        icon: mdi:water-pump
         color: auto
         styles:
           card:
-            - background-color: rgba(0, 128, 0, 0.8)  # Зеленый фон с прозрачностью
+            - background-color: >
+                [[[
+                  return entity.state === 'on' 
+                    ? 'rgba(0, 128, 0, 0.8)' 
+                    : 'rgba(0, 128, 0, 0.4)';
+                ]]]
           name:
-            - color: 'var(--primary-text-color)'  # Цвет текста названия
+            - color: 'var(--primary-text-color)'
           state:
-            - color: 'var(--primary-text-color)'  # Цвет состояния
+            - color: 'var(--primary-text-color)'
+          custom_fields:
+            timer:
+              - font-size: 12px
+              - color: 'var(--primary-text-color)'
+              - margin-top: 4px
+
         show_state: true
         tap_action:
           action: toggle
+
+        # Показываем таймер или "Выключен"
+        custom_fields:
+          timer: >
+            [[[
+              if (entity.state !== 'on') {
+                return 'Выключен';
+              }
+              
+              const state = states['input_number.lawn_irrigation_timer_value'].state;
+              const seconds = parseInt(state, 10);
+              if (isNaN(seconds)) return '—';
+
+              const minutes = Math.floor(seconds / 60);
+              const secs = seconds % 60;
+              return `${minutes}:${secs.toString().padStart(2, '0')}`;
+            ]]]
+
+        triggers_update:
+          - input_boolean.lawn_irrigation_manual
+          - input_number.lawn_irrigation_timer_value
+
+
+##############################################################
+###############################################################
 
 # Кнопка для ворот въездных
   - type: horizontal-stack
@@ -195,7 +261,7 @@
   - type: entities
     entities:
 
-    - entity: switch.light_wc_switch_1
+    - entity: switch.z_tl_light_wc_vykliuchatel_1
       type: custom:multiple-entity-row
       name: wc_l_1
       icon: mdi:desk-lamp-on
@@ -204,7 +270,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.light_wc_switch_2
+    - entity: switch.z_tl_light_wc_vykliuchatel_2
       type: custom:multiple-entity-row
       name: wc_l_2
       icon: mdi:desk-lamp-on
@@ -213,7 +279,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.light_wc_switch_3
+    - entity: switch.z_tl_light_wc_vykliuchatel_3
       type: custom:multiple-entity-row
       name: wc_l_3
       icon: mdi:desk-lamp-on
@@ -222,7 +288,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.light_wc2_switch_1
+    - entity: switch.z_tl_light_wc2_vykliuchatel_1
       type: custom:multiple-entity-row
       name: wc2_l_1
       icon: mdi:desk-lamp-on
@@ -231,7 +297,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.light_wc2_switch_2
+    - entity: switch.z_tl_light_wc2_vykliuchatel_2
       type: custom:multiple-entity-row
       name: wc2_l_2
       icon: mdi:desk-lamp-on

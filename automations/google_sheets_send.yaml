@@ -1,4 +1,6 @@
 
+####################################################################        ЭЛЕКТРИЧЕСТВО        ###############################################################################
+####################################################################             ДОМ             ###############################################################################
 # Отправка счетчиков электроэнергии в google sheets каждый день, кроме последнего числа месяца
 - alias: "Send Energy Data to Google Sheets Every Day Except Last Day"
   description: "Отправка показаний счетчика в Google Sheets каждый день, кроме последнего числа месяца"
@@ -57,6 +59,8 @@
           night cost month: "{{ states('sensor.monthly_cost_energy_money_tarif_night') }}"
         worksheet: Energy_home
 
+
+####################################################################        ОФИС        ###############################################################################
 # Отправка счетчиков электроэнергии в google sheets каждый день, кроме последнего числа месяца офис
 - alias: "Send Energy Data to Google Sheets Every Day Except Last Day office"
   description: "Отправка показаний счетчика в Google Sheets каждый день, кроме последнего числа месяца офис"
@@ -116,12 +120,68 @@
         worksheet: Energy_office
 
 
+####################################################################        ФЕРМА        ###############################################################################
+# Отправка счетчиков электроэнергии в google sheets каждый день, кроме последнего числа месяца ферма
+- alias: "Send Energy Data to Google Sheets Every Day Except Last Day farm"
+  description: "Отправка показаний счетчика в Google Sheets каждый день, кроме последнего числа месяца ферма"
+  triggers:
+    - trigger: time
+      at: "23:59:30"
+  condition:
+    - condition: template
+      value_template: >-
+        {% set next_month = now().month + 1 if now().month < 12 else 1 %}
+        {% set next_month_first_day = now().replace(day=1, month=next_month, year=now().year if now().month < 12 else now().year + 1) %}
+        {% set last_day_of_month = next_month_first_day - timedelta(days=1) %}
+        {{ now().day != last_day_of_month.day }}
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          day other: "{{ states('sensor.energy_counter_farm_day') }}"
+          day day: "{{ states('sensor.daily_cost_energy_tarif_day_farm') }}"
+          day cost day: "{{ states('sensor.daily_cost_energy_money_tarif_day_farm') }}"
+          # night other: "{{ states('sensor.energy_counter_office_night') }}"
+          # night night: "{{ states('sensor.daily_cost_energy_tarif_night_office') }}"
+          # night cost day: "{{ states('sensor.daily_cost_energy_money_tarif_night_office') }}"
+        worksheet: Energy_farm
+
+# Отправка счетчиков электроэнергии в google sheets только последний день месяца ферма
+- alias: "Send Energy Data to Google Sheets on Last Day of Month farm"
+  description: "Отправка показаний счетчика в Google Sheets только в последний день месяца ферма"
+  triggers:
+    - trigger: time
+      at: "23:59:30"  # Триггер срабатывает каждый день в 00:00:10
+  condition:
+    - condition: template
+      value_template: >-
+        {% set next_month = now().month + 1 if now().month < 12 else 1 %}
+        {% set next_month_first_day = now().replace(day=1, month=next_month, year=now().year if now().month < 12 else now().year + 1) %}
+        {% set last_day_of_month = next_month_first_day - timedelta(days=1) %}
+        {{ now().day == last_day_of_month.day }}
+  actions:
+    - action: google_sheets.append_sheet
+      data:
+        config_entry: 01JHX7MT0WRR4WQF917NW98MZS
+        data:
+          created: "{{ (now() - timedelta(seconds=30)).strftime('%Y-%m-%d %H:%M:%S') }}" # Формат даты и времени
+          day other: "{{ states('sensor.energy_counter_farm_day') }}"
+          day day: "{{ states('sensor.daily_cost_energy_tarif_day_farm') }}"
+          day month: "{{ states('sensor.monthly_cost_energy_tarif_day_farm') }}"
+          day cost day: "{{ states('sensor.daily_cost_energy_money_tarif_day_farm') }}"
+          day cost month: "{{ states('sensor.monthly_cost_energy_money_tarif_day_farm') }}"
+          # night other: "{{ states('sensor.energy_counter_office_night') }}"
+          # night night: "{{ states('sensor.daily_cost_energy_tarif_night_office') }}"
+          # night month: "{{ states('sensor.monthly_cost_energy_tarif_night_office') }}"
+          # night cost day: "{{ states('sensor.daily_cost_energy_money_tarif_night_office') }}"
+          # night cost month: "{{ states('sensor.monthly_cost_energy_money_tarif_night_office') }}"
+        worksheet: Energy_farm
 
 
-
-
-
-
+####################################################################        ГАЗ        ###############################################################################
+####################################################################        ДОМ        ###############################################################################
 # Отправка счетчика газа в google sheets каждый день кроме последнего в месяце
 - alias: "Send Gas Data to Google Sheets Every Day Except Last Day"
   description: "Отправка показаний счетчика газа в Google Sheets каждый день кроме последнего в месяце"
@@ -172,6 +232,8 @@
           gas cost month: "{{ states('sensor.monthly_cost_gas_money') }}"
         worksheet: Gas_home
 
+
+####################################################################        ОФИС        ###############################################################################
 # Отправка счетчика газа в google sheets каждый день кроме последнего в месяце офис
 - alias: "Send Gas Data to Google Sheets Every Day Except Last Day Office"
   description: "Отправка показаний счетчика газа в Google Sheets каждый день кроме последнего в месяце офис"

@@ -4,11 +4,11 @@
   triggers:
     # Триггер для включения света
     - trigger: state
-      entity_id: binary_sensor.hum_det_wc2_occupancy
+      entity_id: binary_sensor.wf_tl_hum_det_wc2_dvizhenie
       to: "on"
     # Триггер для выключения света через 2 минуты после отсутствия движения
     - trigger: state
-      entity_id: binary_sensor.hum_det_wc2_occupancy
+      entity_id: binary_sensor.wf_tl_hum_det_wc2_dvizhenie
       to: "off"
       for: "00:00:02"
   actions:
@@ -16,36 +16,36 @@
         # Действие для включения света
         - conditions:
             - condition: state
-              entity_id: binary_sensor.hum_det_wc2_occupancy
+              entity_id: binary_sensor.wf_tl_hum_det_wc2_dvizhenie
               state: "on"
           sequence:
             - action: switch.turn_on
               target:
                 entity_id:
-                  - switch.light_wc2_switch_1
-                  - switch.light_wc2_switch_2
+                  - switch.z_tl_light_wc2_vykliuchatel_1
+                  - switch.z_tl_light_wc2_vykliuchatel_2
         # Действие для выключения света
         - conditions:
             - condition: state
-              entity_id: binary_sensor.hum_det_wc2_occupancy
+              entity_id: binary_sensor.wf_tl_hum_det_wc2_dvizhenie
               state: "off"
           sequence:
             - action: switch.turn_off
               target:
                 entity_id:
-                  - switch.light_wc2_switch_1
-                  - switch.light_wc2_switch_2
+                  - switch.z_tl_light_wc2_vykliuchatel_1
+                  - switch.z_tl_light_wc2_vykliuchatel_2
 
 # Освещение СУ 1-этаж
 - alias: Управление светом wc
   triggers:
     # Триггер для включения света
     - trigger: state
-      entity_id: binary_sensor.hum_det_wc_occupancy
+      entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
       to: "on"
     # Триггер для выключения света через 2 минуты после отсутствия движения
     - trigger: state
-      entity_id: binary_sensor.hum_det_wc_occupancy
+      entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
       to: "off"
       for: "00:00:02"
   actions:
@@ -53,26 +53,26 @@
         # Действие для включения света
         - conditions:
             - condition: state
-              entity_id: binary_sensor.hum_det_wc_occupancy
+              entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
               state: "on"
           sequence:
             - action: switch.turn_on
               target:
                 entity_id:
-                  - switch.light_wc_switch_1
-                  - switch.light_wc_switch_2
+                  - switch.z_tl_light_wc_vykliuchatel_1
+                  - switch.z_tl_light_wc_vykliuchatel_2
         # Действие для выключения света
         - conditions:
             - condition: state
-              entity_id: binary_sensor.hum_det_wc_occupancy
+              entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
               state: "off"
           sequence:
             - action: switch.turn_off
               target:
                 entity_id:
-                  - switch.light_wc_switch_1
-                  - switch.light_wc_switch_2
-                  - switch.light_wc_switch_3
+                  - switch.z_tl_light_wc_vykliuchatel_1
+                  - switch.z_tl_light_wc_vykliuchatel_2
+                  - switch.z_tl_light_wc_vykliuchatel_3
 
 # Освещение улица
 - alias: "Включение ламп каждые 10 минут ночью"

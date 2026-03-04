@@ -1,0 +1,9 @@
+
+
+  lawn_irrigation_timer_value:
+    name: "Таймер полива газона"
+    initial: 0
+    min: 0
+    max: 1200
+    step: 1
+    unit_of_measurement: "с"

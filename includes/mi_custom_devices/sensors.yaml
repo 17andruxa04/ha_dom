@@ -135,7 +135,6 @@
       icon_template: "mdi:currency-uah"
 
 ############################################        ОФИС        #################################################################################
-
 # Интегральный сенсор преобразования потребленных "W" в "kWh"
 - platform: integration
   source: sensor.in_220_office_power
@@ -235,6 +234,74 @@
 #      unit_of_measurement: "₴"
       icon_template: "mdi:currency-uah"      
 
+
+############################################             ФЕРМА             #################################################################################
+
+# Интегральный сенсор преобразования потребленных "W" в "kWh"
+- platform: integration
+  source: sensor.energy_farm_power
+  name: energy_farm_power_integral
+  round: 2
+  method: left
+
+- platform: template
+  sensors:
+    energy_farm_no_unit:
+      friendly_name: "Energy farm No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.energy_farm_power_integral') }}"
+
+- platform: template
+  sensors:
+    energy_farm_current_no_unit:
+      friendly_name: "Energy farm current No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.energy_farm_current') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    energy_farm_power_no_unit:
+      friendly_name: "Energy farm power No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.energy_farm_power') | float | round(1) }}"
+
+- platform: template
+  sensors:
+    energy_farm_voltage_no_unit:
+      friendly_name: "Energy farm voltage No Unit"  # Можно убрать эту строку, если не нужен заголовок
+      value_template: "{{ states('sensor.energy_farm_voltage') | float | round(1) }}"
+
+
+# Сенсор месячных затрат электрики тариф день ферма
+- platform: template
+  sensors:
+    monthly_cost_energy_tarif_day_farm:
+      friendly_name: "Месячные затраты электрики тариф день ферма"
+      value_template: "{{ ((states('sensor.energy_counter_farm_day') | float) - (states('input_number.energy_count_day_farm_last_month') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор суточных затрат электрики тариф день ферма
+- platform: template
+  sensors:
+    daily_cost_energy_tarif_day_farm:
+      friendly_name: "Суточные затраты электрики тариф день ферма"
+      value_template: "{{ ((states('sensor.energy_counter_farm_day') | float) - (states('input_number.energy_count_day_farm_last_day') | float)) | round(1) }}"
+#      unit_of_measurement: "kWh"
+
+# Сенсор месячных затрат электрики в деньгах тариф день ферма
+- platform: template
+  sensors:
+    monthly_cost_energy_money_tarif_day_farm:
+      friendly_name: "Месячные затраты электрики в деньгах тариф день ферма"
+      value_template: "{{ ((states('sensor.monthly_cost_energy_tarif_day_farm') | float) * (states('input_number.price_energy_day_farm') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
+
+# Сенсор суточных затрат электрики в деньгах тариф день ферма
+- platform: template
+  sensors:
+    daily_cost_energy_money_tarif_day_farm:
+      friendly_name: "Суточные затраты электрики в деньгах тариф день ферма"
+      value_template: "{{ ((states('sensor.daily_cost_energy_tarif_day_farm') | float) * (states('input_number.price_energy_day_farm') | float)) | round(1) }}"
+#      unit_of_measurement: "₴"
+      icon_template: "mdi:currency-uah"
 
 ############################################        ГАЗ       #################################################################################
 

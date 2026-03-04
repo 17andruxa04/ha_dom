@@ -1,18 +1,95 @@
 
-# Полив газона
+
 - alias: "Ручной запуск полива газона"
+  mode: single
   triggers:
     - trigger: state
       entity_id: input_boolean.lawn_irrigation_manual
       to: "on"
+  conditions:
+    - condition: state
+      entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+      state: "off"
   actions:
     - action: switch.turn_on
       target:
         entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
-    - delay: "00:25:00"  # Задержка на 25 минут (изменено с 2 минут, если это было ошибкой)
+    - wait_for_trigger:
+        - trigger: state
+          entity_id: input_boolean.lawn_irrigation_manual
+          to: "off"
+      timeout: "00:20:00"  # Максимум 25 минут
     - action: switch.turn_off
       target:
         entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
     - action: input_boolean.turn_off
       target:
         entity_id: input_boolean.lawn_irrigation_manual
+
+- alias: "Ручное выключение полива газона"
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.lawn_irrigation_manual
+      to: "off"
+  actions:
+    - action: switch.turn_off
+      target:
+        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+
+- alias: "Таймер полива газона: обратный отсчёт"
+  mode: single
+  triggers:
+    # Срабатывает при включении
+    - trigger: state
+      entity_id: input_boolean.lawn_irrigation_manual
+      to: "on"
+
+    # Обновляет каждую секунду, если таймер запущен
+    - trigger: time_pattern
+      seconds: "/1"
+
+  # Только если таймер включён
+  condition:
+    - condition: state
+      entity_id: input_boolean.lawn_irrigation_manual
+      state: "on"
+
+  action:
+    # При включении — установить 20 минут (1200 сек)
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: "0"  # Это срабатывание от включения (первый триггер)
+          sequence:
+            - action: input_number.set_value
+              target:
+                entity_id: input_number.lawn_irrigation_timer_value
+              data:
+                value: 1200
+
+    # Каждую секунду — уменьшать на 1, если больше 0
+    - choose:
+        - conditions:
+            - condition: trigger
+              id: "1"  # Это срабатывание от time_pattern (каждую секунду)
+            - condition: numeric_state
+              entity_id: input_number.lawn_irrigation_timer_value
+              above: 0
+          sequence:
+            - action: input_number.decrement
+              target:
+                entity_id: input_number.lawn_irrigation_timer_value
+
+- alias: "Сброс таймера полива при выключении"
+  mode: single
+  triggers:
+    - trigger: state
+      entity_id: input_boolean.lawn_irrigation_manual
+      to: "off"
+      from: "on"
+  actions:
+    - action: input_number.set_value
+      target:
+        entity_id: input_number.lawn_irrigation_timer_value
+      data:
+        value: 0

@@ -391,7 +391,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_220_total_energy_a_voltage_no_unit
+          entity: sensor.energy_farm_voltage_no_unit
           needle: true
           unit: 'V'
           min: 140
@@ -406,7 +406,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_220_total_energy_a_current_no_unit
+          entity: sensor.energy_farm_current_no_unit
           needle: true
           unit: 'A'
           min: 0
@@ -419,7 +419,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_220_total_energy_a_power_no_unit
+          entity: sensor.energy_farm_power_no_unit
           needle: true
           unit: 'kW'
           min: 0
@@ -429,6 +429,27 @@
               color: '#43a047'
             - from: 4
               color: '#db4437'
+
+    - type: horizontal-stack
+      cards:
+
+      - type: entities
+        entities:
+# Счетчик электроэнергии  офис
+        - entity: sensor.energy_counter_farm_day
+          type: custom:multiple-entity-row
+          name: День
+          icon: mdi:flash
+    #      state_header: Всего
+          entities:
+          - entity: sensor.daily_cost_energy_tarif_day_farm
+            name: false #Тек.Д.        
+          - entity: sensor.monthly_cost_energy_tarif_day_farm
+            name: false #Тек.Мес.
+          - entity: sensor.daily_cost_energy_money_tarif_day_farm
+            name: false #Тек.Д.
+          - entity: sensor.monthly_cost_energy_money_tarif_day_farm
+            name: false #Цена
 
     - type: horizontal-stack
       cards:
@@ -551,8 +572,8 @@
           title: "Energy Consumption"
           hours_to_show: 48
           entities:
-            - entity: sensor.breaker_phase_a_power
-              name: "A"
+            - entity: sensor.energy_farm_power
+              name: "Стружук"
             - entity: sensor.breaker_phase_b_power
               name: "B"
             - entity: sensor.breaker_phase_c_power

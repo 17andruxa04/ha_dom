@@ -168,7 +168,6 @@
             - entity: sensor.z_cabinet_temp_humidity
               name: hum      
             - entity: sensor.z_cabinet_temp_battery_state
-              unit: "%"
               name: bat  
 
         - entity: switch.second_floor_heating_1_switch_3
@@ -198,7 +197,7 @@
               name: temp
             - entity: sensor.z_childrenroom_temp_humidity
               name: hum      
-            - entity: sensor.z_childrenroom_temp_battery_state
+            - entity: sensor.z_childrenroom_temp_battery
               name: bat  
 
         - entity: switch.second_floor_heating_1_switch_1
