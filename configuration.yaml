@@ -47,7 +47,14 @@ sun:
   
 # Включаем индивидуальный интерфейс
 lovelace:
-  mode: yaml
+  resource_mode: yaml
+  dashboards:
+    lovelace:
+      mode: yaml
+      filename: ui-lovelace.yaml
+      title: Overview
+      icon: mdi:view-dashboard
+      show_in_sidebar: true
   resources:
     - url: /hacsfiles/button-card/button-card.js
       type: module
