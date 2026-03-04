@@ -1,4 +1,4 @@
-template:
+
   - sensor:
       - default_entity_id: sensor.in_360_total_energy_no_unit
         name: "In 360V Energy No Unit"
