@@ -26,6 +26,9 @@ input_number: !include_dir_merge_named variables/input_number
 climate: !include includes/mi_custom_devices/climate.yaml
 sensor: !include includes/mi_custom_devices/sensors.yaml
 
+# шаблонные сенсоры вынесены в отдельный файл
+template: !include includes/mi_custom_devices/template_sensors.yaml
+
 recorder: !include includes/recorder.yaml
 history:
 logbook:

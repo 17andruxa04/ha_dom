@@ -1,0 +1,217 @@
+template:
+  - sensor:
+      - default_entity_id: sensor.in_360_total_energy_no_unit
+        name: "In 360V Energy No Unit"
+        state: "{{ states('sensor.breaker_total_energy') }}"
+
+      - default_entity_id: sensor.in_360_total_energy_a_current_no_unit
+        name: "In 360V Energy A current No Unit"
+        state: "{{ states('sensor.breaker_phase_a_current') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_a_power_no_unit
+        name: "In 360V Energy A power No Unit"
+        state: "{{ states('sensor.breaker_phase_a_power') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_a_voltage_no_unit
+        name: "In 360V Energy A voltage No Unit"
+        state: "{{ states('sensor.breaker_phase_a_voltage') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_b_current_no_unit
+        name: "In 360V Energy b current No Unit"
+        state: "{{ states('sensor.breaker_phase_b_current') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_b_power_no_unit
+        name: "In 360V Energy b power No Unit"
+        state: "{{ states('sensor.breaker_phase_b_power') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_b_voltage_no_unit
+        name: "In 360V Energy b voltage No Unit"
+        state: "{{ states('sensor.breaker_phase_b_voltage') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_c_current_no_unit
+        name: "In 360V Energy c current No Unit"
+        state: "{{ states('sensor.breaker_phase_c_current') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_c_power_no_unit
+        name: "In 360V Energy c power No Unit"
+        state: "{{ states('sensor.breaker_phase_c_power') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_360_total_energy_c_voltage_no_unit
+        name: "In 360V Energy c voltage No Unit"
+        state: "{{ states('sensor.breaker_phase_c_voltage') | float | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_tarif_day
+        name: "Месячные затраты электрики тариф день"
+        state: "{{ ((states('sensor.energy_counter_day') | float) - (states('input_number.energy_count_day_last_month') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.daily_cost_energy_tarif_day
+        name: "Суточные затраты электрики тариф день"
+        state: "{{ ((states('sensor.energy_counter_day') | float) - (states('input_number.energy_count_day_last_day') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_tarif_night
+        name: "Месячные затраты электрики тариф ночь"
+        state: "{{ ((states('sensor.energy_counter_night') | float) - (states('input_number.energy_count_night_last_month') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.daily_cost_energy_tarif_night
+        name: "Суточные затраты электрики тариф ночь"
+        state: "{{ ((states('sensor.energy_counter_night') | float) - (states('input_number.energy_count_night_last_day') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_money_tarif_day
+        name: "Месячные затраты электрики в деньгах тариф день"
+        state: "{{ ((states('sensor.monthly_cost_energy_tarif_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_energy_money_tarif_day
+        name: "Суточные затраты электрики в деньгах тариф день"
+        state: "{{ ((states('sensor.daily_cost_energy_tarif_day') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.monthly_cost_energy_money_tarif_night
+        name: "Месячные затраты электрики в деньгах тариф ночь"
+        state: "{{ ((states('sensor.monthly_cost_energy_tarif_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_energy_money_tarif_night
+        name: "Суточные затраты электрики в деньгах тариф ночь"
+        state: "{{ ((states('sensor.daily_cost_energy_tarif_night') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      # ОФИС — шаблонные сенсоры
+      - default_entity_id: sensor.in_220_office_energy_no_unit
+        name: "In 220V Energy No Unit"
+        state: "{{ states('sensor.in_220_office_energy_integral') }}"
+
+      - default_entity_id: sensor.in_220_total_energy_a_current_no_unit
+        name: "In 220V Energy A current No Unit"
+        state: "{{ states('sensor.in_220_office_current') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_220_total_energy_a_power_no_unit
+        name: "In 220V Energy A power No Unit"
+        state: "{{ states('sensor.in_220_office_power') | float | round(1) }}"
+
+      - default_entity_id: sensor.in_220_total_energy_a_voltage_no_unit
+        name: "In 220V Energy A voltage No Unit"
+        state: "{{ states('sensor.in_220_office_voltage') | float | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_tarif_day_office
+        name: "Месячные затраты электрики тариф день офис"
+        state: "{{ ((states('sensor.energy_counter_office_day') | float) - (states('input_number.energy_count_day_office_last_month') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.daily_cost_energy_tarif_day_office
+        name: "Суточные затраты электрики тариф день офис"
+        state: "{{ ((states('sensor.energy_counter_office_day') | float) - (states('input_number.energy_count_day_office_last_day') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_tarif_night_office
+        name: "Месячные затраты электрики тариф ночь офис"
+        state: "{{ ((states('sensor.energy_counter_office_night') | float) - (states('input_number.energy_count_night_office_last_month') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.daily_cost_energy_tarif_night_office
+        name: "Суточныя затраты электрики тариф ночь офис"
+        state: "{{ ((states('sensor.energy_counter_office_night') | float) - (states('input_number.energy_count_night_office_last_day') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_money_tarif_day_office
+        name: "Месячные затраты электрики в деньгах тариф день офис"
+        state: "{{ ((states('sensor.monthly_cost_energy_tarif_day_office') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_energy_money_tarif_day_office
+        name: "Суточные затраты электрики в деньгах тариф день офис"
+        state: "{{ ((states('sensor.daily_cost_energy_tarif_day_office') | float) * (states('input_number.price_energy_day') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.monthly_cost_energy_money_tarif_night_office
+        name: "Месячные затраты электрики в деньгах тариф ночь офис"
+        state: "{{ ((states('sensor.monthly_cost_energy_tarif_night_office') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_energy_money_tarif_night_office
+        name: "Суточные затраты электрики в деньгах тариф ночь офис"
+        state: "{{ ((states('sensor.daily_cost_energy_tarif_night_office') | float) * (states('input_number.price_energy_night') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      # Ферма — шаблонные сенсоры
+      - default_entity_id: sensor.energy_farm_no_unit
+        name: "Energy farm No Unit"
+        state: "{{ states('sensor.energy_farm_power_integral') }}"
+
+      - default_entity_id: sensor.energy_farm_current_no_unit
+        name: "Energy farm current No Unit"
+        state: "{{ states('sensor.energy_farm_current') | float | round(1) }}"
+
+      - default_entity_id: sensor.energy_farm_power_no_unit
+        name: "Energy farm power No Unit"
+        state: "{{ states('sensor.energy_farm_power') | float | round(1) }}"
+
+      - default_entity_id: sensor.energy_farm_voltage_no_unit
+        name: "Energy farm voltage No Unit"
+        state: "{{ states('sensor.energy_farm_voltage') | float | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_tarif_day_farm
+        name: "Месячные затраты электрики тариф день ферма"
+        state: "{{ ((states('sensor.energy_counter_farm_day') | float) - (states('input_number.energy_count_day_farm_last_month') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.daily_cost_energy_tarif_day_farm
+        name: "Суточные затраты электрики тариф день ферма"
+        state: "{{ ((states('sensor.energy_counter_farm_day') | float) - (states('input_number.energy_count_day_farm_last_day') | float)) | round(1) }}"
+
+      - default_entity_id: sensor.monthly_cost_energy_money_tarif_day_farm
+        name: "Месячные затраты электрики в деньгах тариф день ферма"
+        state: "{{ ((states('sensor.monthly_cost_energy_tarif_day_farm') | float) * (states('input_number.price_energy_day_farm') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_energy_money_tarif_day_farm
+        name: "Суточные затраты электрики в деньгах тариф день ферма"
+        state: "{{ ((states('sensor.daily_cost_energy_tarif_day_farm') | float) * (states('input_number.price_energy_day_farm') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      # ГАЗ — дом
+      - default_entity_id: sensor.gas_count
+        name: "Сенсор газа"
+        state: "{{ (states('input_number.gas_counter') | float) | round(2) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.monthly_cost_gas
+        name: "Месячные затраты газа"
+        state: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_month') | float)) | round(1) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.daily_cost_gas
+        name: "Суточные затраты газа"
+        state: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_day') | float)) | round(1) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.monthly_cost_gas_money
+        name: "Месячные затраты газа в деньгах"
+        state: "{{ ((states('sensor.monthly_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_gas_money
+        name: "Суточные затраты газа в деньгах"
+        state: "{{ ((states('sensor.daily_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      # ГАЗ — офис
+      - default_entity_id: sensor.gas_count_office
+        name: "Сенсор газа офис"
+        state: "{{ (states('input_number.gas_counter_office') | float) | round(2) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.monthly_cost_gas_office
+        name: "Месячные затраты газа офис"
+        state: "{{ ((states('sensor.gas_meter_office') | float) - (states('input_number.gas_count_office_last_month') | float)) | round(1) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.daily_cost_gas_office
+        name: "Суточные затраты газа офис"
+        state: "{{ ((states('sensor.gas_meter_office') | float) - (states('input_number.gas_count_office_last_day') | float)) | round(1) }}"
+        icon: mdi:gas-burner
+
+      - default_entity_id: sensor.monthly_cost_gas_money_office
+        name: "Месячные затраты газа в деньгах офис"
+        state: "{{ ((states('sensor.monthly_cost_gas_office') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+        icon: mdi:currency-uah
+
+      - default_entity_id: sensor.daily_cost_gas_money_office
+        name: "Суточные затраты газа в деньгах офис"
+        state: "{{ ((states('sensor.daily_cost_gas_office') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+        icon: mdi:currency-uah
