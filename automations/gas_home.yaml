@@ -1,10 +1,10 @@
 
 # Считаем израсходованный газ
 - alias: "Update Gas Meter on Every Other Switch Toggle"
-  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.gas_teak_counter"
+  description: "Добавляет 0.01 в счетчик газа через раз при изменении состояния switch.wf_tl_gas_teak_home"
   triggers:
     - trigger: state
-      entity_id: switch.gas_teak_counter
+      entity_id: switch.wf_tl_gas_teak_home
   action:
     - if:
         - condition: template

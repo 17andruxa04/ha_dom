@@ -34,7 +34,7 @@
               - text-align: center
 
         - type: gauge
-          entity: sensor.in_360_total_energy_a_voltage_no_unit
+          entity: sensor.breaker_phase_a_voltage
           name: ''
           needle: true
           unit: 'V'
@@ -50,7 +50,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_a_current_no_unit
+          entity: sensor.breaker_phase_a_current
           needle: true
           unit: 'A'
           min: 0
@@ -63,7 +63,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_a_power_no_unit
+          entity: sensor.breaker_phase_a_power
           needle: true
           unit: 'kW'
           min: 0
@@ -92,7 +92,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_b_voltage_no_unit
+          entity: sensor.breaker_phase_b_voltage
           needle: true
           unit: 'V'
           min: 140
@@ -107,7 +107,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_b_current_no_unit
+          entity: sensor.breaker_phase_b_current
           needle: true
           unit: 'A'
           min: 0
@@ -120,7 +120,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_b_power_no_unit
+          entity: sensor.breaker_phase_b_power
           needle: true
           unit: 'kW'
           min: 0
@@ -149,7 +149,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_c_voltage_no_unit
+          entity: sensor.breaker_phase_c_voltage
           needle: true
           unit: 'V'
           min: 140
@@ -164,7 +164,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_c_current_no_unit
+          entity: sensor.breaker_phase_c_current
           needle: true
           unit: 'A'
           min: 0
@@ -177,7 +177,7 @@
 
         - type: gauge
           name: ''
-          entity: sensor.in_360_total_energy_c_power_no_unit
+          entity: sensor.breaker_phase_c_power
           needle: true
           unit: 'kW'
           min: 0
