@@ -76,13 +76,13 @@
   - type: entities
     show_header_toggle: false
     entities:
-      - entity: sensor.time
+      - entity: sensor.current_time
         name: Текущее время 
         icon: mdi:clock
-      - entity: sensor.date
+      - entity: sensor.current_date
         name: Дата
         icon: mdi:calendar
-      - entity: sensor.maria_db
+      - entity: sensor.maria_db_size
         name: Объем БД
         icon: mdi:database
       - entity: sensor.last_boot
