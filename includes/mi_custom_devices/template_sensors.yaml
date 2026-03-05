@@ -221,11 +221,13 @@
       - name: "Current Time"
         state: "{{ now().strftime('%H:%M') }}"
         icon: mdi:clock
+        trigger:
+          - platform: time_pattern
+            seconds: "/30"
 
       - name: "Current Date"
         state: "{{ now().strftime('%d.%m.%Y') }}"
         icon: mdi:calendar
-
-  - trigger:
-      - platform: time_pattern
-        seconds: "/30"
+        trigger:
+          - platform: time_pattern
+            seconds: "/30"
