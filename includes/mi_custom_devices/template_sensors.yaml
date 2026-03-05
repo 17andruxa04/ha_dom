@@ -215,3 +215,17 @@
         name: "Суточные затраты газа в деньгах офис"
         state: "{{ ((states('sensor.daily_cost_gas_office') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
         icon: mdi:currency-uah
+
+
+  # Updating every 30 seconds: current time/date sensors
+      - name: "Current Time"
+        state: "{{ now().strftime('%H:%M') }}"
+        icon: mdi:clock
+
+      - name: "Current Date"
+        state: "{{ now().strftime('%d.%m.%Y') }}"
+        icon: mdi:calendar
+
+  - trigger:
+      - platform: time_pattern
+        seconds: "/30"
