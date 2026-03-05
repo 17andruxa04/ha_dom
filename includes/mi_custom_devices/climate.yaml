@@ -136,24 +136,24 @@
     away_temp: 16
     precision: 0.1
     
-  - platform: generic_thermostat
-    name: hall
-    unique_id: climate.hall
-    heater: switch.second_floor_heating_1_switch_3
-    target_sensor: sensor.z_hall_temp_temperature
-    min_temp: 16
-    max_temp: 25
-    ac_mode: false
-    target_temp: 21
-    cold_tolerance: 0.2
-    hot_tolerance: 0
-    min_cycle_duration:
-      seconds: 5
-    keep_alive:
-      minutes: 3
-    initial_hvac_mode: "heat"
-    away_temp: 16
-    precision: 0.1
+  # - platform: generic_thermostat
+  #   name: hall
+  #   unique_id: climate.hall
+  #   heater: switch.second_floor_heating_1_switch_3
+  #   target_sensor: sensor.z_hall_temp_temperature
+  #   min_temp: 16
+  #   max_temp: 25
+  #   ac_mode: false
+  #   target_temp: 21
+  #   cold_tolerance: 0.2
+  #   hot_tolerance: 0
+  #   min_cycle_duration:
+  #     seconds: 5
+  #   keep_alive:
+  #     minutes: 3
+  #   initial_hvac_mode: "heat"
+  #   away_temp: 16
+  #   precision: 0.1
     
   - platform: generic_thermostat
     name: playroom

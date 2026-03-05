@@ -1,5 +1,4 @@
 homeassistant:
-  packages: !include_dir_merge_named includes/packages/
   time_zone: "Europe/Kiev"
   
   unit_system: metric
@@ -16,6 +15,10 @@ frontend:
 #Вынос в файл
 script: !include scripts.yaml
 scene: !include scenes.yaml
+recorder: !include includes/recorder.yaml
+template: !include includes/mi_custom_devices/template_sensors.yaml
+climate: !include includes/mi_custom_devices/climate.yaml
+sensor: !include includes/mi_custom_devices/sensors.yaml
 
 #Вынос в папку
 automation: !include_dir_merge_list automations
@@ -23,13 +26,6 @@ input_text: !include_dir_merge_named variables/input_text
 input_boolean: !include_dir_merge_named variables/input_boolean
 input_number: !include_dir_merge_named variables/input_number
 
-climate: !include includes/mi_custom_devices/climate.yaml
-sensor: !include includes/mi_custom_devices/sensors.yaml
-
-# шаблонные сенсоры вынесены в отдельный файл
-template: !include includes/mi_custom_devices/template_sensors.yaml
-
-recorder: !include includes/recorder.yaml
 history:
 logbook:
 
@@ -69,6 +65,4 @@ http:
     use_x_forwarded_for: true
     trusted_proxies:
       - 0.0.0.0/0
-
-# Время заката и рассвета выводим в сенсоры
 
