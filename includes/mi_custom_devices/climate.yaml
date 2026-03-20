@@ -83,7 +83,7 @@
     name: bedroom
     unique_id: climate.bedroom
     heater: light.zg_gw_second_floor_heating_1_osveshchenie_4
-    target_sensor: sensor.z_bedroom_temp_temperature
+    target_sensor: sensor.zg_gw_temp_bedroom_temperatura
     min_temp: 16
     max_temp: 25
     ac_mode: false
@@ -102,7 +102,7 @@
     name: bedroom2
     unique_id: climate.bedroom2
     heater: light.zg_gw_second_floor_heating_2_osveshchenie
-    target_sensor: sensor.z_bedroom2_temp_temperature
+    target_sensor: sensor.zg_gw_temp_bedroom2_temperatura
     min_temp: 16
     max_temp: 25
     ac_mode: false
@@ -121,7 +121,7 @@
     name: cabinet
     unique_id: climate.cabinet
     heater: light.zg_gw_second_floor_heating_2_osveshchenie_3
-    target_sensor: sensor.z_cabinet_temp_temperature
+    target_sensor: sensor.zg_gw_temp_cabinet_temperatura
     min_temp: 16
     max_temp: 25
     ac_mode: false
@@ -197,7 +197,7 @@
     name: wc2
     unique_id: climate.wc2
     heater: light.zg_gw_second_floor_heating_2_osveshchenie_2
-    target_sensor: sensor.z_wc2_temp_temperature
+    target_sensor: sensor.zg_gw_temp_wc2_temperatura
     min_temp: 16
     max_temp: 25
     ac_mode: false

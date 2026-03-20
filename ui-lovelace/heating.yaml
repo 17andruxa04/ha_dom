@@ -133,11 +133,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_bedroom_temp_temperature
+            - entity: sensor.zg_gw_temp_bedroom_temperatura
               name: temp
-            - entity: sensor.z_bedroom_temp_humidity
+            - entity: sensor.zg_gw_temp_bedroom_vlazhnost
               name: hum      
-            - entity: sensor.z_bedroom_temp_battery_state
+            - entity: sensor.zg_gw_temp_bedroom_batareia
               name: bat  
 
         - entity: light.zg_gw_second_floor_heating_2_osveshchenie
@@ -148,11 +148,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_bedroom2_temp_temperature
+            - entity: sensor.zg_gw_temp_bedroom2_temperatura
               name: temp
-            - entity: sensor.z_bedroom2_temp_humidity
+            - entity: sensor.zg_gw_temp_bedroom2_vlazhnost
               name: hum      
-            - entity: sensor.z_bedroom2_temp_battery_state
+            - entity: sensor.zg_gw_temp_bedroom2_batareia
               name: bat  
 
         - entity: light.zg_gw_second_floor_heating_2_osveshchenie_3
@@ -163,11 +163,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_cabinet_temp_temperature
+            - entity: sensor.zg_gw_temp_cabinet_temperatura
               name: temp
-            - entity: sensor.z_cabinet_temp_humidity
+            - entity: sensor.zg_gw_temp_cabinet_vlazhnost
               name: hum      
-            - entity: sensor.z_cabinet_temp_battery_state
+            - entity: sensor.zg_gw_temp_cabinet_batareia
               name: bat  
 
         - entity: light.zg_gw_second_floor_heating_1_osveshchenie_3
@@ -223,9 +223,9 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_wc2_temp_temperature
+            - entity: sensor.zg_gw_temp_wc2_temperatura
               name: temp
-            - entity: sensor.z_wc2_temp_humidity
+            - entity: sensor.zg_gw_temp_wc2_vlazhnost
               name: hum
-            - entity: sensor.z_wc2_temp_battery
+            - entity: sensor.zg_gw_temp_wc2_batareia
               name: bat 
