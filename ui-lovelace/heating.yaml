@@ -178,11 +178,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_hall_temp_temperature
+            - entity: sensor.zg_gw_temp_hall_temperatura
               name: temp
-            - entity: sensor.z_hall_temp_humidity
+            - entity: sensor.zg_gw_temp_hall_vlazhnost
               name: hum 
-            - entity: sensor.z_hall_temp_battery
+            - entity: sensor.zg_gw_temp_hall_batareia
               name: bat 
 
         - entity: switch.second_floor_heating_1_switch_2
@@ -193,11 +193,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_childrenroom_temp_temperature
+            - entity: sensor.zg_gw_temp_childrensroom_temperatura
               name: temp
-            - entity: sensor.z_childrenroom_temp_humidity
+            - entity: sensor.zg_gw_temp_childrensroom_vlazhnost
               name: hum      
-            - entity: sensor.z_childrenroom_temp_battery
+            - entity: sensor.zg_gw_temp_childrensroom_batareia
               name: bat  
 
         - entity: switch.second_floor_heating_1_switch_1
@@ -208,11 +208,11 @@
           state_color: true
 #                  state_header: heat
           entities:
-            - entity: sensor.z_playroom_temp_temperature
+            - entity: sensor.zg_gw_temp_playroom_temperatura
               name: temp
-            - entity: sensor.z_playroom_temp_humidity
+            - entity: sensor.zg_gw_temp_playroom_vlazhnost
               name: hum 
-            - entity: sensor.z_playroom_temp_battery_state
+            - entity: sensor.zg_gw_temp_playroom_batareia
               name: bat 
 
         - entity: switch.second_floor_heating_2_switch_2
