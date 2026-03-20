@@ -125,7 +125,7 @@
       - type: entities
         entities:
 
-        - entity: switch.second_floor_heating_1_switch_4
+        - entity: light.zg_gw_second_floor_heating_1_osveshchenie_4
           type: custom:multiple-entity-row
           name: Спальня
           icon: mdi:thermometer
@@ -140,7 +140,7 @@
             - entity: sensor.z_bedroom_temp_battery_state
               name: bat  
 
-        - entity: switch.second_floor_heating_2_switch_1
+        - entity: light.zg_gw_second_floor_heating_2_osveshchenie
           type: custom:multiple-entity-row
           name: Гардероб
           icon: mdi:thermometer
@@ -155,7 +155,7 @@
             - entity: sensor.z_bedroom2_temp_battery_state
               name: bat  
 
-        - entity: switch.second_floor_heating_2_switch_3
+        - entity: light.zg_gw_second_floor_heating_2_osveshchenie_3
           type: custom:multiple-entity-row
           name: Кабинет
           icon: mdi:thermometer
@@ -170,7 +170,7 @@
             - entity: sensor.z_cabinet_temp_battery_state
               name: bat  
 
-        - entity: switch.second_floor_heating_1_switch_3
+        - entity: light.zg_gw_second_floor_heating_1_osveshchenie_3
           type: custom:multiple-entity-row
           name: Холл
           icon: mdi:thermometer
@@ -185,7 +185,7 @@
             - entity: sensor.zg_gw_temp_hall_batareia
               name: bat 
 
-        - entity: switch.second_floor_heating_1_switch_2
+        - entity: light.zg_gw_second_floor_heating_1_osveshchenie_2
           type: custom:multiple-entity-row
           name: Детская
           icon: mdi:thermometer
@@ -200,7 +200,7 @@
             - entity: sensor.zg_gw_temp_childrensroom_batareia
               name: bat  
 
-        - entity: switch.second_floor_heating_1_switch_1
+        - entity: light.zg_gw_second_floor_heating_1_osveshchenie
           type: custom:multiple-entity-row
           name: Игровая
           icon: mdi:thermometer
@@ -215,7 +215,7 @@
             - entity: sensor.zg_gw_temp_playroom_batareia
               name: bat 
 
-        - entity: switch.second_floor_heating_2_switch_2
+        - entity: light.zg_gw_second_floor_heating_2_osveshchenie_2
           type: custom:multiple-entity-row
           name: Сан. Узел 2
           icon: mdi:thermometer

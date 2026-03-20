@@ -82,7 +82,7 @@
   - platform: generic_thermostat
     name: bedroom
     unique_id: climate.bedroom
-    heater: switch.second_floor_heating_1_switch_4
+    heater: light.zg_gw_second_floor_heating_1_osveshchenie_4
     target_sensor: sensor.z_bedroom_temp_temperature
     min_temp: 16
     max_temp: 25
@@ -101,7 +101,7 @@
   - platform: generic_thermostat
     name: bedroom2
     unique_id: climate.bedroom2
-    heater: switch.second_floor_heating_2_switch_1
+    heater: light.zg_gw_second_floor_heating_2_osveshchenie
     target_sensor: sensor.z_bedroom2_temp_temperature
     min_temp: 16
     max_temp: 25
@@ -120,7 +120,7 @@
   - platform: generic_thermostat
     name: cabinet
     unique_id: climate.cabinet
-    heater: switch.second_floor_heating_2_switch_3
+    heater: light.zg_gw_second_floor_heating_2_osveshchenie_3
     target_sensor: sensor.z_cabinet_temp_temperature
     min_temp: 16
     max_temp: 25
@@ -139,7 +139,7 @@
   - platform: generic_thermostat
     name: hall
     unique_id: climate.hall
-    heater: switch.second_floor_heating_1_switch_3
+    heater: light.zg_gw_second_floor_heating_1_osveshchenie_3
     target_sensor: sensor.zg_gw_temp_hall_temperatura
     min_temp: 16
     max_temp: 25
@@ -158,7 +158,7 @@
   - platform: generic_thermostat
     name: playroom
     unique_id: climate.playroom
-    heater: switch.second_floor_heating_1_switch_1
+    heater: light.zg_gw_second_floor_heating_1_osveshchenie
     target_sensor: sensor.zg_gw_temp_playroom_temperatura
     min_temp: 16
     max_temp: 25
@@ -177,7 +177,7 @@
   - platform: generic_thermostat
     name: childrenroom
     unique_id: climate.childrenroom
-    heater: switch.second_floor_heating_1_switch_2
+    heater: light.zg_gw_second_floor_heating_1_osveshchenie_2
     target_sensor: sensor.zg_gw_temp_childrensroom_temperatura
     min_temp: 16
     max_temp: 25
@@ -196,7 +196,7 @@
   - platform: generic_thermostat
     name: wc2
     unique_id: climate.wc2
-    heater: switch.second_floor_heating_2_switch_2
+    heater: light.zg_gw_second_floor_heating_2_osveshchenie_2
     target_sensor: sensor.z_wc2_temp_temperature
     min_temp: 16
     max_temp: 25
