@@ -56,23 +56,23 @@
               entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
               state: "on"
           sequence:
-            - action: switch.turn_on
+            - action: light.turn_on
               target:
                 entity_id:
-                  - switch.z_tl_light_wc_vykliuchatel_1
-                  - switch.z_tl_light_wc_vykliuchatel_2
+                  - light.zg_gw_light_wc_osveshchenie
+                  - light.zg_gw_light_wc_osveshchenie_2
         # Действие для выключения света
         - conditions:
             - condition: state
               entity_id: binary_sensor.wf_tl_hum_det_wc_dvizhenie
               state: "off"
           sequence:
-            - action: switch.turn_off
+            - action: light.turn_off
               target:
                 entity_id:
-                  - switch.z_tl_light_wc_vykliuchatel_1
-                  - switch.z_tl_light_wc_vykliuchatel_2
-                  - switch.z_tl_light_wc_vykliuchatel_3
+                  - light.zg_gw_light_wc_osveshchenie
+                  - light.zg_gw_light_wc_osveshchenie_2
+                  - light.zg_gw_light_wc_osveshchenie_3
 
 # Освещение улица
 - alias: "Включение ламп каждые 10 минут ночью"

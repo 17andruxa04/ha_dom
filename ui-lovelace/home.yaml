@@ -264,7 +264,7 @@
   - type: entities
     entities:
 
-    - entity: switch.z_tl_light_wc_vykliuchatel_1
+    - entity: light.zg_gw_light_wc_osveshchenie
       type: custom:multiple-entity-row
       name: wc_l_1
       icon: mdi:desk-lamp-on
@@ -273,7 +273,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.z_tl_light_wc_vykliuchatel_2
+    - entity: light.zg_gw_light_wc_osveshchenie_2
       type: custom:multiple-entity-row
       name: wc_l_2
       icon: mdi:desk-lamp-on
@@ -282,7 +282,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.z_tl_light_wc_vykliuchatel_3
+    - entity: light.zg_gw_light_wc_osveshchenie_3
       type: custom:multiple-entity-row
       name: wc_l_3
       icon: mdi:desk-lamp-on
