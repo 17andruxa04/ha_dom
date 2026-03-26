@@ -13,6 +13,37 @@
           - entity: sensor.sun_next_dawn
           - entity: sensor.sun_next_setting
 
+  - type: entities
+    show_header_toggle: false
+    entities:
+
+      - entity: person.nikita
+        type: custom:multiple-entity-row
+        name:  Никита
+        icon: mdi:account
+        toggle: false
+        state_color: true
+#                  state_header: heat
+        entities:
+          - entity: sensor.iphone_nikita_battery_level
+            name: false
+          - entity: sensor.iphone_nikita_battery_level
+            name: false
+            icon: mdi:battery
+
+      - entity: person.yehor
+        type: custom:multiple-entity-row
+        name:  Егор
+        icon: mdi:account
+        toggle: false
+        state_color: true
+#                  state_header: heat
+        entities:
+          - entity: sensor.iphone_yehor_battery_level
+            name: false
+          - entity: sensor.iphone_yehor_battery_level
+            name: false
+            icon: mdi:battery
 
   - type: entities
     entities:
@@ -89,13 +120,6 @@
         name: Крайняя перезагрузка
         icon: mdi:av-timer
 
-  # - type: horizontal-stack
-  #   cards:
-
-  #       - type: light
-  #         entity: light.rgb_bedroom
-
-
 # Кнопка для перезагрузки плиты
   - type: horizontal-stack
     cards:
@@ -107,133 +131,126 @@
 ####################################################################
 #####################################################################
 
-      # - type: 'custom:button-card'
-      #   entity: input_boolean.lawn_irrigation_manual
-      #   name: Полив газона
-      #   icon: mdi:water-pump
-      #   color: auto
-      #   styles:
-      #     card:
-      #       - background-color: >
-      #           [[[
-      #             return entity.state === 'on' 
-      #               ? 'rgba(0, 128, 0, 0.8)' 
-      #               : 'rgba(0, 128, 0, 0.4)';
-      #           ]]]
-      #     name:
-      #       - color: 'var(--primary-text-color)'
-      #     state:
-      #       - color: 'var(--primary-text-color)'
-      #     custom_fields:
-      #       timer:
-      #         - font-size: 12px
-      #         - color: 'var(--primary-text-color)'
-      #         - margin-top: 4px
-      #   show_state: true
-      #   tap_action:
-      #     action: toggle
-
-      #   custom_fields:
-      #     timer: >
-      #       [[[
-      #         const state = states['input_number.lawn_irrigation_timer_value'].state;
-      #         const seconds = parseInt(state);
-      #         const minutes = Math.floor(seconds / 60);
-      #         const secs = seconds % 60;
-      #         return `${minutes}:${secs.toString().padStart(2, '0')}`;
-      #       ]]]
-
-      #   triggers_update:
-      #     - input_boolean.lawn_irrigation_manual
-      #     - input_number.lawn_irrigation_timer_value
-
-# Полив газона
-      - type: 'custom:button-card'
+# Полив газона (простая кнопка)
+      - type: button
         entity: input_boolean.lawn_irrigation_manual
         name: Полив газона
-        icon: mdi:water-pump
-        color: auto
-        styles:
-          card:
-            - background-color: >
-                [[[
-                  return entity.state === 'on' 
-                    ? 'rgba(0, 128, 0, 0.8)' 
-                    : 'rgba(0, 128, 0, 0.4)';
-                ]]]
-          name:
-            - color: 'var(--primary-text-color)'
-          state:
-            - color: 'var(--primary-text-color)'
-          custom_fields:
-            timer:
-              - font-size: 12px
-              - color: 'var(--primary-text-color)'
-              - margin-top: 4px
-
+        icon: mdi:sprinkler
         show_state: true
         tap_action:
           action: toggle
 
-        # Показываем таймер или "Выключен"
-        custom_fields:
-          timer: >
-            [[[
-              if (entity.state !== 'on') {
-                return 'Выключен';
-              }
+# # Полив газона
+#       - type: 'custom:button-card'
+#         entity: input_boolean.lawn_irrigation_manual
+#         name: Полив газона
+#         icon: mdi:water-pump
+#         color: auto
+#         styles:
+#           card:
+#             - background-color: >
+#                 [[[
+#                   return entity.state === 'on' 
+#                     ? 'rgba(0, 128, 0, 0.8)' 
+#                     : 'rgba(0, 128, 0, 0.4)';
+#                 ]]]
+#           name:
+#             - color: 'var(--primary-text-color)'
+#           state:
+#             - color: 'var(--primary-text-color)'
+#           custom_fields:
+#             timer:
+#               - font-size: 12px
+#               - color: 'var(--primary-text-color)'
+#               - margin-top: 4px
+
+#         show_state: true
+#         tap_action:
+#           action: toggle
+
+#         # Показываем таймер или "Выключен"
+#         custom_fields:
+#           timer: >
+#             [[[
+#               if (entity.state !== 'on') {
+#                 return 'Выключен';
+#               }
               
-              const state = states['input_number.lawn_irrigation_timer_value'].state;
-              const seconds = parseInt(state, 10);
-              if (isNaN(seconds)) return '—';
+#               const state = states['input_number.lawn_irrigation_timer_value'].state;
+#               const seconds = parseInt(state, 10);
+#               if (isNaN(seconds)) return '—';
 
-              const minutes = Math.floor(seconds / 60);
-              const secs = seconds % 60;
-              return `${minutes}:${secs.toString().padStart(2, '0')}`;
-            ]]]
+#               const minutes = Math.floor(seconds / 60);
+#               const secs = seconds % 60;
+#               return `${minutes}:${secs.toString().padStart(2, '0')}`;
+#             ]]]
 
-        triggers_update:
-          - input_boolean.lawn_irrigation_manual
-          - input_number.lawn_irrigation_timer_value
+#         triggers_update:
+#           - input_boolean.lawn_irrigation_manual
+#           - input_number.lawn_irrigation_timer_value
 
 
 ##############################################################
-###############################################################
-
-# Кнопка для ворот въездных
+##############################################################
   - type: horizontal-stack
     cards:
-      - type: 'custom:button-card'
+
+      - type: button
         entity: cover.wf_tl_gate_door
         name: Ворота
-        color: auto
-        styles:
-          card:
-            - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
-          name:
-            - color: 'var(--primary-text-color)'  # Цвет текста
-          state:
-            - color: 'var(--primary-text-color)'  # Цвет состояния
-        show_state: true
-        tap_action:
-          action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
-          
-# Кнопка для ворот гаража
-      - type: 'custom:button-card'
+        icon: mdi:gate
+
+      - type: button
         entity: cover.wf_tl_garage_door
         name: Гараж
-        color: auto
-        styles:
-          card:
-            - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
-          name:
-            - color: 'var(--primary-text-color)'  # Цвет текста
-          state:
-            - color: 'var(--primary-text-color)'  # Цвет состояния
-        show_state: true
-        tap_action:
-          action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
-#    square: true # Установите значение true, чтобы сделать карточки квадратными
+        icon: mdi:garage
+
+# # Кнопка для ворот въездных
+#   - type: horizontal-stack
+#     cards:
+#       - type: 'custom:button-card'
+#         entity: cover.wf_tl_gate_door
+#         name: Ворота
+#         color: auto
+#         icon: >
+#           [[[
+#             return entity.state === 'open'
+#               ? 'mdi:gate-open'
+#               : 'mdi:gate';
+#           ]]]
+#         styles:
+#           card:
+#             - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
+#           name:
+#             - color: 'var(--primary-text-color)'  # Цвет текста
+#           state:
+#             - color: 'var(--primary-text-color)'  # Цвет состояния
+#         show_state: true
+#         tap_action:
+#           action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
+          
+# # Кнопка для ворот гаража
+#       - type: 'custom:button-card'
+#         entity: cover.wf_tl_garage_door
+#         name: Гараж
+#         color: auto
+#         icon: >
+#           [[[
+#             return entity.state === 'open'
+#               ? 'mdi:garage-open'
+#               : 'mdi:garage';
+#           ]]]
+#         styles:
+#           card:
+#             - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
+#           name:
+#             - color: 'var(--primary-text-color)'  # Цвет текста
+#           state:
+#             - color: 'var(--primary-text-color)'  # Цвет состояния
+#         show_state: true
+#         tap_action:
+#           action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
+
 
 - type: vertical-stack
   cards:
@@ -263,6 +280,24 @@
 # Свет дом
   - type: entities
     entities:
+
+    - entity: light.zg_gw_light_cabinet_osveshchenie
+      type: custom:multiple-entity-row
+      name: cabinet_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: light.zg_gw_light_cabinet_osveshchenie_2
+      type: custom:multiple-entity-row
+      name: cabinet_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
 
     - entity: light.zg_gw_light_wc_osveshchenie
       type: custom:multiple-entity-row
@@ -331,4 +366,24 @@
       # entities:
       #   - entity: sensor.last_detection_wc2
 
+    - entity: binary_sensor.zg_gw_temp_hall
+      type: custom:multiple-entity-row
+      name: hall
+      icon: mdi:motion-sensor
+#     toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc2
 
+    - entity: binary_sensor.zg_gw_water_leaks_basement
+      type: custom:multiple-entity-row
+      name: basement
+      icon: mdi:water
+#     toggle: true
+      state_color: true
+      entities:
+        - entity: sensor.zg_gw_temp_guest_batareia
+          name: false
+          icon: mdi:battery
+        - entity: sensor.zg_gw_temp_guest_batareia
+          name: false

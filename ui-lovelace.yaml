@@ -12,6 +12,8 @@ views:
 
   - title: Energy
     icon: mdi:flash
+    visible:
+      - user: feb148ce67944832bc9d9388cf2b16af
     cards:
       !include ui-lovelace/energy.yaml
 
@@ -20,18 +22,6 @@ views:
     cards:
       !include ui-lovelace/gas.yaml
 
-  - title: Rooms
-    icon: mdi:exit-run
-    cards:
-#      !include ui-lovelace/gas.yaml
-
-      - type: picture-glance
-        title: Gostinaia
-        entities:
-          - entity: climate.gostinaia
-          - entity: sensor.z_gostinaia_temp_temperature
-        image: /local/living_room.png
-        show_state: true
 
 
 
