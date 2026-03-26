@@ -124,133 +124,177 @@
   - type: horizontal-stack
     cards:
 
-      - type: button
-        entity: switch.wf_tl_phase_a_din
-        name: Фаза 'А' кухня
+      - type: grid
+        columns: 2
+        square: false
+        cards:
 
-####################################################################
-#####################################################################
+          # Фаза
+          - type: 'custom:button-card'
+            entity: switch.wf_tl_phase_a_din
+            name: Фаза 'A' кухня
+            icon: mdi:power-plug
+            show_state: false
+            color: auto
+            styles:
+              card:
+                - height: 150px
+                - padding: 0
+              grid:
+                - grid-template-areas: '"i" "n"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr auto
+                - justify-items: center
+                - align-items: center
+              img_cell:
+                - justify-content: center
+                - align-items: center
+                - width: 100%
+                - height: 100%
+              icon:
+                - width: 78px
+                - height: 78px
+              name:
+                - text-align: center
+                - color: 'var(--primary-text-color)'
+                - font-size: 16px
+                - padding-bottom: 14px
 
-# Полив газона (простая кнопка)
-      - type: button
-        entity: input_boolean.lawn_irrigation_manual
-        name: Полив газона
-        icon: mdi:sprinkler
-        show_state: true
-        tap_action:
-          action: toggle
-
-# # Полив газона
-#       - type: 'custom:button-card'
-#         entity: input_boolean.lawn_irrigation_manual
-#         name: Полив газона
-#         icon: mdi:water-pump
-#         color: auto
-#         styles:
-#           card:
-#             - background-color: >
-#                 [[[
-#                   return entity.state === 'on' 
-#                     ? 'rgba(0, 128, 0, 0.8)' 
-#                     : 'rgba(0, 128, 0, 0.4)';
-#                 ]]]
-#           name:
-#             - color: 'var(--primary-text-color)'
-#           state:
-#             - color: 'var(--primary-text-color)'
-#           custom_fields:
-#             timer:
-#               - font-size: 12px
-#               - color: 'var(--primary-text-color)'
-#               - margin-top: 4px
-
-#         show_state: true
-#         tap_action:
-#           action: toggle
-
-#         # Показываем таймер или "Выключен"
-#         custom_fields:
-#           timer: >
-#             [[[
-#               if (entity.state !== 'on') {
-#                 return 'Выключен';
-#               }
-              
-#               const state = states['input_number.lawn_irrigation_timer_value'].state;
-#               const seconds = parseInt(state, 10);
-#               if (isNaN(seconds)) return '—';
-
-#               const minutes = Math.floor(seconds / 60);
-#               const secs = seconds % 60;
-#               return `${minutes}:${secs.toString().padStart(2, '0')}`;
-#             ]]]
-
-#         triggers_update:
-#           - input_boolean.lawn_irrigation_manual
-#           - input_number.lawn_irrigation_timer_value
+            tap_action:
+              action: toggle
 
 
-##############################################################
-##############################################################
-  - type: horizontal-stack
-    cards:
+          # Полив
+          - type: 'custom:button-card'
+            entity: input_boolean.lawn_irrigation_manual
+            name: Полив газона
+            icon: mdi:sprinkler-variant
+            show_state: true
+            color: auto
+            styles:
+              card:
+                - height: 150px
+                - padding: 0
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr auto auto
+                - justify-items: center
+                - align-items: center
+              img_cell:
+                - justify-content: center
+                - align-items: center
+                - width: 100%
+                - height: 100%
+              icon:
+                - width: 78px
+                - height: 78px
+              name:
+                - text-align: center
+                - color: 'var(--primary-text-color)'
+                - font-size: 16px
+              state:
+                - text-align: center
+                - color: 'var(--secondary-text-color)'
+                - font-size: 12px
+                - padding-bottom: 10px
 
-      - type: button
-        entity: cover.wf_tl_gate_door
-        name: Ворота
-        icon: mdi:gate
+            tap_action:
+              action: toggle
 
-      - type: button
-        entity: cover.wf_tl_garage_door
-        name: Гараж
-        icon: mdi:garage
 
-# # Кнопка для ворот въездных
-#   - type: horizontal-stack
-#     cards:
-#       - type: 'custom:button-card'
-#         entity: cover.wf_tl_gate_door
-#         name: Ворота
-#         color: auto
-#         icon: >
-#           [[[
-#             return entity.state === 'open'
-#               ? 'mdi:gate-open'
-#               : 'mdi:gate';
-#           ]]]
-#         styles:
-#           card:
-#             - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
-#           name:
-#             - color: 'var(--primary-text-color)'  # Цвет текста
-#           state:
-#             - color: 'var(--primary-text-color)'  # Цвет состояния
-#         show_state: true
-#         tap_action:
-#           action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
-          
-# # Кнопка для ворот гаража
-#       - type: 'custom:button-card'
-#         entity: cover.wf_tl_garage_door
-#         name: Гараж
-#         color: auto
-#         icon: >
-#           [[[
-#             return entity.state === 'open'
-#               ? 'mdi:garage-open'
-#               : 'mdi:garage';
-#           ]]]
-#         styles:
-#           card:
-#             - background-color: rgba(0, 128, 0, 0.8)  # Цвет фона карточки
-#           name:
-#             - color: 'var(--primary-text-color)'  # Цвет текста
-#           state:
-#             - color: 'var(--primary-text-color)'  # Цвет состояния
-#         show_state: true
-#         tap_action:
-#           action: toggle  # Действие при нажатии (в данном случае, переключение состояния)
+          # Гараж
+          - type: 'custom:button-card'
+            entity: cover.wf_tl_garage_door
+            name: Гараж
+            show_state: false
+            color: auto
+            icon: >
+              [[[
+                return entity.state === 'open' ? 'mdi:garage-open' : 'mdi:garage';
+              ]]]
+            styles:
+              card:
+                - height: 150px
+                - padding: 0
+              grid:
+                - grid-template-areas: '"i" "n"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr auto
+                - justify-items: center
+                - align-items: center
+              img_cell:
+                - justify-content: center
+                - align-items: center
+                - width: 100%
+                - height: 100%
+              icon:
+                - width: 78px
+                - height: 78px
+                - color: >
+                    [[[
+                      return entity.state === 'open'
+                        ? '#fbc02d'
+                        : 'var(--state-icon-color)';
+                    ]]]
+              name:
+                - text-align: center
+                - color: 'var(--primary-text-color)'
+                - font-size: 16px
+                - padding-bottom: 14px
 
+            tap_action:
+              action: toggle
+
+            hold_action:
+              action: more-info
+
+
+          # Ворота
+          - type: 'custom:button-card'
+            entity: cover.wf_tl_gate_door
+            name: Ворота
+            show_state: false
+            color: auto
+            icon: >
+              [[[
+                return entity.state === 'open' ? 'mdi:gate-open' : 'mdi:gate';
+              ]]]
+            styles:
+              card:
+                - height: 150px
+                - padding: 0
+              grid:
+                - grid-template-areas: '"i" "n"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr auto
+                - justify-items: center
+                - align-items: center
+              img_cell:
+                - justify-content: center
+                - align-items: center
+                - width: 100%
+                - height: 100%
+              icon:
+                - width: 78px
+                - height: 78px
+                - color: >
+                    [[[
+                      return entity.state === 'open'
+                        ? '#fbc02d'
+                        : 'var(--state-icon-color)';
+                    ]]]
+              name:
+                - text-align: center
+                - color: 'var(--primary-text-color)'
+                - font-size: 16px
+                - padding-bottom: 14px
+
+            tap_action:
+              action: toggle
+
+            hold_action:
+              action: more-info
 
 - type: vertical-stack
   cards:
@@ -375,6 +419,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc2
 
+# Протечка воды
     - entity: binary_sensor.zg_gw_water_leaks_basement
       type: custom:multiple-entity-row
       name: basement
