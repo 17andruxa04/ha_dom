@@ -101,7 +101,6 @@
               target:
                 entity_id:
                   - light.zg_gw_light_hall_osveshchenie
-                  - light.zg_gw_light_hall_osveshchenie_2
 
         # Выключение света при отсутствии движения
         - conditions:
