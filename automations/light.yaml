@@ -74,6 +74,47 @@
                   - light.zg_gw_light_wc_osveshchenie_2
                   - light.zg_gw_light_wc_osveshchenie_3
 
+# Освещение ХОЛЛ
+# Включаем свет в холле по движению, только если освещенность меньше 200 lx
+# Выключаем свет, если движения нет 2 секунды
+- alias: Управление светом hall
+  triggers:
+    - trigger: state
+      entity_id: binary_sensor.zg_gw_temp_hall
+      to: "on"
+    - trigger: state
+      entity_id: binary_sensor.zg_gw_temp_hall
+      to: "off"
+      for: "00:00:02"
+  actions:
+    - choose:
+        # Включение света только при движении и низкой освещенности
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.zg_gw_temp_hall
+              state: "on"
+            - condition: numeric_state
+              entity_id: sensor.zg_gw_temp_hall_osveshchennost
+              below: 200
+          sequence:
+            - action: light.turn_on
+              target:
+                entity_id:
+                  - light.zg_gw_light_hall_osveshchenie
+                  - light.zg_gw_light_hall_osveshchenie_2
+
+        # Выключение света при отсутствии движения
+        - conditions:
+            - condition: state
+              entity_id: binary_sensor.zg_gw_temp_hall
+              state: "off"
+          sequence:
+            - action: light.turn_off
+              target:
+                entity_id:
+                  - light.zg_gw_light_hall_osveshchenie
+                  - light.zg_gw_light_hall_osveshchenie_2
+
 # Освещение улица
 - alias: "Включение ламп каждые 10 минут ночью"
   triggers:
