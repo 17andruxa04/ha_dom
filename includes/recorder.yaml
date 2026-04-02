@@ -9,7 +9,7 @@ include:
     - input_number.gas_counter
     - input_number.gas_counter_office
     - sensor.temperature_and_humidity_alarm_temperature
-    - sensor.in_220_office_power
+    - sensor.in_220v_office_power
     - sensor.breaker_phase_a_power
     - sensor.breaker_phase_b_power
     - sensor.breaker_phase_c_power

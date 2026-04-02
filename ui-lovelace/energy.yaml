@@ -354,7 +354,7 @@
           title: "Energy Consumption"
           hours_to_show: 48
           entities:
-            - entity: sensor.in_220_office_power
+            - entity: sensor.in_220v_office_power
               name: "A"
 
 - type: vertical-stack
