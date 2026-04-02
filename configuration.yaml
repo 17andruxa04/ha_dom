@@ -16,9 +16,9 @@ frontend:
 script: !include scripts.yaml
 scene: !include scenes.yaml
 recorder: !include includes/recorder.yaml
-template: !include includes/mi_custom_devices/template_sensors.yaml
+template: !include_dir_merge_list includes/templates
 climate: !include includes/mi_custom_devices/climate.yaml
-sensor: !include includes/mi_custom_devices/sensors.yaml
+sensor: !include includes/sensors/integration.yaml
 
 #Вынос в папку
 automation: !include_dir_merge_list automations
@@ -65,4 +65,3 @@ http:
     use_x_forwarded_for: true
     trusted_proxies:
       - 0.0.0.0/0
-

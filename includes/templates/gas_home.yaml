@@ -1,0 +1,25 @@
+- sensor:
+    - default_entity_id: sensor.gas_count
+      name: "Сенсор газа"
+      state: "{{ (states('input_number.gas_counter') | float) | round(2) }}"
+      icon: mdi:gas-burner
+
+    - default_entity_id: sensor.monthly_cost_gas
+      name: "Месячные затраты газа"
+      state: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_month') | float)) | round(1) }}"
+      icon: mdi:gas-burner
+
+    - default_entity_id: sensor.daily_cost_gas
+      name: "Суточные затраты газа"
+      state: "{{ ((states('sensor.gas_meter') | float) - (states('input_number.gas_count_last_day') | float)) | round(1) }}"
+      icon: mdi:gas-burner
+
+    - default_entity_id: sensor.monthly_cost_gas_money
+      name: "Месячные затраты газа в деньгах"
+      state: "{{ ((states('sensor.monthly_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+      icon: mdi:currency-uah
+
+    - default_entity_id: sensor.daily_cost_gas_money
+      name: "Суточные затраты газа в деньгах"
+      state: "{{ ((states('sensor.daily_cost_gas') | float) * (states('input_number.price_gas') | float)) | round(1) }}"
+      icon: mdi:currency-uah
