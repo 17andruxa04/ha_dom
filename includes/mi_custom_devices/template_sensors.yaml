@@ -85,15 +85,15 @@
 
       - default_entity_id: sensor.in_220_total_energy_a_current_no_unit
         name: "In 220V Energy A current No Unit"
-        state: "{{ states('sensor.in_220_office_current') | float | round(1) }}"
+        state: "{{ states('sensor.in_220v_office_current') | float | round(1) }}"
 
       - default_entity_id: sensor.in_220_total_energy_a_power_no_unit
         name: "In 220V Energy A power No Unit"
-        state: "{{ states('sensor.in_220_office_power') | float | round(1) }}"
+        state: "{{ states('sensor.in_220v_office_power') | float | round(1) }}"
 
       - default_entity_id: sensor.in_220_total_energy_a_voltage_no_unit
         name: "In 220V Energy A voltage No Unit"
-        state: "{{ states('sensor.in_220_office_voltage') | float | round(1) }}"
+        state: "{{ states('sensor.in_220v_office_voltage') | float | round(1) }}"
 
       - default_entity_id: sensor.monthly_cost_energy_tarif_day_office
         name: "Месячные затраты электрики тариф день офис"
