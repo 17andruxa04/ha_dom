@@ -166,7 +166,7 @@
 
           # Полив
           - type: 'custom:button-card'
-            entity: input_boolean.lawn_irrigation_manual
+            entity: light.zg_gw_watering_home
             name: Полив газона
             icon: mdi:sprinkler-variant
             show_state: true
