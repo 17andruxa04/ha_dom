@@ -8,20 +8,20 @@
       to: "on"
   conditions:
     - condition: state
-      entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+      entity_id: light.zg_gw_sprinklers_street_osveshchenie
       state: "off"
   actions:
-    - action: switch.turn_on
+    - action: light.turn_on
       target:
-        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+        entity_id: light.zg_gw_sprinklers_street_osveshchenie
     - wait_for_trigger:
         - trigger: state
           entity_id: input_boolean.lawn_irrigation_manual
           to: "off"
       timeout: "00:20:00"  # Максимум 25 минут
-    - action: switch.turn_off
+    - action: light.turn_off
       target:
-        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+        entity_id:light.zg_gw_sprinklers_street_osveshchenie
     - action: input_boolean.turn_off
       target:
         entity_id: input_boolean.lawn_irrigation_manual
@@ -32,9 +32,9 @@
       entity_id: input_boolean.lawn_irrigation_manual
       to: "off"
   actions:
-    - action: switch.turn_off
+    - action: light.turn_off
       target:
-        entity_id: switch.aubess_smart_switch_1_gang_4_switch_1
+        entity_id: light.zg_gw_sprinklers_street_osveshchenie
 
 - alias: "Таймер полива газона: обратный отсчёт"
   mode: single

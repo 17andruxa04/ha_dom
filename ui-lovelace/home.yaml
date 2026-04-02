@@ -303,7 +303,7 @@
   - type: entities
     entities:
 
-    - entity: switch.light_str_north_switch_1
+    - entity: light.zg_gw_light_str_north
       type: custom:multiple-entity-row
       name: street_n
       icon: mdi:outdoor-lamp
@@ -312,7 +312,7 @@
       # entities:
       #   - entity: sensor.last_detection_wc
 
-    - entity: switch.light_str_west_switch_1
+    - entity: light.zg_gw_light_str_west
       type: custom:multiple-entity-row
       name: street_w
       icon: mdi:outdoor-lamp
@@ -324,6 +324,24 @@
 # Свет дом
   - type: entities
     entities:
+
+    - entity: light.zg_gw_light_hall_osveshchenie
+      type: custom:multiple-entity-row
+      name: hall_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: light.zg_gw_light_hall_osveshchenie_2
+      type: custom:multiple-entity-row
+      name: hall_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
 
     - entity: light.zg_gw_light_cabinet_osveshchenie
       type: custom:multiple-entity-row

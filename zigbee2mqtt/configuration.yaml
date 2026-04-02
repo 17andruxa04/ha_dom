@@ -4,13 +4,41 @@ mqtt:
   server: mqtt://core-mosquitto:1883
   user: addons
   password: eyai1quuicoh9sheeb1ipij4euDe3jeechuuwosaexachai5mu4Ohb8aebeeL2oh
-serial: {}
+serial:
+  port: socket://192.168.0.231:8888
+  adapter: zstack
+  baudrate: 115200
+  rtscts: true
 advanced:
   log_level: info
   channel: 11
-  network_key: GENERATE
-  pan_id: GENERATE
-  ext_pan_id: GENERATE
+  network_key:
+    - 24
+    - 122
+    - 133
+    - 79
+    - 166
+    - 130
+    - 46
+    - 141
+    - 158
+    - 117
+    - 63
+    - 236
+    - 81
+    - 177
+    - 61
+    - 95
+  pan_id: 27594
+  ext_pan_id:
+    - 243
+    - 150
+    - 99
+    - 242
+    - 151
+    - 184
+    - 162
+    - 170
 frontend:
   enabled: true
   port: 8099

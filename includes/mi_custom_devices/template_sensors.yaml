@@ -1,4 +1,6 @@
 
+
+
   - sensor:
       - default_entity_id: sensor.in_360_total_energy_no_unit
         name: "In 360V Energy No Unit"
@@ -217,7 +219,6 @@
         icon: mdi:currency-uah
 
 
-  # Updating every 30 seconds: current time/date sensors
   - trigger:
       - platform: time_pattern
         seconds: "/30"
@@ -225,6 +226,7 @@
       - name: "Current Time"
         state: "{{ now().strftime('%H:%M') }}"
         icon: mdi:clock
+
       - name: "Current Date"
         state: "{{ now().strftime('%d.%m.%Y') }}"
         icon: mdi:calendar
