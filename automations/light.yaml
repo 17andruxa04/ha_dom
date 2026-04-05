@@ -75,7 +75,7 @@
                   - light.zg_gw_light_wc_osveshchenie_3
 
 # Освещение ХОЛЛ
-# Включаем свет в холле по движению, только если движение длится 20 секунд
+# Включаем свет в холле по движению, только если
 # освещенность меньше 200 lx и время не между 00:00 и 07:00
 # Выключаем свет, если движения нет 2 секунды
 - alias: Управление светом hall
@@ -83,7 +83,6 @@
     - trigger: state
       entity_id: binary_sensor.zg_gw_temp_hall
       to: "on"
-      for: "00:00:20"
     - trigger: state
       entity_id: binary_sensor.zg_gw_temp_hall
       to: "off"
