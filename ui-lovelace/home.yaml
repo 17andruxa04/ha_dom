@@ -325,6 +325,33 @@
   - type: entities
     entities:
 
+    - entity: light.zg_gw_light_bedroom_osveshchenie
+      type: custom:multiple-entity-row
+      name: bedroom_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: light.zg_gw_light_bedroom_osveshchenie_2
+      type: custom:multiple-entity-row
+      name: bedroom_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: light.zg_gw_light_bedroom_osveshchenie_3
+      type: custom:multiple-entity-row
+      name: bedroom_l_3
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
     - entity: light.zg_gw_light_hall_osveshchenie
       type: custom:multiple-entity-row
       name: hall_l_1
