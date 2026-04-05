@@ -572,7 +572,7 @@
           title: "Energy Consumption"
           hours_to_show: 48
           entities:
-            - entity: sensor.energy_farm_power
+            - entity: sensor.din_rail_wi_fi_switch_with_metering_3_power
               name: "Стружук"
             - entity: sensor.breaker_phase_b_power
               name: "B"

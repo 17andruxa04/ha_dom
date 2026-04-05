@@ -12,7 +12,7 @@
 
 # Интегральный сенсор преобразования потребленных "W" в "kWh" (ферма)
 - platform: integration
-  source: sensor.energy_farm_power
+  source: sensor.din_rail_wi_fi_switch_with_metering_3_power
   name: energy_farm_power_integral
   round: 2
   method: left

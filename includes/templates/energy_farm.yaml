@@ -5,15 +5,15 @@
 
     - default_entity_id: sensor.energy_farm_current_no_unit
       name: "Energy farm current No Unit"
-      state: "{{ states('sensor.energy_farm_current') | float | round(1) }}"
+      state: "{{ states('sensor.din_rail_wi_fi_switch_with_metering_3_current') | float | round(1) }}"
 
     - default_entity_id: sensor.energy_farm_power_no_unit
       name: "Energy farm power No Unit"
-      state: "{{ states('sensor.energy_farm_power') | float | round(1) }}"
+      state: "{{ states('sensor.din_rail_wi_fi_switch_with_metering_3_power') | float | round(1) }}"
 
     - default_entity_id: sensor.energy_farm_voltage_no_unit
       name: "Energy farm voltage No Unit"
-      state: "{{ states('sensor.energy_farm_voltage') | float | round(1) }}"
+      state: "{{ states('sensor.din_rail_wi_fi_switch_with_metering_3_voltage') | float | round(1) }}"
 
     - default_entity_id: sensor.monthly_cost_energy_tarif_day_farm
       name: "Месячные затраты электрики тариф день ферма"
