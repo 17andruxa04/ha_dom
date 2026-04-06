@@ -325,6 +325,24 @@
   - type: entities
     entities:
 
+    - entity: light.zg_gw_light_childrens_osveshchenie
+      type: custom:multiple-entity-row
+      name: childrens_l_1
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
+    - entity: light.zg_gw_light_childrens_osveshchenie_2
+      type: custom:multiple-entity-row
+      name: childrens_l_2
+      icon: mdi:desk-lamp-on
+      toggle: true
+      state_color: true
+      # entities:
+      #   - entity: sensor.last_detection_wc
+
     - entity: light.zg_gw_light_bedroom_osveshchenie
       type: custom:multiple-entity-row
       name: bedroom_l_1
