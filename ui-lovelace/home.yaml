@@ -1,497 +1,498 @@
-
-
 - type: vertical-stack
-  cards:   
+  cards:
+    - type: weather-forecast
+      entity: weather.forecast_home_assistant
 
-  - type: weather-forecast
-    entity: weather.forecast_home_assistant
+    - type: horizontal-stack
+      cards:
+        - type: entities
+          entities:
+            - entity: sensor.sun_next_dawn
+            - entity: sensor.sun_next_setting
 
-  - type: horizontal-stack
-    cards:
-      - type: entities
-        entities:
-          - entity: sensor.sun_next_dawn
-          - entity: sensor.sun_next_setting
+    - type: entities
+      show_header_toggle: false
+      entities:
+        - entity: person.nikita
+          type: custom:multiple-entity-row
+          name: Никита
+          icon: mdi:account
+          toggle: false
+          state_color: true
+          #                  state_header: heat
+          entities:
+            - entity: sensor.iphone_nikita_battery_level
+              name: false
+            - entity: sensor.iphone_nikita_battery_level
+              name: false
+              icon: mdi:battery
 
-  - type: entities
-    show_header_toggle: false
-    entities:
+        - entity: person.yehor
+          type: custom:multiple-entity-row
+          name: Егор
+          icon: mdi:account
+          toggle: false
+          state_color: true
+          #                  state_header: heat
+          entities:
+            - entity: sensor.iphone_yehor_battery_level
+              name: false
+            - entity: sensor.iphone_yehor_battery_level
+              name: false
+              icon: mdi:battery
 
-      - entity: person.nikita
-        type: custom:multiple-entity-row
-        name:  Никита
-        icon: mdi:account
-        toggle: false
-        state_color: true
-#                  state_header: heat
-        entities:
-          - entity: sensor.iphone_nikita_battery_level
-            name: false
-          - entity: sensor.iphone_nikita_battery_level
-            name: false
-            icon: mdi:battery
+    - type: entities
+      entities:
+        - entity: sensor.temperature_and_humidity_alarm_humidity
+          name: Влажность
+        - entity: sensor.temperature_and_humidity_alarm_illuminance
+          name: Освещенность
+        - entity: sensor.temperature_and_humidity_alarm_temperature
+          name: Температура
+      title: Текущая погода
 
-      - entity: person.yehor
-        type: custom:multiple-entity-row
-        name:  Егор
-        icon: mdi:account
-        toggle: false
-        state_color: true
-#                  state_header: heat
-        entities:
-          - entity: sensor.iphone_yehor_battery_level
-            name: false
-          - entity: sensor.iphone_yehor_battery_level
-            name: false
-            icon: mdi:battery
-
-  - type: entities
-    entities:
-      - entity: sensor.temperature_and_humidity_alarm_humidity
-        name: Влажность
-      - entity: sensor.temperature_and_humidity_alarm_illuminance
-        name: Освещенность
-      - entity: sensor.temperature_and_humidity_alarm_temperature
-        name: Температура
-    title: Текущая погода
-
-  - type: history-graph
-    title: 'График температуры улица'
-    hours_to_show: 72
-    entities:
-      - entity: sensor.temperature_and_humidity_alarm_temperature
-        name: Температура
-
-
-- type: vertical-stack
-  cards:   
-
-  - type: horizontal-stack
-    cards:
-      - type: gauge
-        name: CPU
-        unit: '%'
-        entity: sensor.processor_use
-        severity:
-            green: 0
-            yellow: 45
-            red: 85
-      - type: gauge
-        name: Disk
-        unit: '%'
-        entity: sensor.disk_use_percent
-        severity:
-            green: 0
-            yellow: 45
-            red: 85
-      - type: gauge
-        name: CPU
-        unit: '°C'
-        entity: sensor.processor_temperature
-        severity:
-            green: 0
-            yellow: 30
-            red: 60
-      - type: gauge
-        name: RAM
-        unit: '%'
-        entity: sensor.memory_use_percent
-        severity:
-            green: 0
-            yellow: 30
-            red: 60
-
-- type: vertical-stack
-  cards:    
-  
-  - type: entities
-    show_header_toggle: false
-    entities:
-      - entity: sensor.current_time
-        name: Текущее время 
-        icon: mdi:clock
-      - entity: sensor.current_date
-        name: Дата
-        icon: mdi:calendar
-      - entity: sensor.maria_db_size
-        name: Объем БД
-        icon: mdi:database
-      - entity: sensor.last_boot
-        name: Крайняя перезагрузка
-        icon: mdi:av-timer
-
-# Кнопка для перезагрузки плиты
-  - type: horizontal-stack
-    cards:
-
-      - type: grid
-        columns: 2
-        square: false
-        cards:
-
-          # Фаза
-          - type: 'custom:button-card'
-            entity: switch.wf_tl_phase_a_din
-            name: Фаза 'A' кухня
-            icon: mdi:power-plug
-            show_state: false
-            color: auto
-            styles:
-              card:
-                - height: 150px
-                - padding: 0
-              grid:
-                - grid-template-areas: '"i" "n"'
-                - grid-template-columns: 1fr
-                - grid-template-rows: 1fr auto
-                - justify-items: center
-                - align-items: center
-              img_cell:
-                - justify-content: center
-                - align-items: center
-                - width: 100%
-                - height: 100%
-              icon:
-                - width: 78px
-                - height: 78px
-              name:
-                - text-align: center
-                - color: 'var(--primary-text-color)'
-                - font-size: 16px
-                - padding-bottom: 14px
-
-            tap_action:
-              action: toggle
-
-
-          # Полив
-          - type: 'custom:button-card'
-            entity: light.zg_gw_watering_home
-            name: Полив газона
-            icon: mdi:sprinkler-variant
-            show_state: true
-            color: auto
-            styles:
-              card:
-                - height: 150px
-                - padding: 0
-              grid:
-                - grid-template-areas: '"i" "n" "s"'
-                - grid-template-columns: 1fr
-                - grid-template-rows: 1fr auto auto
-                - justify-items: center
-                - align-items: center
-              img_cell:
-                - justify-content: center
-                - align-items: center
-                - width: 100%
-                - height: 100%
-              icon:
-                - width: 78px
-                - height: 78px
-              name:
-                - text-align: center
-                - color: 'var(--primary-text-color)'
-                - font-size: 16px
-              state:
-                - text-align: center
-                - color: 'var(--secondary-text-color)'
-                - font-size: 12px
-                - padding-bottom: 10px
-
-            tap_action:
-              action: toggle
-
-
-          # Гараж
-          - type: 'custom:button-card'
-            entity: cover.wf_tl_garage_door
-            name: Гараж
-            show_state: false
-            color: auto
-            icon: >
-              [[[
-                return entity.state === 'open' ? 'mdi:garage-open' : 'mdi:garage';
-              ]]]
-            styles:
-              card:
-                - height: 150px
-                - padding: 0
-              grid:
-                - grid-template-areas: '"i" "n"'
-                - grid-template-columns: 1fr
-                - grid-template-rows: 1fr auto
-                - justify-items: center
-                - align-items: center
-              img_cell:
-                - justify-content: center
-                - align-items: center
-                - width: 100%
-                - height: 100%
-              icon:
-                - width: 78px
-                - height: 78px
-                - color: >
-                    [[[
-                      return entity.state === 'open'
-                        ? '#fbc02d'
-                        : 'var(--state-icon-color)';
-                    ]]]
-              name:
-                - text-align: center
-                - color: 'var(--primary-text-color)'
-                - font-size: 16px
-                - padding-bottom: 14px
-
-            tap_action:
-              action: toggle
-
-            hold_action:
-              action: more-info
-
-
-          # Ворота
-          - type: 'custom:button-card'
-            entity: cover.wf_tl_gate_door
-            name: Ворота
-            show_state: false
-            color: auto
-            icon: >
-              [[[
-                return entity.state === 'open' ? 'mdi:gate-open' : 'mdi:gate';
-              ]]]
-            styles:
-              card:
-                - height: 150px
-                - padding: 0
-              grid:
-                - grid-template-areas: '"i" "n"'
-                - grid-template-columns: 1fr
-                - grid-template-rows: 1fr auto
-                - justify-items: center
-                - align-items: center
-              img_cell:
-                - justify-content: center
-                - align-items: center
-                - width: 100%
-                - height: 100%
-              icon:
-                - width: 78px
-                - height: 78px
-                - color: >
-                    [[[
-                      return entity.state === 'open'
-                        ? '#fbc02d'
-                        : 'var(--state-icon-color)';
-                    ]]]
-              name:
-                - text-align: center
-                - color: 'var(--primary-text-color)'
-                - font-size: 16px
-                - padding-bottom: 14px
-
-            tap_action:
-              action: toggle
-
-            hold_action:
-              action: more-info
+    - type: history-graph
+      title: "График температуры улица"
+      hours_to_show: 72
+      entities:
+        - entity: sensor.temperature_and_humidity_alarm_temperature
+          name: Температура
 
 - type: vertical-stack
   cards:
+    - type: horizontal-stack
+      cards:
+        - type: gauge
+          name: CPU
+          unit: "%"
+          entity: sensor.processor_use
+          severity:
+            green: 0
+            yellow: 45
+            red: 85
+        - type: gauge
+          name: Disk
+          unit: "%"
+          entity: sensor.disk_use_percent
+          severity:
+            green: 0
+            yellow: 45
+            red: 85
+        - type: gauge
+          name: CPU
+          unit: "°C"
+          entity: sensor.processor_temperature
+          severity:
+            green: 0
+            yellow: 30
+            red: 60
+        - type: gauge
+          name: RAM
+          unit: "%"
+          entity: sensor.memory_use_percent
+          severity:
+            green: 0
+            yellow: 30
+            red: 60
 
-# Свет улица
-  - type: entities
-    entities:
-
-    - entity: light.zg_gw_light_str_north
-      type: custom:multiple-entity-row
-      name: street_n
-      icon: mdi:outdoor-lamp
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_str_west
-      type: custom:multiple-entity-row
-      name: street_w
-      icon: mdi:outdoor-lamp
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-# Свет дом
-  - type: entities
-    entities:
-
-    - entity: light.zg_gw_light_childrens_osveshchenie
-      type: custom:multiple-entity-row
-      name: childrens_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_childrens_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: childrens_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_bedroom_osveshchenie
-      type: custom:multiple-entity-row
-      name: bedroom_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_bedroom_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: bedroom_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_bedroom_osveshchenie_3
-      type: custom:multiple-entity-row
-      name: bedroom_l_3
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_hall_osveshchenie
-      type: custom:multiple-entity-row
-      name: hall_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_hall_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: hall_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_cabinet_osveshchenie
-      type: custom:multiple-entity-row
-      name: cabinet_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_cabinet_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: cabinet_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_wc_osveshchenie
-      type: custom:multiple-entity-row
-      name: wc_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_wc_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: wc_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_wc_osveshchenie_3
-      type: custom:multiple-entity-row
-      name: wc_l_3
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_wc2_osveshchenie
-      type: custom:multiple-entity-row
-      name: wc2_l_1
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: light.zg_gw_light_wc2_osveshchenie_2
-      type: custom:multiple-entity-row
-      name: wc2_l_2
-      icon: mdi:desk-lamp-on
-      toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-# Движение
-  - type: entities
-    entities:
-
-    - entity: binary_sensor.hum_det_wc_occupancy
-      type: custom:multiple-entity-row
-      name: wc
-      icon: mdi:motion-sensor
-#     toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc
-
-    - entity: binary_sensor.hum_det_wc2_occupancy
-      type: custom:multiple-entity-row
-      name: wc2
-      icon: mdi:motion-sensor
-#     toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc2
-
-    - entity: binary_sensor.zg_gw_temp_hall
-      type: custom:multiple-entity-row
-      name: hall
-      icon: mdi:motion-sensor
-#     toggle: true
-      state_color: true
-      # entities:
-      #   - entity: sensor.last_detection_wc2
-
-# Протечка воды
-    - entity: binary_sensor.zg_gw_water_leaks_basement
-      type: custom:multiple-entity-row
-      name: basement
-      icon: mdi:water
-#     toggle: true
-      state_color: true
+- type: vertical-stack
+  cards:
+    - type: entities
+      show_header_toggle: false
       entities:
-        - entity: sensor.zg_gw_temp_guest_batareia
-          name: false
-          icon: mdi:battery
-        - entity: sensor.zg_gw_temp_guest_batareia
-          name: false
+        - entity: sensor.current_time
+          name: Текущее время
+          icon: mdi:clock
+        - entity: sensor.current_date
+          name: Дата
+          icon: mdi:calendar
+        - entity: sensor.maria_db_size
+          name: Объем БД
+          icon: mdi:database
+        - entity: sensor.last_boot
+          name: Крайняя перезагрузка
+          icon: mdi:av-timer
+
+    # Кнопка для перезагрузки плиты
+    - type: horizontal-stack
+      cards:
+        - type: grid
+          columns: 2
+          square: false
+          cards:
+            # Фаза
+            - type: "custom:button-card"
+              entity: switch.wf_tl_phase_a_din
+              name: Фаза 'A' кухня
+              icon: mdi:power-plug
+              show_state: false
+              color: auto
+              styles:
+                card:
+                  - height: 150px
+                  - padding: 0
+                grid:
+                  - grid-template-areas: '"i" "n"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 1fr auto
+                  - justify-items: center
+                  - align-items: center
+                img_cell:
+                  - justify-content: center
+                  - align-items: center
+                  - width: 100%
+                  - height: 100%
+                icon:
+                  - width: 78px
+                  - height: 78px
+                name:
+                  - text-align: center
+                  - color: "var(--primary-text-color)"
+                  - font-size: 16px
+                  - padding-bottom: 14px
+
+              tap_action:
+                action: toggle
+
+            # Полив
+            - type: "custom:button-card"
+              entity: light.zg_gw_watering_home
+              name: Полив газона
+              icon: mdi:sprinkler-variant
+              show_state: true
+              color: auto
+              styles:
+                card:
+                  - height: 150px
+                  - padding: 0
+                grid:
+                  - grid-template-areas: '"i" "n" "s"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 1fr auto auto
+                  - justify-items: center
+                  - align-items: center
+                img_cell:
+                  - justify-content: center
+                  - align-items: center
+                  - width: 100%
+                  - height: 100%
+                icon:
+                  - width: 78px
+                  - height: 78px
+                name:
+                  - text-align: center
+                  - color: "var(--primary-text-color)"
+                  - font-size: 16px
+                state:
+                  - text-align: center
+                  - color: "var(--secondary-text-color)"
+                  - font-size: 12px
+                  - padding-bottom: 10px
+
+              tap_action:
+                action: toggle
+
+            # Гараж
+            - type: "custom:button-card"
+              entity: cover.wf_tl_garage_door
+              name: Гараж
+              show_state: false
+              color: auto
+              icon: >
+                [[[
+                  return entity.state === 'open' ? 'mdi:garage-open' : 'mdi:garage';
+                ]]]
+              styles:
+                card:
+                  - height: 150px
+                  - padding: 0
+                grid:
+                  - grid-template-areas: '"i" "n"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 1fr auto
+                  - justify-items: center
+                  - align-items: center
+                img_cell:
+                  - justify-content: center
+                  - align-items: center
+                  - width: 100%
+                  - height: 100%
+                icon:
+                  - width: 78px
+                  - height: 78px
+                  - color: >
+                      [[[
+                        return entity.state === 'open'
+                          ? '#fbc02d'
+                          : 'var(--state-icon-color)';
+                      ]]]
+                name:
+                  - text-align: center
+                  - color: "var(--primary-text-color)"
+                  - font-size: 16px
+                  - padding-bottom: 14px
+
+              tap_action:
+                action: toggle
+
+              hold_action:
+                action: more-info
+
+            # Ворота
+            - type: "custom:button-card"
+              entity: cover.wf_tl_gate_door
+              name: Ворота
+              show_state: false
+              color: auto
+              icon: >
+                [[[
+                  return entity.state === 'open' ? 'mdi:gate-open' : 'mdi:gate';
+                ]]]
+              styles:
+                card:
+                  - height: 150px
+                  - padding: 0
+                grid:
+                  - grid-template-areas: '"i" "n"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: 1fr auto
+                  - justify-items: center
+                  - align-items: center
+                img_cell:
+                  - justify-content: center
+                  - align-items: center
+                  - width: 100%
+                  - height: 100%
+                icon:
+                  - width: 78px
+                  - height: 78px
+                  - color: >
+                      [[[
+                        return entity.state === 'open'
+                          ? '#fbc02d'
+                          : 'var(--state-icon-color)';
+                      ]]]
+                name:
+                  - text-align: center
+                  - color: "var(--primary-text-color)"
+                  - font-size: 16px
+                  - padding-bottom: 14px
+
+              tap_action:
+                action: toggle
+
+              hold_action:
+                action: more-info
+
+- type: vertical-stack
+  cards:
+    # Свет улица
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_str_north
+          type: custom:multiple-entity-row
+          name: street_n
+          icon: mdi:outdoor-lamp
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_str_west
+          type: custom:multiple-entity-row
+          name: street_w
+          icon: mdi:outdoor-lamp
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+    # Свет дом
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_playroom_osveshchenie
+          type: custom:multiple-entity-row
+          name: playroom_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_playroom_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: playroom_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+
+        - entity: light.zg_gw_light_childrens_osveshchenie
+          type: custom:multiple-entity-row
+          name: childrens_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_childrens_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: childrens_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_bedroom_osveshchenie
+          type: custom:multiple-entity-row
+          name: bedroom_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_bedroom_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: bedroom_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_bedroom_osveshchenie_4
+          type: custom:multiple-entity-row
+          name: bedroom_l_3
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_hall_osveshchenie
+          type: custom:multiple-entity-row
+          name: hall_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_hall_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: hall_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_cabinet_osveshchenie
+          type: custom:multiple-entity-row
+          name: cabinet_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_cabinet_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: cabinet_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_wc_osveshchenie
+          type: custom:multiple-entity-row
+          name: wc_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_wc_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: wc_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_wc_osveshchenie_3
+          type: custom:multiple-entity-row
+          name: wc_l_3
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_wc2_osveshchenie
+          type: custom:multiple-entity-row
+          name: wc2_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_wc2_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: wc2_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+    # Движение
+    - type: entities
+      entities:
+        - entity: binary_sensor.hum_det_wc_occupancy
+          type: custom:multiple-entity-row
+          name: wc
+          icon: mdi:motion-sensor
+          #     toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: binary_sensor.hum_det_wc2_occupancy
+          type: custom:multiple-entity-row
+          name: wc2
+          icon: mdi:motion-sensor
+          #     toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc2
+
+        - entity: binary_sensor.zg_gw_temp_hall
+          type: custom:multiple-entity-row
+          name: hall
+          icon: mdi:motion-sensor
+          #     toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc2
+
+        # Протечка воды
+        - entity: binary_sensor.zg_gw_water_leaks_basement
+          type: custom:multiple-entity-row
+          name: basement
+          icon: mdi:water
+          #     toggle: true
+          state_color: true
+          entities:
+            - entity: sensor.zg_gw_temp_guest_batareia
+              name: false
+              icon: mdi:battery
+            - entity: sensor.zg_gw_temp_guest_batareia
+              name: false
