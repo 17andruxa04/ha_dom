@@ -10,6 +10,7 @@ include:
     - input_number.gas_counter_office
     - sensor.temperature_and_humidity_alarm_temperature
     - sensor.in_220v_office_power
+    - sensor.din_rail_wi_fi_switch_with_metering_3_power
     - sensor.breaker_phase_a_power
     - sensor.breaker_phase_b_power
     - sensor.breaker_phase_c_power
