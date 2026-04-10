@@ -308,6 +308,83 @@
           #   - entity: sensor.last_detection_wc
 
     # Свет дом
+
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_gostinaia_osveshchenie
+          type: custom:multiple-entity-row
+          name: gostinaia_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_gostinaia_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: gostinaia_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_guest_osveshchenie
+          type: custom:multiple-entity-row
+          name: guest_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_guest_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: guest_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_kitchen_osveshchenie
+          type: custom:multiple-entity-row
+          name: kitchen_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_kitchen_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: kitchen_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+
+    - type: entities
+      entities:
+        - entity: light.zg_gw_light_lobby_osveshchenie
+          type: custom:multiple-entity-row
+          name: lobby_l_1
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+          #   - entity: sensor.last_detection_wc
+
+        - entity: light.zg_gw_light_lobby_osveshchenie_2
+          type: custom:multiple-entity-row
+          name: lobby_l_2
+          icon: mdi:desk-lamp-on
+          toggle: true
+          state_color: true
+          # entities:
+
     - type: entities
       entities:
         - entity: light.zg_gw_light_playroom_osveshchenie
