@@ -2,7 +2,7 @@ homeassistant:
   time_zone: "Europe/Kiev"
   
   unit_system: metric
-# Loads default set of integrations. Do not remove.
+# Loads default set of integrations. Do not remove
 default_config:
 
 # Включаем python script
