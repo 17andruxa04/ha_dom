@@ -284,6 +284,143 @@
               hold_action:
                 action: more-info
 
+    - type: horizontal-stack
+      cards:
+        - type: "custom:button-card"
+          entity: light.zg_gw_central_wate_taps_osveshchenie
+          name: Водопровод
+          icon: mdi:pipe
+          show_state: true
+          show_label: false
+          triggers_update:
+            - light.zg_gw_central_wate_taps_osveshchenie
+            - light.zg_gw_central_wate_taps_osveshchenie_2
+            - light.zg_gw_automatic_pump
+          state_display: >
+            [[[
+              const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+              const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+              const pump = states['light.zg_gw_automatic_pump']?.state;
+              if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return 'Активен';
+              if (tap1 === 'on' && tap2 === 'on') return 'Выключен';
+              return 'Переходное состояние';
+            ]]]
+          styles:
+            card:
+              - height: 110px
+            icon:
+              - color: >
+                  [[[
+                    const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                    const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                    const pump = states['light.zg_gw_automatic_pump']?.state;
+                    if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return '#42a5f5';
+                    if (tap1 === 'on' && tap2 === 'on') return 'var(--disabled-text-color)';
+                    return '#fb8c00';
+                  ]]]
+            state:
+              - color: >
+                  [[[
+                    const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                    const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                    const pump = states['light.zg_gw_automatic_pump']?.state;
+                    if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return '#42a5f5';
+                    if (tap1 === 'on' && tap2 === 'on') return 'var(--disabled-text-color)';
+                    return '#fb8c00';
+                  ]]]
+          tap_action:
+            action: call-service
+            service: light.turn_off
+            target:
+              entity_id:
+                - light.zg_gw_central_wate_taps_osveshchenie
+                - light.zg_gw_central_wate_taps_osveshchenie_2
+                - light.zg_gw_automatic_pump
+          hold_action:
+            action: more-info
+
+        - type: "custom:button-card"
+          entity: light.zg_gw_central_wate_taps_osveshchenie
+          name: Скважина
+          icon: mdi:water-pump
+          show_state: true
+          show_label: false
+          triggers_update:
+            - light.zg_gw_central_wate_taps_osveshchenie
+            - light.zg_gw_central_wate_taps_osveshchenie_2
+            - light.zg_gw_automatic_pump
+          state_display: >
+            [[[
+              const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+              const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+              const pump = states['light.zg_gw_automatic_pump']?.state;
+              if (tap1 === 'on' && tap2 === 'on' && pump === 'on') return 'Активна';
+              if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return 'Выключена';
+              return 'Переходное состояние';
+            ]]]
+          styles:
+            card:
+              - height: 110px
+            icon:
+              - color: >
+                  [[[
+                    const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                    const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                    const pump = states['light.zg_gw_automatic_pump']?.state;
+                    if (tap1 === 'on' && tap2 === 'on' && pump === 'on') return '#26c6da';
+                    if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return 'var(--disabled-text-color)';
+                    return '#fb8c00';
+                  ]]]
+            state:
+              - color: >
+                  [[[
+                    const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                    const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                    const pump = states['light.zg_gw_automatic_pump']?.state;
+                    if (tap1 === 'on' && tap2 === 'on' && pump === 'on') return '#26c6da';
+                    if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return 'var(--disabled-text-color)';
+                    return '#fb8c00';
+                  ]]]
+          tap_action:
+            action: call-service
+            service: light.turn_on
+            target:
+              entity_id:
+                - light.zg_gw_central_wate_taps_osveshchenie
+                - light.zg_gw_central_wate_taps_osveshchenie_2
+                - light.zg_gw_automatic_pump
+          hold_action:
+            action: more-info
+
+        - type: "custom:button-card"
+          entity: light.zg_gw_automatic_pump
+          name: Насос
+          icon: mdi:engine
+          show_state: true
+          state_display: >
+            [[[
+              return entity.state === 'on' ? 'Включен' : 'Выключен';
+            ]]]
+          styles:
+            card:
+              - height: 110px
+            icon:
+              - color: >
+                  [[[
+                    return entity.state === 'on'
+                      ? '#66bb6a'
+                      : 'var(--disabled-text-color)';
+                  ]]]
+            state:
+              - color: >
+                  [[[
+                    return entity.state === 'on'
+                      ? '#66bb6a'
+                      : 'var(--disabled-text-color)';
+                  ]]]
+          tap_action:
+            action: more-info
+
 - type: vertical-stack
   cards:
     # Свет улица
