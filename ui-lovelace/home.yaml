@@ -445,7 +445,6 @@
           #   - entity: sensor.last_detection_wc
 
     # Свет дом
-
     - type: entities
       entities:
         - entity: light.zg_gw_light_gostinaia_osveshchenie
@@ -465,8 +464,6 @@
           state_color: true
           # entities:
 
-    - type: entities
-      entities:
         - entity: light.zg_gw_light_guest_osveshchenie
           type: custom:multiple-entity-row
           name: guest_l_1
@@ -484,8 +481,6 @@
           state_color: true
           # entities:
 
-    - type: entities
-      entities:
         - entity: light.zg_gw_light_kitchen_osveshchenie
           type: custom:multiple-entity-row
           name: kitchen_l_1
@@ -503,8 +498,6 @@
           state_color: true
           # entities:
 
-    - type: entities
-      entities:
         - entity: light.zg_gw_light_lobby_osveshchenie
           type: custom:multiple-entity-row
           name: lobby_l_1
@@ -522,8 +515,6 @@
           state_color: true
           # entities:
 
-    - type: entities
-      entities:
         - entity: light.zg_gw_light_playroom_osveshchenie
           type: custom:multiple-entity-row
           name: playroom_l_1
