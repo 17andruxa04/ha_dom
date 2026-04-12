@@ -284,6 +284,51 @@
               hold_action:
                 action: more-info
 
+    - type: "custom:button-card"
+      entity: sensor.home_power_source
+      name: Электроснабжение дома
+      icon: >
+        [[[
+          const source = entity.state;
+          if (source === 'grid') return 'mdi:transmission-tower';
+          if (source === 'generator') return 'mdi:generator-stationary';
+          if (source === 'no_power') return 'mdi:power-plug-off-outline';
+          return 'mdi:help-circle-outline';
+        ]]]
+      show_state: true
+      show_label: false
+      state_display: >
+        [[[
+          const source = entity.state;
+          if (source === 'grid') return 'Сеть';
+          if (source === 'generator') return 'Генератор';
+          if (source === 'no_power') return 'Нет сети';
+          return 'Нет данных';
+        ]]]
+      styles:
+        card:
+          - height: 72px
+        icon:
+          - color: >
+              [[[
+                const source = entity.state;
+                if (source === 'grid') return '#66bb6a';
+                if (source === 'generator') return '#ffa726';
+                if (source === 'no_power') return '#ef5350';
+                return 'var(--disabled-text-color)';
+              ]]]
+        state:
+          - color: >
+              [[[
+                const source = entity.state;
+                if (source === 'grid') return '#66bb6a';
+                if (source === 'generator') return '#ffa726';
+                if (source === 'no_power') return '#ef5350';
+                return 'var(--disabled-text-color)';
+              ]]]
+      tap_action:
+        action: more-info
+
     - type: horizontal-stack
       cards:
         - type: "custom:button-card"

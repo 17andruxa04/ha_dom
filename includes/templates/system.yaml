@@ -1,6 +1,10 @@
 - trigger:
     - platform: time_pattern
       seconds: "/30"
+    - platform: state
+      entity_id:
+        - switch.in_360v_home_switch_circuit_breaker
+        - switch.wf_tl_generator
   sensor:
     - name: "Current Time"
       state: "{{ now().strftime('%H:%M') }}"
@@ -9,3 +13,28 @@
     - name: "Current Date"
       state: "{{ now().strftime('%d.%m.%Y') }}"
       icon: mdi:calendar
+
+    - name: "Home Power Source"
+      unique_id: home_power_source
+      state: >
+        {% set breaker = states('switch.in_360v_home_switch_circuit_breaker') %}
+        {% set generator = states('switch.wf_tl_generator') %}
+
+        {% if breaker == 'on' %}
+          grid
+        {% elif breaker in ['off', 'unavailable'] and generator == 'on' %}
+          generator
+        {% else %}
+          no_power
+        {% endif %}
+      icon: >
+        {% set source = states('sensor.home_power_source') %}
+        {% if source == 'grid' %}
+          mdi:transmission-tower
+        {% elif source == 'generator' %}
+          mdi:generator-stationary
+        {% elif source == 'no_power' %}
+          mdi:power-plug-off-outline
+        {% else %}
+          mdi:help-circle-outline
+        {% endif %}
