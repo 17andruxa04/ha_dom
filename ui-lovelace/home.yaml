@@ -329,6 +329,67 @@
       tap_action:
         action: more-info
 
+    - type: "custom:button-card"
+      entity: binary_sensor.zg_gw_water_leaks_basement
+      name: Режим воды
+      icon: mdi:water-sync
+      show_state: true
+      show_label: false
+      triggers_update:
+        - binary_sensor.zg_gw_water_leaks_basement
+        - light.zg_gw_central_wate_taps_osveshchenie
+        - light.zg_gw_central_wate_taps_osveshchenie_2
+        - light.zg_gw_automatic_pump
+      state_display: >
+        [[[
+          const leak = states['binary_sensor.zg_gw_water_leaks_basement']?.state;
+          const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+          const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+          const pump = states['light.zg_gw_automatic_pump']?.state;
+
+          if (leak === 'on' || (tap1 === 'off' && tap2 === 'on' && pump === 'off')) {
+            return 'Авария';
+          }
+          if (tap1 === 'on' && tap2 === 'on' && pump === 'on') {
+            return 'Скважина';
+          }
+          if (tap1 === 'off' && tap2 === 'off' && pump === 'off') {
+            return 'Водопровод';
+          }
+          return 'Переходное состояние';
+        ]]]
+      styles:
+        card:
+          - height: 72px
+        icon:
+          - color: >
+              [[[
+                const leak = states['binary_sensor.zg_gw_water_leaks_basement']?.state;
+                const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                const pump = states['light.zg_gw_automatic_pump']?.state;
+
+                if (leak === 'on' || (tap1 === 'off' && tap2 === 'on' && pump === 'off')) return '#e53935';
+                if (tap1 === 'on' && tap2 === 'on' && pump === 'on') return '#26c6da';
+                if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return '#42a5f5';
+                return '#fb8c00';
+              ]]]
+        state:
+          - color: >
+              [[[
+                const leak = states['binary_sensor.zg_gw_water_leaks_basement']?.state;
+                const tap1 = states['light.zg_gw_central_wate_taps_osveshchenie']?.state;
+                const tap2 = states['light.zg_gw_central_wate_taps_osveshchenie_2']?.state;
+                const pump = states['light.zg_gw_automatic_pump']?.state;
+
+                if (leak === 'on' || (tap1 === 'off' && tap2 === 'on' && pump === 'off')) return '#e53935';
+                if (tap1 === 'on' && tap2 === 'on' && pump === 'on') return '#26c6da';
+                if (tap1 === 'off' && tap2 === 'off' && pump === 'off') return '#42a5f5';
+                return '#fb8c00';
+              ]]]
+      tap_action:
+        action: more-info
+
     - type: horizontal-stack
       cards:
         - type: "custom:button-card"
